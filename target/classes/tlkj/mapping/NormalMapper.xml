@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tlkj.dao.NormalMapper">
+	<resultMap id="BaseResultMap" type="tlkj.model.Normal">
+		<id column="Id" property="id" jdbcType="INTEGER" />
+		<result column="personId" property="personid" jdbcType="VARCHAR" />
+		<result column="personName" property="personname" jdbcType="VARCHAR" />
+		<result column="addressCode" property="addresscode" jdbcType="VARCHAR" />
+		<result column="addressName" property="addressname" jdbcType="VARCHAR" />
+		<result column="addressGPS" property="addressgps" jdbcType="VARCHAR" />
+		<result column="commitTime" property="committime" jdbcType="VARCHAR" />
+		<result column="userId" property="userid" jdbcType="INTEGER" />
+		<result column="infoSubmit" property="infosubmit" jdbcType="INTEGER" />
+		<result column="personFp" property="personfp" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		Id, personId, personName, addressCode, addressName,
+		addressGPS,
+		commitTime, userId, infoSubmit, personFp
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_normal
+		where Id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="getAllNormal" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_normal
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		t_normal
+		where Id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="tlkj.model.Normal">
+		insert into t_normal (Id,
+		personId, personName,
+		addressCode, addressName, addressGPS,
+		commitTime,
+		userId,infoSubmit,personFp)
+		values (#{id,jdbcType=INTEGER},
+		#{personid,jdbcType=VARCHAR},
+		#{personname,jdbcType=VARCHAR},
+		#{addresscode,jdbcType=VARCHAR},
+		#{addressname,jdbcType=VARCHAR},
+		#{addressgps,jdbcType=VARCHAR},
+		#{committime,jdbcType=VARCHAR},
+		#{userid,jdbcType=INTEGER},
+		#{infosubmit,jdbcType=INTEGER},
+		#{personfp,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="tlkj.model.Normal">
+		insert into t_normal
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				Id,
+			</if>
+			<if test="personid != null">
+				personId,
+			</if>
+			<if test="personname != null">
+				personName,
+			</if>
+			<if test="addresscode != null">
+				addressCode,
+			</if>
+			<if test="addressname != null">
+				addressName,
+			</if>
+			<if test="addressgps != null">
+				addressGPS,
+			</if>
+			<if test="committime != null">
+				commitTime,
+			</if>
+			<if test="userid != null">
+				userId,
+			</if>
+			<if test="infosubmit != null">
+				infoSubmit,
+			</if>
+			<if test="personfp != null">
+				personFp,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="personid != null">
+				#{personid,jdbcType=VARCHAR},
+			</if>
+			<if test="personname != null">
+				#{personname,jdbcType=VARCHAR},
+			</if>
+			<if test="addresscode != null">
+				#{addresscode,jdbcType=VARCHAR},
+			</if>
+			<if test="addressname != null">
+				#{addressname,jdbcType=VARCHAR},
+			</if>
+			<if test="addressgps != null">
+				#{addressgps,jdbcType=VARCHAR},
+			</if>
+			<if test="committime != null">
+				#{committime,jdbcType=VARCHAR},
+			</if>
+			<if test="userid != null">
+				#{userid,jdbcType=INTEGER},
+			</if>
+			<if test="infosubmit != null">
+				#{infosubmit,jdbcType=INTEGER},
+			</if>
+			<if test="personfp != null">
+				#{personfp,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="tlkj.model.Normal">
+		update t_normal
+		<set>
+			<if test="personid != null">
+				personId = #{personid,jdbcType=VARCHAR},
+			</if>
+			<if test="personname != null">
+				personName = #{personname,jdbcType=VARCHAR},
+			</if>
+			<if test="addresscode != null">
+				addressCode = #{addresscode,jdbcType=VARCHAR},
+			</if>
+			<if test="addressname != null">
+				addressName = #{addressname,jdbcType=VARCHAR},
+			</if>
+			<if test="addressgps != null">
+				addressGPS = #{addressgps,jdbcType=VARCHAR},
+			</if>
+			<if test="committime != null">
+				commitTime = #{committime,jdbcType=VARCHAR},
+			</if>
+			<if test="userid != null">
+				userId = #{userid,jdbcType=INTEGER},
+			</if>
+			<if test="infosubmit != null">
+				infoSubmit = #{infosubmit,jdbcType=INTEGER},
+			</if>
+			<if test="personfp != null">
+				personFp = #{personfp,jdbcType=INTEGER},
+			</if>
+		</set>
+		where Id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="tlkj.model.Normal">
+		update t_normal
+		set personId = #{personid,jdbcType=VARCHAR},
+		personName =
+		#{personname,jdbcType=VARCHAR},
+		addressCode =
+		#{addresscode,jdbcType=VARCHAR},
+		addressName =
+		#{addressname,jdbcType=VARCHAR},
+		addressGPS =
+		#{addressgps,jdbcType=VARCHAR},
+		commitTime =
+		#{committime,jdbcType=VARCHAR},
+		userId = #{userid,jdbcType=INTEGER},
+		infoSubmit = #{infosubmit,jdbcType=INTEGER},
+		personFp = #{personfp,jdbcType=INTEGER}
+		where Id =
+		#{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- <resultMap type="tlkj.model.Normal" id="normalInfo" extends="BaseResultMap"> 
+		<collection property="userList" javaType="list" ofType="tlkj.model.User"> 
+		<id property="id" column="user_id"/> <result property="username" column="username"/> 
+		<result property="departmentid" column="departmentId"/> <association property="mDepartment" 
+		javaType="tlkj.model.Department"> <id property="id" column="department_id"/> 
+		<result property="name" column="name"/> </association> </collection> </resultMap> -->
+	<resultMap type="tlkj.model.Normal" id="normalInfo" extends="BaseResultMap">
+		<collection property="departmentList" javaType="list"
+			ofType="tlkj.model.Department">
+			<id property="id" column="department_id" />
+			<result property="name" column="name" />
+		</collection>
+	</resultMap>
+	<select id="getAll" resultMap="normalInfo">
+		SELECT
+		t_normal.Id,
+		t_normal.personId,
+		t_normal.personName,
+		t_normal.addressCode,
+		t_normal.addressName,
+		t_normal.addressGPS,
+		t_normal.commitTime,
+		t_normal.userId,
+		t_user.Id user_id,
+		t_user.username,
+		t_user.departmentId,
+		t_department.Id department_id,
+		t_department.`name`
+		FROM
+		t_normal
+		INNER JOIN t_user ON t_normal.userId = t_user.Id
+		INNER JOIN
+		t_department ON t_user.departmentId = t_department.Id
+	</select>
+</mapper>

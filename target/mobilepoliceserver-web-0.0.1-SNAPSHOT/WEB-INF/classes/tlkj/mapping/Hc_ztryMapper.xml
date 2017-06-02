@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tlkj.dao.Hc_ztryMapper" >
+  <resultMap id="BaseResultMap" type="tlkj.model.Hc_ztry" >
+    <id column="SYSTEMID" property="systemid" jdbcType="VARCHAR" />
+    <result column="CSRQ" property="csrq" jdbcType="TIMESTAMP" />
+    <result column="JYAQ" property="jyaq" jdbcType="VARCHAR" />
+    <result column="QXLXDH" property="qxlxdh" jdbcType="VARCHAR" />
+    <result column="QXSQR" property="qxsqr" jdbcType="VARCHAR" />
+    <result column="SFZH" property="sfzh" jdbcType="VARCHAR" />
+    <result column="XB" property="xb" jdbcType="VARCHAR" />
+    <result column="XM" property="xm" jdbcType="VARCHAR" />
+    <result column="ZRDW" property="zrdw" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SYSTEMID, CSRQ, JYAQ, QXLXDH, QXSQR, SFZH, XB, XM, ZRDW
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_hc_ztry
+    where SYSTEMID = #{systemid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_hc_ztry
+    where SYSTEMID = #{systemid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="tlkj.model.Hc_ztry" >
+    insert into t_hc_ztry (SYSTEMID, CSRQ, JYAQ, 
+      QXLXDH, QXSQR, SFZH, 
+      XB, XM, ZRDW)
+    values (#{systemid,jdbcType=VARCHAR}, #{csrq,jdbcType=TIMESTAMP}, #{jyaq,jdbcType=VARCHAR}, 
+      #{qxlxdh,jdbcType=VARCHAR}, #{qxsqr,jdbcType=VARCHAR}, #{sfzh,jdbcType=VARCHAR}, 
+      #{xb,jdbcType=VARCHAR}, #{xm,jdbcType=VARCHAR}, #{zrdw,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="tlkj.model.Hc_ztry" >
+    insert into t_hc_ztry
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="systemid != null" >
+        SYSTEMID,
+      </if>
+      <if test="csrq != null" >
+        CSRQ,
+      </if>
+      <if test="jyaq != null" >
+        JYAQ,
+      </if>
+      <if test="qxlxdh != null" >
+        QXLXDH,
+      </if>
+      <if test="qxsqr != null" >
+        QXSQR,
+      </if>
+      <if test="sfzh != null" >
+        SFZH,
+      </if>
+      <if test="xb != null" >
+        XB,
+      </if>
+      <if test="xm != null" >
+        XM,
+      </if>
+      <if test="zrdw != null" >
+        ZRDW,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="systemid != null" >
+        #{systemid,jdbcType=VARCHAR},
+      </if>
+      <if test="csrq != null" >
+        #{csrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jyaq != null" >
+        #{jyaq,jdbcType=VARCHAR},
+      </if>
+      <if test="qxlxdh != null" >
+        #{qxlxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="qxsqr != null" >
+        #{qxsqr,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzh != null" >
+        #{sfzh,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null" >
+        #{xb,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null" >
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="zrdw != null" >
+        #{zrdw,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="tlkj.model.Hc_ztry" >
+    update t_hc_ztry
+    <set >
+      <if test="csrq != null" >
+        CSRQ = #{csrq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jyaq != null" >
+        JYAQ = #{jyaq,jdbcType=VARCHAR},
+      </if>
+      <if test="qxlxdh != null" >
+        QXLXDH = #{qxlxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="qxsqr != null" >
+        QXSQR = #{qxsqr,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzh != null" >
+        SFZH = #{sfzh,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null" >
+        XB = #{xb,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null" >
+        XM = #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="zrdw != null" >
+        ZRDW = #{zrdw,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SYSTEMID = #{systemid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="tlkj.model.Hc_ztry" >
+    update t_hc_ztry
+    set CSRQ = #{csrq,jdbcType=TIMESTAMP},
+      JYAQ = #{jyaq,jdbcType=VARCHAR},
+      QXLXDH = #{qxlxdh,jdbcType=VARCHAR},
+      QXSQR = #{qxsqr,jdbcType=VARCHAR},
+      SFZH = #{sfzh,jdbcType=VARCHAR},
+      XB = #{xb,jdbcType=VARCHAR},
+      XM = #{xm,jdbcType=VARCHAR},
+      ZRDW = #{zrdw,jdbcType=VARCHAR}
+    where SYSTEMID = #{systemid,jdbcType=VARCHAR}
+  </update>
+</mapper>

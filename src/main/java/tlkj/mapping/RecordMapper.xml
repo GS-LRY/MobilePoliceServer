@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tlkj.dao.RecordMapper" >
+  <resultMap id="BaseResultMap" type="tlkj.model.Record" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="policeId" property="policeid" jdbcType="VARCHAR" />
+    <result column="policeName" property="policename" jdbcType="VARCHAR" />
+    <result column="policePhoneNo" property="policephoneno" jdbcType="VARCHAR" />
+    <result column="departmentId" property="departmentid" jdbcType="INTEGER" />
+    <result column="checkCount" property="checkcount" jdbcType="INTEGER" />
+    <result column="commitTime" property="committime" jdbcType="TIMESTAMP" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, policeId, policeName, policePhoneNo, departmentId, checkCount, commitTime, userId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_record
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_record
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="tlkj.model.Record" >
+    insert into t_record (Id, policeId, policeName, 
+      policePhoneNo, departmentId, checkCount, 
+      commitTime, userId)
+    values (#{id,jdbcType=INTEGER}, #{policeid,jdbcType=VARCHAR}, #{policename,jdbcType=VARCHAR}, 
+      #{policephoneno,jdbcType=VARCHAR}, #{departmentid,jdbcType=INTEGER}, #{checkcount,jdbcType=INTEGER}, 
+      #{committime,jdbcType=TIMESTAMP}, #{userid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="tlkj.model.Record" >
+    insert into t_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="policeid != null" >
+        policeId,
+      </if>
+      <if test="policename != null" >
+        policeName,
+      </if>
+      <if test="policephoneno != null" >
+        policePhoneNo,
+      </if>
+      <if test="departmentid != null" >
+        departmentId,
+      </if>
+      <if test="checkcount != null" >
+        checkCount,
+      </if>
+      <if test="committime != null" >
+        commitTime,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="policeid != null" >
+        #{policeid,jdbcType=VARCHAR},
+      </if>
+      <if test="policename != null" >
+        #{policename,jdbcType=VARCHAR},
+      </if>
+      <if test="policephoneno != null" >
+        #{policephoneno,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentid != null" >
+        #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="checkcount != null" >
+        #{checkcount,jdbcType=INTEGER},
+      </if>
+      <if test="committime != null" >
+        #{committime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="tlkj.model.Record" >
+    update t_record
+    <set >
+      <if test="policeid != null" >
+        policeId = #{policeid,jdbcType=VARCHAR},
+      </if>
+      <if test="policename != null" >
+        policeName = #{policename,jdbcType=VARCHAR},
+      </if>
+      <if test="policephoneno != null" >
+        policePhoneNo = #{policephoneno,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentid != null" >
+        departmentId = #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="checkcount != null" >
+        checkCount = #{checkcount,jdbcType=INTEGER},
+      </if>
+      <if test="committime != null" >
+        commitTime = #{committime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="tlkj.model.Record" >
+    update t_record
+    set policeId = #{policeid,jdbcType=VARCHAR},
+      policeName = #{policename,jdbcType=VARCHAR},
+      policePhoneNo = #{policephoneno,jdbcType=VARCHAR},
+      departmentId = #{departmentid,jdbcType=INTEGER},
+      checkCount = #{checkcount,jdbcType=INTEGER},
+      commitTime = #{committime,jdbcType=TIMESTAMP},
+      userId = #{userid,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

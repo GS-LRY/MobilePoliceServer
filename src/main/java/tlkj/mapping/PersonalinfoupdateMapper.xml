@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tlkj.dao.PersonalinfoupdateMapper" >
+  <resultMap id="BaseResultMap" type="tlkj.model.Personalinfoupdate" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="SYSTEMID" property="systemid" jdbcType="VARCHAR" />
+    <result column="SFZH" property="sfzh" jdbcType="VARCHAR" />
+    <result column="XM" property="xm" jdbcType="VARCHAR" />
+    <result column="XB" property="xb" jdbcType="VARCHAR" />
+    <result column="CSRQ" property="csrq" jdbcType="DATE" />
+    <result column="JYAQ" property="jyaq" jdbcType="VARCHAR" />
+    <result column="QXSQR" property="qxsqr" jdbcType="VARCHAR" />
+    <result column="QXLXDH" property="qxlxdh" jdbcType="VARCHAR" />
+    <result column="ZRDW" property="zrdw" jdbcType="VARCHAR" />
+    <result column="GXSJ" property="gxsj" jdbcType="TIMESTAMP" />
+    <result column="GXLX" property="gxlx" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, SYSTEMID, SFZH, XM, XB, CSRQ, JYAQ, QXSQR, QXLXDH, ZRDW, GXSJ, GXLX
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_personalinfoupdate
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_personalinfoupdate
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="tlkj.model.Personalinfoupdate" >
+    insert into t_personalinfoupdate (id, SYSTEMID, SFZH, 
+      XM, XB, CSRQ, JYAQ, 
+      QXSQR, QXLXDH, ZRDW, 
+      GXSJ, GXLX)
+    values (#{id,jdbcType=INTEGER}, #{systemid,jdbcType=VARCHAR}, #{sfzh,jdbcType=VARCHAR}, 
+      #{xm,jdbcType=VARCHAR}, #{xb,jdbcType=VARCHAR}, #{csrq,jdbcType=DATE}, #{jyaq,jdbcType=VARCHAR}, 
+      #{qxsqr,jdbcType=VARCHAR}, #{qxlxdh,jdbcType=VARCHAR}, #{zrdw,jdbcType=VARCHAR}, 
+      #{gxsj,jdbcType=TIMESTAMP}, #{gxlx,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="tlkj.model.Personalinfoupdate" >
+    insert into t_personalinfoupdate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="systemid != null" >
+        SYSTEMID,
+      </if>
+      <if test="sfzh != null" >
+        SFZH,
+      </if>
+      <if test="xm != null" >
+        XM,
+      </if>
+      <if test="xb != null" >
+        XB,
+      </if>
+      <if test="csrq != null" >
+        CSRQ,
+      </if>
+      <if test="jyaq != null" >
+        JYAQ,
+      </if>
+      <if test="qxsqr != null" >
+        QXSQR,
+      </if>
+      <if test="qxlxdh != null" >
+        QXLXDH,
+      </if>
+      <if test="zrdw != null" >
+        ZRDW,
+      </if>
+      <if test="gxsj != null" >
+        GXSJ,
+      </if>
+      <if test="gxlx != null" >
+        GXLX,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="systemid != null" >
+        #{systemid,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzh != null" >
+        #{sfzh,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null" >
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null" >
+        #{xb,jdbcType=VARCHAR},
+      </if>
+      <if test="csrq != null" >
+        #{csrq,jdbcType=DATE},
+      </if>
+      <if test="jyaq != null" >
+        #{jyaq,jdbcType=VARCHAR},
+      </if>
+      <if test="qxsqr != null" >
+        #{qxsqr,jdbcType=VARCHAR},
+      </if>
+      <if test="qxlxdh != null" >
+        #{qxlxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="zrdw != null" >
+        #{zrdw,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null" >
+        #{gxsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gxlx != null" >
+        #{gxlx,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="tlkj.model.Personalinfoupdate" >
+    update t_personalinfoupdate
+    <set >
+      <if test="systemid != null" >
+        SYSTEMID = #{systemid,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzh != null" >
+        SFZH = #{sfzh,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null" >
+        XM = #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null" >
+        XB = #{xb,jdbcType=VARCHAR},
+      </if>
+      <if test="csrq != null" >
+        CSRQ = #{csrq,jdbcType=DATE},
+      </if>
+      <if test="jyaq != null" >
+        JYAQ = #{jyaq,jdbcType=VARCHAR},
+      </if>
+      <if test="qxsqr != null" >
+        QXSQR = #{qxsqr,jdbcType=VARCHAR},
+      </if>
+      <if test="qxlxdh != null" >
+        QXLXDH = #{qxlxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="zrdw != null" >
+        ZRDW = #{zrdw,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null" >
+        GXSJ = #{gxsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gxlx != null" >
+        GXLX = #{gxlx,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="tlkj.model.Personalinfoupdate" >
+    update t_personalinfoupdate
+    set SYSTEMID = #{systemid,jdbcType=VARCHAR},
+      SFZH = #{sfzh,jdbcType=VARCHAR},
+      XM = #{xm,jdbcType=VARCHAR},
+      XB = #{xb,jdbcType=VARCHAR},
+      CSRQ = #{csrq,jdbcType=DATE},
+      JYAQ = #{jyaq,jdbcType=VARCHAR},
+      QXSQR = #{qxsqr,jdbcType=VARCHAR},
+      QXLXDH = #{qxlxdh,jdbcType=VARCHAR},
+      ZRDW = #{zrdw,jdbcType=VARCHAR},
+      GXSJ = #{gxsj,jdbcType=TIMESTAMP},
+      GXLX = #{gxlx,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

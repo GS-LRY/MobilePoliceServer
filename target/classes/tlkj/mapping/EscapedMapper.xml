@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tlkj.dao.EscapedMapper">
+	<resultMap id="BaseResultMap" type="tlkj.model.Escaped">
+		<id column="Id" property="id" jdbcType="INTEGER" />
+		<result column="XM" property="xm" jdbcType="VARCHAR" />
+		<result column="XB" property="xb" jdbcType="VARCHAR" />
+		<result column="SFZH" property="sfzh" jdbcType="VARCHAR" />
+		<result column="ZDRYLBBJ" property="zdrylbbj" jdbcType="VARCHAR" />
+		<result column="ZDRYXL" property="zdryxl" jdbcType="VARCHAR" />
+		<result column="LADW" property="ladw" jdbcType="VARCHAR" />
+		<result column="NRBJZDRYKSJ" property="nrbjzdryksj" jdbcType="TIMESTAMP" />
+		<result column="HJDQH" property="hjdqh" jdbcType="VARCHAR" />
+		<result column="HJDXZ" property="hjdxz" jdbcType="VARCHAR" />
+		<result column="XZDQH" property="xzdqh" jdbcType="VARCHAR" />
+		<result column="XZDXZ" property="xzdxz" jdbcType="VARCHAR" />
+		<result column="ZJLASJ" property="zjlasj" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		Id, XM, XB, SFZH, ZDRYLBBJ, ZDRYXL, LADW, NRBJZDRYKSJ, HJDQH, HJDXZ,
+		XZDQH, XZDXZ,
+		ZJLASJ
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_escaped
+		where Id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectByPersonId" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from t_escaped
+		where Sfzh = #{sfzh,jdbcType=VARCHAR}
+	</select>
+	<select id="getHundredRecord" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_escaped 
+		limit 0,100
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from t_escaped
+		where Id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="tlkj.model.Escaped">
+		insert into t_escaped (Id, XM, XB, SFZH,
+		ZDRYLBBJ, ZDRYXL, LADW,
+		NRBJZDRYKSJ, HJDQH, HJDXZ,
+		XZDQH, XZDXZ, ZJLASJ
+		)
+		values (#{id,jdbcType=INTEGER}, #{xm,jdbcType=VARCHAR},
+		#{xb,jdbcType=VARCHAR}, #{sfzh,jdbcType=VARCHAR},
+		#{zdrylbbj,jdbcType=VARCHAR}, #{zdryxl,jdbcType=VARCHAR},
+		#{ladw,jdbcType=VARCHAR},
+		#{nrbjzdryksj,jdbcType=TIMESTAMP}, #{hjdqh,jdbcType=VARCHAR}, #{hjdxz,jdbcType=VARCHAR},
+		#{xzdqh,jdbcType=VARCHAR}, #{xzdxz,jdbcType=VARCHAR},
+		#{zjlasj,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="tlkj.model.Escaped">
+		insert into t_escaped
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				Id,
+			</if>
+			<if test="xm != null">
+				XM,
+			</if>
+			<if test="xb != null">
+				XB,
+			</if>
+			<if test="sfzh != null">
+				SFZH,
+			</if>
+			<if test="zdrylbbj != null">
+				ZDRYLBBJ,
+			</if>
+			<if test="zdryxl != null">
+				ZDRYXL,
+			</if>
+			<if test="ladw != null">
+				LADW,
+			</if>
+			<if test="nrbjzdryksj != null">
+				NRBJZDRYKSJ,
+			</if>
+			<if test="hjdqh != null">
+				HJDQH,
+			</if>
+			<if test="hjdxz != null">
+				HJDXZ,
+			</if>
+			<if test="xzdqh != null">
+				XZDQH,
+			</if>
+			<if test="xzdxz != null">
+				XZDXZ,
+			</if>
+			<if test="zjlasj != null">
+				ZJLASJ,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="xm != null">
+				#{xm,jdbcType=VARCHAR},
+			</if>
+			<if test="xb != null">
+				#{xb,jdbcType=VARCHAR},
+			</if>
+			<if test="sfzh != null">
+				#{sfzh,jdbcType=VARCHAR},
+			</if>
+			<if test="zdrylbbj != null">
+				#{zdrylbbj,jdbcType=VARCHAR},
+			</if>
+			<if test="zdryxl != null">
+				#{zdryxl,jdbcType=VARCHAR},
+			</if>
+			<if test="ladw != null">
+				#{ladw,jdbcType=VARCHAR},
+			</if>
+			<if test="nrbjzdryksj != null">
+				#{nrbjzdryksj,jdbcType=TIMESTAMP},
+			</if>
+			<if test="hjdqh != null">
+				#{hjdqh,jdbcType=VARCHAR},
+			</if>
+			<if test="hjdxz != null">
+				#{hjdxz,jdbcType=VARCHAR},
+			</if>
+			<if test="xzdqh != null">
+				#{xzdqh,jdbcType=VARCHAR},
+			</if>
+			<if test="xzdxz != null">
+				#{xzdxz,jdbcType=VARCHAR},
+			</if>
+			<if test="zjlasj != null">
+				#{zjlasj,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="tlkj.model.Escaped">
+		update t_escaped
+		<set>
+			<if test="xm != null">
+				XM = #{xm,jdbcType=VARCHAR},
+			</if>
+			<if test="xb != null">
+				XB = #{xb,jdbcType=VARCHAR},
+			</if>
+			<if test="sfzh != null">
+				SFZH = #{sfzh,jdbcType=VARCHAR},
+			</if>
+			<if test="zdrylbbj != null">
+				ZDRYLBBJ = #{zdrylbbj,jdbcType=VARCHAR},
+			</if>
+			<if test="zdryxl != null">
+				ZDRYXL = #{zdryxl,jdbcType=VARCHAR},
+			</if>
+			<if test="ladw != null">
+				LADW = #{ladw,jdbcType=VARCHAR},
+			</if>
+			<if test="nrbjzdryksj != null">
+				NRBJZDRYKSJ = #{nrbjzdryksj,jdbcType=TIMESTAMP},
+			</if>
+			<if test="hjdqh != null">
+				HJDQH = #{hjdqh,jdbcType=VARCHAR},
+			</if>
+			<if test="hjdxz != null">
+				HJDXZ = #{hjdxz,jdbcType=VARCHAR},
+			</if>
+			<if test="xzdqh != null">
+				XZDQH = #{xzdqh,jdbcType=VARCHAR},
+			</if>
+			<if test="xzdxz != null">
+				XZDXZ = #{xzdxz,jdbcType=VARCHAR},
+			</if>
+			<if test="zjlasj != null">
+				ZJLASJ = #{zjlasj,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where Id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="tlkj.model.Escaped">
+		update t_escaped
+		set XM = #{xm,jdbcType=VARCHAR},
+		XB = #{xb,jdbcType=VARCHAR},
+		SFZH = #{sfzh,jdbcType=VARCHAR},
+		ZDRYLBBJ = #{zdrylbbj,jdbcType=VARCHAR},
+		ZDRYXL = #{zdryxl,jdbcType=VARCHAR},
+		LADW = #{ladw,jdbcType=VARCHAR},
+		NRBJZDRYKSJ = #{nrbjzdryksj,jdbcType=TIMESTAMP},
+		HJDQH = #{hjdqh,jdbcType=VARCHAR},
+		HJDXZ = #{hjdxz,jdbcType=VARCHAR},
+		XZDQH = #{xzdqh,jdbcType=VARCHAR},
+		XZDXZ = #{xzdxz,jdbcType=VARCHAR},
+		ZJLASJ = #{zjlasj,jdbcType=TIMESTAMP}
+		where Id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

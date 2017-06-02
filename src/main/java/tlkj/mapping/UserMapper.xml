@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tlkj.dao.UserMapper">
+	<resultMap id="BaseResultMap" type="tlkj.model.User">
+		<id column="Id" property="id" jdbcType="INTEGER" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="allowPathPattern" property="allowpathpattern"
+			jdbcType="VARCHAR" />
+		<result column="isUsing" property="isusing" jdbcType="INTEGER" />
+		<result column="locked" property="locked" jdbcType="INTEGER" />
+		<result column="registTime" property="registtime" jdbcType="TIMESTAMP" />
+		<result column="lastLoginTime" property="lastlogintime"
+			jdbcType="TIMESTAMP" />
+		<result column="departmentId" property="departmentid" jdbcType="INTEGER" />
+		<result column="createrId" property="createrid" jdbcType="INTEGER" />
+		<result column="idCard" property="idcard" jdbcType="VARCHAR" />
+		<result column="policeNum" property="policenum" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="userType" property="usertype" jdbcType="INTEGER" />
+		<result column="job" property="job" jdbcType="VARCHAR" />
+		<result column="tel" property="tel" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		Id, username, password, phone, allowPathPattern, isUsing,
+		locked,
+		registTime, lastLoginTime,
+		departmentId, createrId, idCard,
+		policeNum, email, userType, job, tel
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_user
+		where Id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from t_user
+		where Id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="tlkj.model.User">
+		insert into t_user (Id,
+		username, password,
+		phone, allowPathPattern, isUsing,
+		locked,
+		registTime, lastLoginTime,
+		departmentId, createrId, idCard,
+		policeNum,
+		email, userType,
+		job, tel)
+		values (#{id,jdbcType=INTEGER},
+		#{username,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR},
+		#{phone,jdbcType=VARCHAR}, #{allowpathpattern,jdbcType=VARCHAR},
+		#{isusing,jdbcType=INTEGER},
+		#{locked,jdbcType=INTEGER},
+		#{registtime,jdbcType=TIMESTAMP},
+		#{lastlogintime,jdbcType=TIMESTAMP},
+		#{departmentid,jdbcType=INTEGER}, #{createrid,jdbcType=INTEGER},
+		#{idcard,jdbcType=VARCHAR},
+		#{policenum,jdbcType=VARCHAR},
+		#{email,jdbcType=VARCHAR},
+		#{usertype,jdbcType=INTEGER},
+		#{job,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="tlkj.model.User">
+		insert into t_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				Id,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+			<if test="allowpathpattern != null">
+				allowPathPattern,
+			</if>
+			<if test="isusing != null">
+				isUsing,
+			</if>
+			<if test="locked != null">
+				locked,
+			</if>
+			<if test="registtime != null">
+				registTime,
+			</if>
+			<if test="lastlogintime != null">
+				lastLoginTime,
+			</if>
+			<if test="departmentid != null">
+				departmentId,
+			</if>
+			<if test="createrid != null">
+				createrId,
+			</if>
+			<if test="idcard != null">
+				idCard,
+			</if>
+			<if test="policenum != null">
+				policeNum,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="usertype != null">
+				userType,
+			</if>
+			<if test="job != null">
+				job,
+			</if>
+			<if test="tel != null">
+				tel,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="allowpathpattern != null">
+				#{allowpathpattern,jdbcType=VARCHAR},
+			</if>
+			<if test="isusing != null">
+				#{isusing,jdbcType=INTEGER},
+			</if>
+			<if test="locked != null">
+				#{locked,jdbcType=INTEGER},
+			</if>
+			<if test="registtime != null">
+				#{registtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastlogintime != null">
+				#{lastlogintime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="departmentid != null">
+				#{departmentid,jdbcType=INTEGER},
+			</if>
+			<if test="createrid != null">
+				#{createrid,jdbcType=INTEGER},
+			</if>
+			<if test="idcard != null">
+				#{idcard,jdbcType=VARCHAR},
+			</if>
+			<if test="policenum != null">
+				#{policenum,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="usertype != null">
+				#{usertype,jdbcType=INTEGER},
+			</if>
+			<if test="job != null">
+				#{job,jdbcType=VARCHAR},
+			</if>
+			<if test="tel != null">
+				#{tel,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="tlkj.model.User">
+		update t_user
+		<set>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				phone = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="allowpathpattern != null">
+				allowPathPattern = #{allowpathpattern,jdbcType=VARCHAR},
+			</if>
+			<if test="isusing != null">
+				isUsing = #{isusing,jdbcType=INTEGER},
+			</if>
+			<if test="locked != null">
+				locked = #{locked,jdbcType=INTEGER},
+			</if>
+			<if test="registtime != null">
+				registTime = #{registtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastlogintime != null">
+				lastLoginTime = #{lastlogintime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="departmentid != null">
+				departmentId = #{departmentid,jdbcType=INTEGER},
+			</if>
+			<if test="createrid != null">
+				createrId = #{createrid,jdbcType=INTEGER},
+			</if>
+			<if test="idcard != null">
+				idCard = #{idcard,jdbcType=VARCHAR},
+			</if>
+			<if test="policenum != null">
+				policeNum = #{policenum,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="usertype != null">
+				userType = #{usertype,jdbcType=INTEGER},
+			</if>
+			<if test="job != null">
+				job = #{job,jdbcType=VARCHAR},
+			</if>
+			<if test="tel != null">
+				tel = #{tel,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where Id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="tlkj.model.User">
+		update t_user
+		set
+		username = #{username,jdbcType=VARCHAR},
+		password =
+		#{password,jdbcType=VARCHAR},
+		phone = #{phone,jdbcType=VARCHAR},
+		allowPathPattern = #{allowpathpattern,jdbcType=VARCHAR},
+		isUsing =
+		#{isusing,jdbcType=INTEGER},
+		locked = #{locked,jdbcType=INTEGER},
+		registTime = #{registtime,jdbcType=TIMESTAMP},
+		lastLoginTime =
+		#{lastlogintime,jdbcType=TIMESTAMP},
+		departmentId =
+		#{departmentid,jdbcType=INTEGER},
+		createrId =
+		#{createrid,jdbcType=INTEGER},
+		idCard = #{idcard,jdbcType=VARCHAR},
+		policeNum = #{policenum,jdbcType=VARCHAR},
+		email =
+		#{email,jdbcType=VARCHAR},
+		userType = #{usertype,jdbcType=INTEGER},
+		job
+		= #{job,jdbcType=VARCHAR},
+		tel = #{tel,jdbcType=VARCHAR}
+		where Id =
+		#{id,jdbcType=INTEGER}
+	</update>
+</mapper>

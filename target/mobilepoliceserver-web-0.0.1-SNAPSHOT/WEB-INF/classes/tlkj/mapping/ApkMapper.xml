@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tlkj.dao.ApkMapper" >
+  <resultMap id="BaseResultMap" type="tlkj.model.Apk" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="apkName" property="apkname" jdbcType="VARCHAR" />
+    <result column="updateUrl" property="updateurl" jdbcType="VARCHAR" />
+    <result column="isForced" property="isforced" jdbcType="INTEGER" />
+    <result column="currentVersion" property="currentversion" jdbcType="VARCHAR" />
+    <result column="uploadTime" property="uploadtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="tlkj.model.Apk" extends="BaseResultMap" >
+    <result column="updateContent" property="updatecontent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, apkName, updateUrl, isForced, currentVersion, uploadTime
+  </sql>
+  <sql id="Blob_Column_List" >
+    updateContent
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_apk
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_apk
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="tlkj.model.Apk" >
+    insert into t_apk (Id, apkName, updateUrl, 
+      isForced, currentVersion, uploadTime, 
+      updateContent)
+    values (#{id,jdbcType=INTEGER}, #{apkname,jdbcType=VARCHAR}, #{updateurl,jdbcType=VARCHAR}, 
+      #{isforced,jdbcType=INTEGER}, #{currentversion,jdbcType=VARCHAR}, #{uploadtime,jdbcType=TIMESTAMP}, 
+      #{updatecontent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="tlkj.model.Apk" >
+    insert into t_apk
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="apkname != null" >
+        apkName,
+      </if>
+      <if test="updateurl != null" >
+        updateUrl,
+      </if>
+      <if test="isforced != null" >
+        isForced,
+      </if>
+      <if test="currentversion != null" >
+        currentVersion,
+      </if>
+      <if test="uploadtime != null" >
+        uploadTime,
+      </if>
+      <if test="updatecontent != null" >
+        updateContent,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="apkname != null" >
+        #{apkname,jdbcType=VARCHAR},
+      </if>
+      <if test="updateurl != null" >
+        #{updateurl,jdbcType=VARCHAR},
+      </if>
+      <if test="isforced != null" >
+        #{isforced,jdbcType=INTEGER},
+      </if>
+      <if test="currentversion != null" >
+        #{currentversion,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadtime != null" >
+        #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatecontent != null" >
+        #{updatecontent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="tlkj.model.Apk" >
+    update t_apk
+    <set >
+      <if test="apkname != null" >
+        apkName = #{apkname,jdbcType=VARCHAR},
+      </if>
+      <if test="updateurl != null" >
+        updateUrl = #{updateurl,jdbcType=VARCHAR},
+      </if>
+      <if test="isforced != null" >
+        isForced = #{isforced,jdbcType=INTEGER},
+      </if>
+      <if test="currentversion != null" >
+        currentVersion = #{currentversion,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadtime != null" >
+        uploadTime = #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatecontent != null" >
+        updateContent = #{updatecontent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="tlkj.model.Apk" >
+    update t_apk
+    set apkName = #{apkname,jdbcType=VARCHAR},
+      updateUrl = #{updateurl,jdbcType=VARCHAR},
+      isForced = #{isforced,jdbcType=INTEGER},
+      currentVersion = #{currentversion,jdbcType=VARCHAR},
+      uploadTime = #{uploadtime,jdbcType=TIMESTAMP},
+      updateContent = #{updatecontent,jdbcType=LONGVARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="tlkj.model.Apk" >
+    update t_apk
+    set apkName = #{apkname,jdbcType=VARCHAR},
+      updateUrl = #{updateurl,jdbcType=VARCHAR},
+      isForced = #{isforced,jdbcType=INTEGER},
+      currentVersion = #{currentversion,jdbcType=VARCHAR},
+      uploadTime = #{uploadtime,jdbcType=TIMESTAMP}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

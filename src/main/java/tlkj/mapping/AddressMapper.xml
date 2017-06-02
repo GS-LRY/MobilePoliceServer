@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tlkj.dao.AddressMapper" >
+  <resultMap id="BaseResultMap" type="tlkj.model.Address" >
+    <id column="SYSTEMID" property="systemid" jdbcType="INTEGER" />
+    <result column="HDFSDDQH" property="hdfsddqh" jdbcType="VARCHAR" />
+    <result column="HDFSDZXZ" property="hdfsdzxz" jdbcType="VARCHAR" />
+    <result column="HDFSCS" property="hdfscs" jdbcType="VARCHAR" />
+    <result column="HDFSCSDM" property="hdfscsdm" jdbcType="VARCHAR" />
+    <result column="HDFSDDSSGAJG" property="hdfsddssgajg" jdbcType="VARCHAR" />
+    <result column="HDFSDDSSGAJGDM" property="hdfsddssgajgdm" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SYSTEMID, HDFSDDQH, HDFSDZXZ, HDFSCS, HDFSCSDM, HDFSDDSSGAJG, HDFSDDSSGAJGDM
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_address
+    where SYSTEMID = #{systemid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_address
+    where SYSTEMID = #{systemid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="tlkj.model.Address" >
+    insert into t_address (SYSTEMID, HDFSDDQH, HDFSDZXZ, 
+      HDFSCS, HDFSCSDM, HDFSDDSSGAJG, 
+      HDFSDDSSGAJGDM)
+    values (#{systemid,jdbcType=INTEGER}, #{hdfsddqh,jdbcType=VARCHAR}, #{hdfsdzxz,jdbcType=VARCHAR}, 
+      #{hdfscs,jdbcType=VARCHAR}, #{hdfscsdm,jdbcType=VARCHAR}, #{hdfsddssgajg,jdbcType=VARCHAR}, 
+      #{hdfsddssgajgdm,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="tlkj.model.Address" >
+    insert into t_address
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="systemid != null" >
+        SYSTEMID,
+      </if>
+      <if test="hdfsddqh != null" >
+        HDFSDDQH,
+      </if>
+      <if test="hdfsdzxz != null" >
+        HDFSDZXZ,
+      </if>
+      <if test="hdfscs != null" >
+        HDFSCS,
+      </if>
+      <if test="hdfscsdm != null" >
+        HDFSCSDM,
+      </if>
+      <if test="hdfsddssgajg != null" >
+        HDFSDDSSGAJG,
+      </if>
+      <if test="hdfsddssgajgdm != null" >
+        HDFSDDSSGAJGDM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="systemid != null" >
+        #{systemid,jdbcType=INTEGER},
+      </if>
+      <if test="hdfsddqh != null" >
+        #{hdfsddqh,jdbcType=VARCHAR},
+      </if>
+      <if test="hdfsdzxz != null" >
+        #{hdfsdzxz,jdbcType=VARCHAR},
+      </if>
+      <if test="hdfscs != null" >
+        #{hdfscs,jdbcType=VARCHAR},
+      </if>
+      <if test="hdfscsdm != null" >
+        #{hdfscsdm,jdbcType=VARCHAR},
+      </if>
+      <if test="hdfsddssgajg != null" >
+        #{hdfsddssgajg,jdbcType=VARCHAR},
+      </if>
+      <if test="hdfsddssgajgdm != null" >
+        #{hdfsddssgajgdm,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="tlkj.model.Address" >
+    update t_address
+    <set >
+      <if test="hdfsddqh != null" >
+        HDFSDDQH = #{hdfsddqh,jdbcType=VARCHAR},
+      </if>
+      <if test="hdfsdzxz != null" >
+        HDFSDZXZ = #{hdfsdzxz,jdbcType=VARCHAR},
+      </if>
+      <if test="hdfscs != null" >
+        HDFSCS = #{hdfscs,jdbcType=VARCHAR},
+      </if>
+      <if test="hdfscsdm != null" >
+        HDFSCSDM = #{hdfscsdm,jdbcType=VARCHAR},
+      </if>
+      <if test="hdfsddssgajg != null" >
+        HDFSDDSSGAJG = #{hdfsddssgajg,jdbcType=VARCHAR},
+      </if>
+      <if test="hdfsddssgajgdm != null" >
+        HDFSDDSSGAJGDM = #{hdfsddssgajgdm,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SYSTEMID = #{systemid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="tlkj.model.Address" >
+    update t_address
+    set HDFSDDQH = #{hdfsddqh,jdbcType=VARCHAR},
+      HDFSDZXZ = #{hdfsdzxz,jdbcType=VARCHAR},
+      HDFSCS = #{hdfscs,jdbcType=VARCHAR},
+      HDFSCSDM = #{hdfscsdm,jdbcType=VARCHAR},
+      HDFSDDSSGAJG = #{hdfsddssgajg,jdbcType=VARCHAR},
+      HDFSDDSSGAJGDM = #{hdfsddssgajgdm,jdbcType=VARCHAR}
+    where SYSTEMID = #{systemid,jdbcType=INTEGER}
+  </update>
+</mapper>

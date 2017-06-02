@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tlkj.dao.AlarmMapper" >
+  <resultMap id="BaseResultMap" type="tlkj.model.Alarm" >
+    <result column="SYSTEMID" property="systemid" jdbcType="VARCHAR" />
+    <result column="FBRXM" property="fbrxm" jdbcType="VARCHAR" />
+    <result column="FBDW" property="fbdw" jdbcType="VARCHAR" />
+    <result column="FBDWJGDM" property="fbdwjgdm" jdbcType="VARCHAR" />
+    <result column="ZDRYBH" property="zdrybh" jdbcType="VARCHAR" />
+    <result column="ZDRYLBBJ" property="zdrylbbj" jdbcType="VARCHAR" />
+    <result column="ZDRYXL" property="zdryxl" jdbcType="VARCHAR" />
+    <result column="ZDRYXM" property="zdryxm" jdbcType="VARCHAR" />
+    <result column="ZDRYWWXM" property="zdrywwxm" jdbcType="VARCHAR" />
+    <result column="SFZH" property="sfzh" jdbcType="VARCHAR" />
+    <result column="QTZJHM" property="qtzjhm" jdbcType="VARCHAR" />
+    <result column="DTXXLB" property="dtxxlb" jdbcType="VARCHAR" />
+    <result column="HDFSSJ" property="hdfssj" jdbcType="VARCHAR" />
+    <result column="HDFSDDQH" property="hdfsddqh" jdbcType="VARCHAR" />
+    <result column="HDFSDDXZ" property="hdfsddxz" jdbcType="VARCHAR" />
+    <result column="HDFSDDSSSHCS" property="hdfsddssshcs" jdbcType="VARCHAR" />
+    <result column="HDFSDDSSSHCSDM" property="hdfsddssshcsdm" jdbcType="VARCHAR" />
+    <result column="HDFSDDSSGAJG" property="hdfsddssgajg" jdbcType="VARCHAR" />
+    <result column="HDFSDDSSGAJGJGDM" property="hdfsddssgajgjgdm" jdbcType="VARCHAR" />
+    <result column="DJZJHM" property="djzjhm" jdbcType="VARCHAR" />
+    <result column="DJXM" property="djxm" jdbcType="VARCHAR" />
+    <result column="DJXB" property="djxb" jdbcType="VARCHAR" />
+    <result column="DJCSRQ" property="djcsrq" jdbcType="VARCHAR" />
+    <result column="HDXGXX" property="hdxgxx" jdbcType="VARCHAR" />
+    <result column="DTXXTGDW" property="dtxxtgdw" jdbcType="VARCHAR" />
+    <result column="DTXXTGDWJGDM" property="dtxxtgdwjgdm" jdbcType="VARCHAR" />
+    <result column="XXBDSJ" property="xxbdsj" jdbcType="TIMESTAMP" />
+    <result column="XXBDDW" property="xxbddw" jdbcType="VARCHAR" />
+    <result column="XXBDDWJGDM" property="xxbddwjgdm" jdbcType="VARCHAR" />
+    <result column="DTGJXXBH" property="dtgjxxbh" jdbcType="VARCHAR" />
+    <result column="BZ" property="bz" jdbcType="VARCHAR" />
+    <result column="CZCSLX" property="czcslx" jdbcType="VARCHAR" />
+    <result column="CSZRMJXM" property="cszrmjxm" jdbcType="VARCHAR" />
+    <result column="CSZRMJJH" property="cszrmjjh" jdbcType="VARCHAR" />
+    <result column="DEPARTMENTCODE" property="departmentcode" jdbcType="VARCHAR" />
+    <result column="CREATOR" property="creator" jdbcType="VARCHAR" />
+    <result column="CREATEDTIME" property="createdtime" jdbcType="TIMESTAMP" />
+    <result column="LASTUPDATEDBY" property="lastupdatedby" jdbcType="VARCHAR" />
+    <result column="LASTUODATEDTIME" property="lastuodatedtime" jdbcType="TIMESTAMP" />
+    <result column="DOWNLOADFLAG" property="downloadflag" jdbcType="VARCHAR" />
+    <result column="DELETEFLAG" property="deleteflag" jdbcType="VARCHAR" />
+    <result column="UPLOADFLAG" property="uploadflag" jdbcType="VARCHAR" />
+    <result column="RESERVATION01" property="reservation01" jdbcType="VARCHAR" />
+    <result column="RESERVATION02" property="reservation02" jdbcType="VARCHAR" />
+    <result column="RESERVATION03" property="reservation03" jdbcType="VARCHAR" />
+    <result column="RESERVATION04" property="reservation04" jdbcType="VARCHAR" />
+    <result column="RESERVATION05" property="reservation05" jdbcType="VARCHAR" />
+    <result column="RESERVATION06" property="reservation06" jdbcType="TIMESTAMP" />
+    <result column="RESERVATION07" property="reservation07" jdbcType="TIMESTAMP" />
+    <result column="RESERVATION08" property="reservation08" jdbcType="TIMESTAMP" />
+    <result column="RESERVATION09" property="reservation09" jdbcType="INTEGER" />
+    <result column="RESERVATION10" property="reservation10" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="tlkj.model.Alarm" >
+    insert into t_alarm (SYSTEMID, FBRXM, FBDW, 
+      FBDWJGDM, ZDRYBH, ZDRYLBBJ, 
+      ZDRYXL, ZDRYXM, ZDRYWWXM, 
+      SFZH, QTZJHM, DTXXLB, 
+      HDFSSJ, HDFSDDQH, HDFSDDXZ, 
+      HDFSDDSSSHCS, HDFSDDSSSHCSDM, HDFSDDSSGAJG, 
+      HDFSDDSSGAJGJGDM, DJZJHM, DJXM, 
+      DJXB, DJCSRQ, HDXGXX, 
+      DTXXTGDW, DTXXTGDWJGDM, XXBDSJ, 
+      XXBDDW, XXBDDWJGDM, DTGJXXBH, 
+      BZ, CZCSLX, CSZRMJXM, 
+      CSZRMJJH, DEPARTMENTCODE, CREATOR, 
+      CREATEDTIME, LASTUPDATEDBY, LASTUODATEDTIME, 
+      DOWNLOADFLAG, DELETEFLAG, UPLOADFLAG, 
+      RESERVATION01, RESERVATION02, RESERVATION03, 
+      RESERVATION04, RESERVATION05, RESERVATION06, 
+      RESERVATION07, RESERVATION08, RESERVATION09, 
+      RESERVATION10)
+    values (#{systemid,jdbcType=VARCHAR}, #{fbrxm,jdbcType=VARCHAR}, #{fbdw,jdbcType=VARCHAR}, 
+      #{fbdwjgdm,jdbcType=VARCHAR}, #{zdrybh,jdbcType=VARCHAR}, #{zdrylbbj,jdbcType=VARCHAR}, 
+      #{zdryxl,jdbcType=VARCHAR}, #{zdryxm,jdbcType=VARCHAR}, #{zdrywwxm,jdbcType=VARCHAR}, 
+      #{sfzh,jdbcType=VARCHAR}, #{qtzjhm,jdbcType=VARCHAR}, #{dtxxlb,jdbcType=VARCHAR}, 
+      #{hdfssj,jdbcType=VARCHAR}, #{hdfsddqh,jdbcType=VARCHAR}, #{hdfsddxz,jdbcType=VARCHAR}, 
+      #{hdfsddssshcs,jdbcType=VARCHAR}, #{hdfsddssshcsdm,jdbcType=VARCHAR}, #{hdfsddssgajg,jdbcType=VARCHAR}, 
+      #{hdfsddssgajgjgdm,jdbcType=VARCHAR}, #{djzjhm,jdbcType=VARCHAR}, #{djxm,jdbcType=VARCHAR}, 
+      #{djxb,jdbcType=VARCHAR}, #{djcsrq,jdbcType=VARCHAR}, #{hdxgxx,jdbcType=VARCHAR}, 
+      #{dtxxtgdw,jdbcType=VARCHAR}, #{dtxxtgdwjgdm,jdbcType=VARCHAR}, #{xxbdsj,jdbcType=TIMESTAMP}, 
+      #{xxbddw,jdbcType=VARCHAR}, #{xxbddwjgdm,jdbcType=VARCHAR}, #{dtgjxxbh,jdbcType=VARCHAR}, 
+      #{bz,jdbcType=VARCHAR}, #{czcslx,jdbcType=VARCHAR}, #{cszrmjxm,jdbcType=VARCHAR}, 
+      #{cszrmjjh,jdbcType=VARCHAR}, #{departmentcode,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, 
+      #{createdtime,jdbcType=TIMESTAMP}, #{lastupdatedby,jdbcType=VARCHAR}, #{lastuodatedtime,jdbcType=TIMESTAMP}, 
+      #{downloadflag,jdbcType=VARCHAR}, #{deleteflag,jdbcType=VARCHAR}, #{uploadflag,jdbcType=VARCHAR}, 
+      #{reservation01,jdbcType=VARCHAR}, #{reservation02,jdbcType=VARCHAR}, #{reservation03,jdbcType=VARCHAR}, 
+      #{reservation04,jdbcType=VARCHAR}, #{reservation05,jdbcType=VARCHAR}, #{reservation06,jdbcType=TIMESTAMP}, 
+      #{reservation07,jdbcType=TIMESTAMP}, #{reservation08,jdbcType=TIMESTAMP}, #{reservation09,jdbcType=INTEGER}, 
+      #{reservation10,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="tlkj.model.Alarm" >
+    insert into t_alarm
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="systemid != null" >
+        SYSTEMID,
+      </if>
+      <if test="fbrxm != null" >
+        FBRXM,
+      </if>
+      <if test="fbdw != null" >
+        FBDW,
+      </if>
+      <if test="fbdwjgdm != null" >
+        FBDWJGDM,
+      </if>
+      <if test="zdrybh != null" >
+        ZDRYBH,
+      </if>
+      <if test="zdrylbbj != null" >
+        ZDRYLBBJ,
+      </if>
+      <if test="zdryxl != null" >
+        ZDRYXL,
+      </if>
+      <if test="zdryxm != null" >
+        ZDRYXM,
+      </if>
+      <if test="zdrywwxm != null" >
+        ZDRYWWXM,
+      </if>
+      <if test="sfzh != null" >
+        SFZH,
+      </if>
+      <if test="qtzjhm != null" >
+        QTZJHM,
+      </if>
+      <if test="dtxxlb != null" >
+        DTXXLB,
+      </if>
+      <if test="hdfssj != null" >
+        HDFSSJ,
+      </if>
+      <if test="hdfsddqh != null" >
+        HDFSDDQH,
+      </if>
+      <if test="hdfsddxz != null" >
+        HDFSDDXZ,
+      </if>
+      <if test="hdfsddssshcs != null" >
+        HDFSDDSSSHCS,
+      </if>
+      <if test="hdfsddssshcsdm != null" >
+        HDFSDDSSSHCSDM,
+      </if>
+      <if test="hdfsddssgajg != null" >
+        HDFSDDSSGAJG,
+      </if>
+      <if test="hdfsddssgajgjgdm != null" >
+        HDFSDDSSGAJGJGDM,
+      </if>
+      <if test="djzjhm != null" >
+        DJZJHM,
+      </if>
+      <if test="djxm != null" >
+        DJXM,
+      </if>
+      <if test="djxb != null" >
+        DJXB,
+      </if>
+      <if test="djcsrq != null" >
+        DJCSRQ,
+      </if>
+      <if test="hdxgxx != null" >
+        HDXGXX,
+      </if>
+      <if test="dtxxtgdw != null" >
+        DTXXTGDW,
+      </if>
+      <if test="dtxxtgdwjgdm != null" >
+        DTXXTGDWJGDM,
+      </if>
+      <if test="xxbdsj != null" >
+        XXBDSJ,
+      </if>
+      <if test="xxbddw != null" >
+        XXBDDW,
+      </if>
+      <if test="xxbddwjgdm != null" >
+        XXBDDWJGDM,
+      </if>
+      <if test="dtgjxxbh != null" >
+        DTGJXXBH,
+      </if>
+      <if test="bz != null" >
+        BZ,
+      </if>
+      <if test="czcslx != null" >
+        CZCSLX,
+      </if>
+      <if test="cszrmjxm != null" >
+        CSZRMJXM,
+      </if>
+      <if test="cszrmjjh != null" >
+        CSZRMJJH,
+      </if>
+      <if test="departmentcode != null" >
+        DEPARTMENTCODE,
+      </if>
+      <if test="creator != null" >
+        CREATOR,
+      </if>
+      <if test="createdtime != null" >
+        CREATEDTIME,
+      </if>
+      <if test="lastupdatedby != null" >
+        LASTUPDATEDBY,
+      </if>
+      <if test="lastuodatedtime != null" >
+        LASTUODATEDTIME,
+      </if>
+      <if test="downloadflag != null" >
+        DOWNLOADFLAG,
+      </if>
+      <if test="deleteflag != null" >
+        DELETEFLAG,
+      </if>
+      <if test="uploadflag != null" >
+        UPLOADFLAG,
+      </if>
+      <if test="reservation01 != null" >
+        RESERVATION01,
+      </if>
+      <if test="reservation02 != null" >
+        RESERVATION02,
+      </if>
+      <if test="reservation03 != null" >
+        RESERVATION03,
+      </if>
+      <if test="reservation04 != null" >
+        RESERVATION04,
+      </if>
+      <if test="reservation05 != null" >
+        RESERVATION05,
+      </if>
+      <if test="reservation06 != null" >
+        RESERVATION06,
+      </if>
+      <if test="reservation07 != null" >
+        RESERVATION07,
+      </if>
+      <if test="reservation08 != null" >
+        RESERVATION08,
+      </if>
+      <if test="reservation09 != null" >
+        RESERVATION09,
+      </if>
+      <if test="reservation10 != null" >
+        RESERVATION10,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="systemid != null" >
+        #{systemid,jdbcType=VARCHAR},
+      </if>
+      <if test="fbrxm != null" >
+        #{fbrxm,jdbcType=VARCHAR},
+      </if>
+      <if test="fbdw != null" >
+        #{fbdw,jdbcType=VARCHAR},
+      </if>
+      <if test="fbdwjgdm != null" >
+        #{fbdwjgdm,jdbcType=VARCHAR},
+      </if>
+      <if test="zdrybh != null" >
+        #{zdrybh,jdbcType=VARCHAR},
+      </if>
+      <if test="zdrylbbj != null" >
+        #{zdrylbbj,jdbcType=VARCHAR},
+      </if>
+      <if test="zdryxl != null" >
+        #{zdryxl,jdbcType=VARCHAR},
+      </if>
+      <if test="zdryxm != null" >
+        #{zdryxm,jdbcType=VARCHAR},
+      </if>
+      <if test="zdrywwxm != null" >
+        #{zdrywwxm,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzh != null" >
+        #{sfzh,jdbcType=VARCHAR},
+      </if>
+      <if test="qtzjhm != null" >
+        #{qtzjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="dtxxlb != null" >
+        #{dtxxlb,jdbcType=VARCHAR},
+      </if>
+      <if test="hdfssj != null" >
+        #{hdfssj,jdbcType=VARCHAR},
+      </if>
+      <if test="hdfsddqh != null" >
+        #{hdfsddqh,jdbcType=VARCHAR},
+      </if>
+      <if test="hdfsddxz != null" >
+        #{hdfsddxz,jdbcType=VARCHAR},
+      </if>
+      <if test="hdfsddssshcs != null" >
+        #{hdfsddssshcs,jdbcType=VARCHAR},
+      </if>
+      <if test="hdfsddssshcsdm != null" >
+        #{hdfsddssshcsdm,jdbcType=VARCHAR},
+      </if>
+      <if test="hdfsddssgajg != null" >
+        #{hdfsddssgajg,jdbcType=VARCHAR},
+      </if>
+      <if test="hdfsddssgajgjgdm != null" >
+        #{hdfsddssgajgjgdm,jdbcType=VARCHAR},
+      </if>
+      <if test="djzjhm != null" >
+        #{djzjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="djxm != null" >
+        #{djxm,jdbcType=VARCHAR},
+      </if>
+      <if test="djxb != null" >
+        #{djxb,jdbcType=VARCHAR},
+      </if>
+      <if test="djcsrq != null" >
+        #{djcsrq,jdbcType=VARCHAR},
+      </if>
+      <if test="hdxgxx != null" >
+        #{hdxgxx,jdbcType=VARCHAR},
+      </if>
+      <if test="dtxxtgdw != null" >
+        #{dtxxtgdw,jdbcType=VARCHAR},
+      </if>
+      <if test="dtxxtgdwjgdm != null" >
+        #{dtxxtgdwjgdm,jdbcType=VARCHAR},
+      </if>
+      <if test="xxbdsj != null" >
+        #{xxbdsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xxbddw != null" >
+        #{xxbddw,jdbcType=VARCHAR},
+      </if>
+      <if test="xxbddwjgdm != null" >
+        #{xxbddwjgdm,jdbcType=VARCHAR},
+      </if>
+      <if test="dtgjxxbh != null" >
+        #{dtgjxxbh,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null" >
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="czcslx != null" >
+        #{czcslx,jdbcType=VARCHAR},
+      </if>
+      <if test="cszrmjxm != null" >
+        #{cszrmjxm,jdbcType=VARCHAR},
+      </if>
+      <if test="cszrmjjh != null" >
+        #{cszrmjjh,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentcode != null" >
+        #{departmentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createdtime != null" >
+        #{createdtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatedby != null" >
+        #{lastupdatedby,jdbcType=VARCHAR},
+      </if>
+      <if test="lastuodatedtime != null" >
+        #{lastuodatedtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downloadflag != null" >
+        #{downloadflag,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteflag != null" >
+        #{deleteflag,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadflag != null" >
+        #{uploadflag,jdbcType=VARCHAR},
+      </if>
+      <if test="reservation01 != null" >
+        #{reservation01,jdbcType=VARCHAR},
+      </if>
+      <if test="reservation02 != null" >
+        #{reservation02,jdbcType=VARCHAR},
+      </if>
+      <if test="reservation03 != null" >
+        #{reservation03,jdbcType=VARCHAR},
+      </if>
+      <if test="reservation04 != null" >
+        #{reservation04,jdbcType=VARCHAR},
+      </if>
+      <if test="reservation05 != null" >
+        #{reservation05,jdbcType=VARCHAR},
+      </if>
+      <if test="reservation06 != null" >
+        #{reservation06,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reservation07 != null" >
+        #{reservation07,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reservation08 != null" >
+        #{reservation08,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reservation09 != null" >
+        #{reservation09,jdbcType=INTEGER},
+      </if>
+      <if test="reservation10 != null" >
+        #{reservation10,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

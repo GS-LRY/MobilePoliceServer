@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tlkj.dao.DepartmentMapper">
+	<resultMap id="BaseResultMap" type="tlkj.model.Department">
+		<id column="Id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="allowPathPattern" property="allowpathpattern"
+			jdbcType="VARCHAR" />
+		<result column="level" property="level" jdbcType="INTEGER" />
+		<result column="parentId" property="parentid" jdbcType="INTEGER" />
+		<result column="createrId" property="createrid" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		Id, name, allowPathPattern, level, parentId, createrId
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_department
+		where Id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		t_department
+		where Id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="tlkj.model.Department">
+		insert into t_department (Id,
+		name, allowPathPattern,
+		level, parentId, createrId
+		)
+		values
+		(#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+		#{allowpathpattern,jdbcType=VARCHAR},
+		#{level,jdbcType=INTEGER},
+		#{parentid,jdbcType=INTEGER}, #{createrid,jdbcType=INTEGER}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="tlkj.model.Department">
+		insert into t_department
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				Id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="allowpathpattern != null">
+				allowPathPattern,
+			</if>
+			<if test="level != null">
+				level,
+			</if>
+			<if test="parentid != null">
+				parentId,
+			</if>
+			<if test="createrid != null">
+				createrId,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="allowpathpattern != null">
+				#{allowpathpattern,jdbcType=VARCHAR},
+			</if>
+			<if test="level != null">
+				#{level,jdbcType=INTEGER},
+			</if>
+			<if test="parentid != null">
+				#{parentid,jdbcType=INTEGER},
+			</if>
+			<if test="createrid != null">
+				#{createrid,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="tlkj.model.Department">
+		update t_department
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="allowpathpattern != null">
+				allowPathPattern = #{allowpathpattern,jdbcType=VARCHAR},
+			</if>
+			<if test="level != null">
+				level = #{level,jdbcType=INTEGER},
+			</if>
+			<if test="parentid != null">
+				parentId = #{parentid,jdbcType=INTEGER},
+			</if>
+			<if test="createrid != null">
+				createrId = #{createrid,jdbcType=INTEGER},
+			</if>
+		</set>
+		where Id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="tlkj.model.Department">
+		update
+		t_department
+		set name = #{name,jdbcType=VARCHAR},
+		allowPathPattern =
+		#{allowpathpattern,jdbcType=VARCHAR},
+		level =
+		#{level,jdbcType=INTEGER},
+		parentId = #{parentid,jdbcType=INTEGER},
+		createrId = #{createrid,jdbcType=INTEGER}
+		where Id =
+		#{id,jdbcType=INTEGER}
+	</update>
+</mapper>

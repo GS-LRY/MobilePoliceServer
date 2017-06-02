@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tlkj.dao.TerminalMapper" >
+  <resultMap id="BaseResultMap" type="tlkj.model.Terminal" >
+    <id column="imei" property="imei" jdbcType="VARCHAR" />
+    <result column="imsi" property="imsi" jdbcType="VARCHAR" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="departmentId" property="departmentid" jdbcType="INTEGER" />
+    <result column="locked" property="locked" jdbcType="TINYINT" />
+    <result column="online" property="online" jdbcType="TINYINT" />
+    <result column="deviceType" property="devicetype" jdbcType="TINYINT" />
+    <result column="usePlace" property="useplace" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    imei, imsi, userId, departmentId, locked, online, deviceType, usePlace
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_terminal
+    where imei = #{imei,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_terminal
+    where imei = #{imei,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="tlkj.model.Terminal" >
+    insert into t_terminal (imei, imsi, userId, 
+      departmentId, locked, online, 
+      deviceType, usePlace)
+    values (#{imei,jdbcType=VARCHAR}, #{imsi,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, 
+      #{departmentid,jdbcType=INTEGER}, #{locked,jdbcType=TINYINT}, #{online,jdbcType=TINYINT}, 
+      #{devicetype,jdbcType=TINYINT}, #{useplace,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="tlkj.model.Terminal" >
+    insert into t_terminal
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="imei != null" >
+        imei,
+      </if>
+      <if test="imsi != null" >
+        imsi,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="departmentid != null" >
+        departmentId,
+      </if>
+      <if test="locked != null" >
+        locked,
+      </if>
+      <if test="online != null" >
+        online,
+      </if>
+      <if test="devicetype != null" >
+        deviceType,
+      </if>
+      <if test="useplace != null" >
+        usePlace,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="imei != null" >
+        #{imei,jdbcType=VARCHAR},
+      </if>
+      <if test="imsi != null" >
+        #{imsi,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="departmentid != null" >
+        #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="locked != null" >
+        #{locked,jdbcType=TINYINT},
+      </if>
+      <if test="online != null" >
+        #{online,jdbcType=TINYINT},
+      </if>
+      <if test="devicetype != null" >
+        #{devicetype,jdbcType=TINYINT},
+      </if>
+      <if test="useplace != null" >
+        #{useplace,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="tlkj.model.Terminal" >
+    update t_terminal
+    <set >
+      <if test="imsi != null" >
+        imsi = #{imsi,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="departmentid != null" >
+        departmentId = #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="locked != null" >
+        locked = #{locked,jdbcType=TINYINT},
+      </if>
+      <if test="online != null" >
+        online = #{online,jdbcType=TINYINT},
+      </if>
+      <if test="devicetype != null" >
+        deviceType = #{devicetype,jdbcType=TINYINT},
+      </if>
+      <if test="useplace != null" >
+        usePlace = #{useplace,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where imei = #{imei,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="tlkj.model.Terminal" >
+    update t_terminal
+    set imsi = #{imsi,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=INTEGER},
+      departmentId = #{departmentid,jdbcType=INTEGER},
+      locked = #{locked,jdbcType=TINYINT},
+      online = #{online,jdbcType=TINYINT},
+      deviceType = #{devicetype,jdbcType=TINYINT},
+      usePlace = #{useplace,jdbcType=VARCHAR}
+    where imei = #{imei,jdbcType=VARCHAR}
+  </update>
+</mapper>
