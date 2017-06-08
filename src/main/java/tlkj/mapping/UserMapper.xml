@@ -36,6 +36,13 @@
 		from t_user
 		where Id = #{id,jdbcType=INTEGER}
 	</select>
+	<select id="getUserByName" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from t_user
+		where policeNum = #{policenum,jdbcType=VARCHAR}
+	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from t_user
 		where Id = #{id,jdbcType=INTEGER}

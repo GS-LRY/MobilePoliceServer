@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 
 import tlkj.dao.NormalMapper;
 import tlkj.model.Normal;
-import tlkj.service.NormalServiceI;
+import tlkj.service.NormalService;
 
 @Service("normalService")
-public class NormalServiceImpl implements NormalServiceI {
+public class NormalServiceImpl implements NormalService {
 
 	private NormalMapper normalMapper;
 

@@ -16,19 +16,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import tlkj.json.JsonUtil;
 import tlkj.model.Escaped;
-import tlkj.service.EscapedServiceI;
+import tlkj.service.EscapedService;
 
 @Controller
 public class EscapedController {
-	private EscapedServiceI escapedService;
+	private EscapedService escapedService;
 	private JsonUtil jsonutil = new JsonUtil();
 
-	public EscapedServiceI getEscapedService() {
+	public EscapedService getEscapedService() {
 		return escapedService;
 	}
 
 	@Autowired
-	public void setEscapedService(EscapedServiceI escapedService) {
+	public void setEscapedService(EscapedService escapedService) {
 		this.escapedService = escapedService;
 	}
 	

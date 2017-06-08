@@ -6,42 +6,51 @@
 <meta charset="utf-8">
 <meta name="renderer" content="webkit|ie-comp|ie-stand">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 <!--[if lt IE 9]>
 <script type="text/javascript" src="libs/html5shiv.js"></script>
 <script type="text/javascript" src="libs/respond.min.js"></script>
 <![endif]-->
-<link href="resource/special/css/H-ui.min.css" rel="stylesheet" type="text/css" />
-<link href="resource/special.admin/css/H-ui.login.css" rel="stylesheet" type="text/css" />
-<link href="resource/special.admin/css/style.css" rel="stylesheet" type="text/css" />
-<link href="libs/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="resource/special/css/H-ui.min.css" rel="stylesheet"
+	type="text/css" />
+<link href="resource/special.admin/css/H-ui.login.css" rel="stylesheet"
+	type="text/css" />
+<link href="resource/special.admin/css/style.css" rel="stylesheet"
+	type="text/css" />
+<link href="libs/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet"
+	type="text/css" />
 <!--[if IE 6]>
 <script type="text/javascript" src="libs/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
 <title>后台登录系统</title>
+<script type="text/javascript" src="libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="resource/special/js/H-ui.min.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/artDialog/jquery.artDialog.js?skin=aero"></script>
 </head>
 <body>
 	<input type="hidden" id="TenantId" name="TenantId" value="" />
 	<div class="header"></div>
-	
+
 	<div class="loginWraper">
 		<div class="jinhui"></div>
 		<div id="loginform" class="loginBox">
-			<form class="form form-horizontal" action="index.jsp" method="post">
+			<form class="form form-horizontal" method="post" onsubmit="return false;">
 				<div class="row cl">
 					<label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
 					<div class="formControls col-xs-8">
-						<input id="" name="" type="text" placeholder="账户"
+						<input name="username" id="username" type="text" placeholder="账户"
 							class="input-text size-L">
 					</div>
 				</div>
 				<div class="row cl">
 					<label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
 					<div class="formControls col-xs-8">
-						<input id="" name="" type="password" placeholder="密码"
-							class="input-text size-L">
+						<input name="password" id="password" type="password"
+							placeholder="密码" class="input-text size-L">
 					</div>
 				</div>
 				<div class="row cl">
@@ -62,27 +71,61 @@
 				</div>
 				<div class="row cl">
 					<div class="formControls col-xs-8 col-xs-offset-3">
-						<input name="" type="submit" class="btn btn-success radius size-L"
-							value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;"> <input
-							name="" type="reset" class="btn btn-default radius size-L"
-							value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
+						<input id="addbtn" type="submit" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;"> 
+						<input id="reset" type="reset" class="btn btn-default radius size-L" value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
 					</div>
-				</div>
-			</form>
+				</form>
+			</div>
 		</div>
 	</div>
-	<div class="footer">版权所有2017   上海图丽信息技术有限公司</div>
-	<script type="text/javascript" src="libs/jquery/1.9.1/jquery.min.js"></script>
-	<script type="text/javascript" src="resource/special/js/H-ui.min.js"></script>
-	<!--此乃百度统计代码，请自行删除-->
-	<!-- <script>
-		var _hmt = _hmt || [];
-		(function() {
-			var hm = document.createElement("script");
-			hm.src = "https://hm.baidu.com/hm.js?080836300300be57b7f34f4b3e97d911";
-			var s = document.getElementsByTagName("script")[0];
-			s.parentNode.insertBefore(hm, s);
-		})();
-	</script> -->
+	<div class="footer">版权所有2017 上海图丽信息技术有限公司</div>
+
+
+	<script type="text/javascript">
+		$('#addbtn').live('click', function() {
+			var username = $.trim($('#username').val());
+			var password = $.trim($('#password').val());
+			if (username == '') {
+				art.dialog.alert('请输入用户名称');
+				return false;
+			}
+			if (password == '') {
+				art.dialog.alert('请输入用户密码');
+				return false;
+			}
+			var params = {
+					"username" : username,
+					"password" : password,
+				};
+			$.ajax({
+				type:'POST',
+				url:'login.do',
+				dataType:'json',
+				data:params,
+				success:function(data) {
+					if (data.result == "success") {
+						window.location.href = "index.jsp";
+					} else {
+						if(data.result == "nouser"){
+							art.dialog.alert('没有该用户');
+						}else{
+							art.dialog.alert('密码错误');
+						}
+					}
+				},
+				error:function(XMLHttpRequest,textStatus,errorThrown){
+					alert("服务器访问失败");
+				}
+			});
+
+		});
+		$(function(){
+			$('#reset').click(function(){
+				$('#username').val('');
+				$('#password').val('');
+			});
+		})
+	</script>
+
 </body>
 </html>

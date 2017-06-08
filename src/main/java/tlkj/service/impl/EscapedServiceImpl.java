@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 
 import tlkj.dao.EscapedMapper;
 import tlkj.model.Escaped;
-import tlkj.service.EscapedServiceI;
+import tlkj.service.EscapedService;
 
 @Service("escapedService")
-public class EscapedServiceImpl implements EscapedServiceI {
+public class EscapedServiceImpl implements EscapedService {
 
 	private EscapedMapper escapedMapper;
 	

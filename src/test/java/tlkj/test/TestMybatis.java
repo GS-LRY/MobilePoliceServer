@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.alibaba.fastjson.JSON;
 
 import tlkj.model.Normal;
-import tlkj.service.NormalServiceI;
+import tlkj.service.NormalService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:spring.xml", "classpath:spring-mybatis.xml"})
@@ -23,10 +23,10 @@ public class TestMybatis {
 
 	private static final Logger logger = Logger.getLogger(TestMybatis.class);
 	//private ApplicationContext ac;
-	private NormalServiceI normalService;
+	private NormalService normalService;
 
 	@Autowired
-	public void setNormalService(NormalServiceI normalService) {
+	public void setNormalService(NormalService normalService) {
 		this.normalService = normalService;
 	}
 

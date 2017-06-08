@@ -21,19 +21,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import tlkj.json.JsonUtil;
 import tlkj.model.Normal;
-import tlkj.service.NormalServiceI;
+import tlkj.service.NormalService;
 
 @Controller
 public class NormalController {
 
-	private NormalServiceI normalService;
+	private NormalService normalService;
 
-	public NormalServiceI getNormalService() {
+	public NormalService getNormalService() {
 		return normalService;
 	}
 
 	@Autowired
-	public void setNormalService(NormalServiceI normalService) {
+	public void setNormalService(NormalService normalService) {
 		this.normalService = normalService;
 	}
 
