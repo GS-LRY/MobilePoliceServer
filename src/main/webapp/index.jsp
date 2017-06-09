@@ -36,10 +36,10 @@
 	<div class="navbar navbar-fixed-top">
 		<div class="container-fluid cl">
 			<a class="logo navbar-logo f-l mr-10 hidden-xs"
-				href="/aboutHui.shtml">H-ui.admin</a> <a
+				href="/aboutHui.shtml">移动警务后台系统</a> <a
 				class="logo navbar-logo-m f-l mr-10 visible-xs"
-				href="/aboutHui.shtml">H-ui</a> <span
-				class="logo navbar-slogan f-l mr-10 hidden-xs">v3.0</span> <a
+				href="/aboutHui.shtml">上海图丽信息技术有限公司</a> <span
+				class="logo navbar-slogan f-l mr-10 hidden-xs">v1.0</span> <a
 				aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs"
 				href="javascript:;">&#xe667;</a>
 			<nav class="nav navbar-nav">
@@ -96,47 +96,55 @@
 	<div class="menu_dropdown bk_2">
 		<dl id="menu-article">
 			<dt>
-				<i class="Hui-iconfont">&#xe616;</i> 资讯管理<i
+				<i class="Hui-iconfont">&#xe616;</i> 系统首页<i
 					class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
 			</dt>
 			<dd>
 				<ul>
-					<li><a data-href="article-list.html" data-title="资讯管理"
-						href="javascript:void(0)">资讯管理</a></li>
+					<li><a data-href="article-list.html" data-title="系统首页"
+						href="javascript:void(0)">系统首页</a></li>
 				</ul>
 			</dd>
 		</dl>
 		<dl id="menu-picture">
 			<dt>
-				<i class="Hui-iconfont">&#xe613;</i> 图片管理<i
+				<i class="Hui-iconfont">&#xe613;</i> 个人中心<i
 					class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
 			</dt>
 			<dd>
 				<ul>
-					<li><a data-href="picture-list.html" data-title="图片管理"
-						href="javascript:void(0)">图片管理</a></li>
+					<li><a data-href="picture-list.html" data-title="信息修改"
+						href="javascript:void(0)">信息修改</a></li>
 				</ul>
 			</dd>
 		</dl>
 		<dl id="menu-product">
 			<dt>
-				<i class="Hui-iconfont">&#xe620;</i> 产品管理<i
+				<i class="Hui-iconfont">&#xe620;</i> 分级统计<i
 					class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
 			</dt>
 			<dd>
 				<ul>
-					<li><a data-href="product-brand.html" data-title="品牌管理"
-						href="javascript:void(0)">品牌管理</a></li>
-					<li><a data-href="product-category.html" data-title="分类管理"
-						href="javascript:void(0)">分类管理</a></li>
-					<li><a data-href="product-list.html" data-title="产品管理"
-						href="javascript:void(0)">产品管理</a></li>
+					<li><a data-href="charts-1.html" data-title="折线图"
+						href="javascript:void(0)">折线图</a></li>
+					<li><a data-href="charts-2.html" data-title="时间轴折线图"
+						href="javascript:void(0)">时间轴折线图</a></li>
+					<li><a data-href="charts-3.html" data-title="区域图"
+						href="javascript:void(0)">区域图</a></li>
+					<li><a data-href="charts-4.html" data-title="柱状图"
+						href="javascript:void(0)">柱状图</a></li>
+					<li><a data-href="charts-5.html" data-title="饼状图"
+						href="javascript:void(0)">饼状图</a></li>
+					<li><a data-href="charts-6.html" data-title="3D柱状图"
+						href="javascript:void(0)">3D柱状图</a></li>
+					<li><a data-href="charts-7.html" data-title="3D饼状图"
+						href="javascript:void(0)">3D饼状图</a></li>
 				</ul>
 			</dd>
 		</dl>
 		<dl id="menu-comments">
 			<dt>
-				<i class="Hui-iconfont">&#xe622;</i> 评论管理<i
+				<i class="Hui-iconfont">&#xe622;</i> 手动布控<i
 					class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
 			</dt>
 			<dd>
@@ -150,7 +158,7 @@
 		</dl>
 		<dl id="menu-member">
 			<dt>
-				<i class="Hui-iconfont">&#xe60d;</i> 会员管理<i
+				<i class="Hui-iconfont">&#xe60d;</i> 报警管理<i
 					class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
 			</dt>
 			<dd>
@@ -174,7 +182,7 @@
 		</dl>
 		<dl id="menu-admin">
 			<dt>
-				<i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i
+				<i class="Hui-iconfont">&#xe62d;</i> 轨迹查询<i
 					class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
 			</dt>
 			<dd>
@@ -214,21 +222,60 @@
 		</dl>
 		<dl id="menu-system">
 			<dt>
-				<i class="Hui-iconfont">&#xe62e;</i> 系统管理<i
+				<i class="Hui-iconfont">&#xe62e;</i> 资源管理<i
+					class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
+			</dt>
+			<dd>
+				<ul>
+					<li><a data-href="" data-title="在逃人员列表"
+						href="javascript:void(0)">在逃人员列表</a></li>
+			</dd>
+		</dl>
+		<dl id="menu-check">
+			<dt>
+				<i class="Hui-iconfont">&#xe62e;</i> 网内核录<i
 					class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
 			</dt>
 			<dd>
 				<ul>
 					<li><a data-href="system-base.html" data-title="系统设置"
 						href="javascript:void(0)">系统设置</a></li>
-					<li><a data-href="system-category.html" data-title="栏目管理"
-						href="javascript:void(0)">栏目管理</a></li>
-					<li><a data-href="system-data.html" data-title="数据字典"
-						href="javascript:void(0)">数据字典</a></li>
-					<li><a data-href="system-shielding.html" data-title="屏蔽词"
-						href="javascript:void(0)">屏蔽词</a></li>
-					<li><a data-href="system-log.html" data-title="系统日志"
-						href="javascript:void(0)">系统日志</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl id="menu-notice">
+			<dt>
+				<i class="Hui-iconfont">&#xe62e;</i> 通知通报<i
+					class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
+			</dt>
+			<dd>
+				<ul>
+					<li><a data-href="system-base.html" data-title="系统设置"
+						href="javascript:void(0)">系统设置</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl id="menu-user">
+			<dt>
+				<i class="Hui-iconfont">&#xe62e;</i> 用户管理<i
+					class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
+			</dt>
+			<dd>
+				<ul>
+					<li><a data-href="system-base.html" data-title="系统设置"
+						href="javascript:void(0)">系统设置</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl id="menu-roles">
+			<dt>
+				<i class="Hui-iconfont">&#xe62e;</i> 角色管理<i
+					class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
+			</dt>
+			<dd>
+				<ul>
+					<li><a data-href="system-base.html" data-title="系统设置"
+						href="javascript:void(0)">系统设置</a></li>
 				</ul>
 			</dd>
 		</dl>
