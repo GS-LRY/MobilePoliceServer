@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -227,7 +227,7 @@
 			</dt>
 			<dd>
 				<ul>
-					<li><a data-href="" data-title="在逃人员列表"
+					<li><a data-href="escaped.jsp" data-title="在逃人员列表"
 						href="javascript:void(0)">在逃人员列表</a></li>
 			</dd>
 		</dl>

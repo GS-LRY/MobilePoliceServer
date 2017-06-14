@@ -33,4 +33,15 @@ public class EscapedServiceImpl implements EscapedService {
 		return escapedMapper.selectByPersonId(personId);
 	}
 
+	@Override
+	public List<Escaped> getAllRecord() {
+		return escapedMapper.getAllRecord();
+	}
+
+	@Override
+	public int insertEscaped(Escaped escaped) {
+		// TODO Auto-generated method stub
+		return escapedMapper.insert(escaped);
+	}
+
 }

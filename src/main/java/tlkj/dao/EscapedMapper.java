@@ -20,4 +20,6 @@ public interface EscapedMapper {
     int updateByPrimaryKey(Escaped record);
     
     List<Escaped> getHundredRecord();
+    
+    List<Escaped> getAllRecord();
 }

@@ -2,8 +2,13 @@ package tlkj.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,7 +39,7 @@ public class EscapedController {
 	
 	@RequestMapping(value="getEscapedHundred",method=RequestMethod.POST)
 	@ResponseBody
-	public void getEcaspedRecord_Hundred(HttpServletRequest request, HttpServletResponse response){
+	public void getEscapedRecord_Hundred(HttpServletRequest request, HttpServletResponse response){
 		List<Escaped> escapedList = null;
 		escapedList = escapedService.getHundredRecord();
 		String jsondata = jsonutil.ListToJSON(escapedList);
@@ -43,6 +48,59 @@ public class EscapedController {
 		}
 		outputJson(response, jsondata);
 		response.setStatus(HttpServletResponse.SC_OK);
+	}
+	
+	@RequestMapping("getAllEscapedRecord.do")
+	public void getAllEscapedRecord(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		List<Escaped> escapedList = null;
+		escapedList = escapedService.getAllRecord();
+		String jsondata = jsonutil.ListToJSON(escapedList);
+		outputJson(response, jsondata);
+	}
+	@RequestMapping("addEscapedRecord.do")
+	public void addEscapedRecord(HttpServletRequest request,HttpServletResponse response) throws ParseException, IOException{
+		String xm = request.getParameter("xm");
+		String xb = request.getParameter("xb");
+		String sfzh = request.getParameter("sfzh");
+		String zdrylbbj = request.getParameter("zdrylbbj");
+		String zdryxl = request.getParameter("zdryxl");
+		String ladw = request.getParameter("ladw");
+		String nrbjzdryksj = request.getParameter("nrbjzdryksj");
+		String hjdqh = request.getParameter("hjdqh");
+		String hjdxz = request.getParameter("hjdxz");
+		String xzdqh = request.getParameter("xzdqh");
+		String xzdxz = request.getParameter("xzdxz");
+		String zjlasj = request.getParameter("zjlasj");
+		
+		Escaped escaped = new Escaped();
+		escaped.setId(null);
+		escaped.setXm(xm);
+		escaped.setXb(xb);
+		escaped.setSfzh(sfzh);
+		escaped.setZdrylbbj(zdrylbbj);
+		escaped.setZdryxl(zdryxl);
+		escaped.setLadw(ladw);
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		Date nrbjzdryksj_date = sdf.parse(nrbjzdryksj);
+		escaped.setNrbjzdryksj(nrbjzdryksj_date);
+		escaped.setHjdqh(hjdqh);
+		escaped.setHjdxz(hjdxz);
+		escaped.setXzdqh(xzdqh);
+		escaped.setXzdxz(xzdxz);
+		Date zjlasj_date = sdf.parse(zjlasj);
+		escaped.setZjlasj(zjlasj_date);
+		
+		int num = escapedService.insertEscaped(escaped);
+		String result = "fail";
+		if(num>0){
+			result = "success";
+		}
+		Map map = new HashMap();
+		map.put("result", result);
+		
+		JsonUtil jsonutil = new JsonUtil();
+		System.out.println("Map转JSON："+jsonutil.MapToJSON(map));
+		response.getWriter().print(jsonutil.MapToJSON(map));
 	}
 	
 	@RequestMapping(value="compareEscapedByPersonId",method=RequestMethod.POST)
