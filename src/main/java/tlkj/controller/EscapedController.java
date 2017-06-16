@@ -36,29 +36,31 @@ public class EscapedController {
 	public void setEscapedService(EscapedService escapedService) {
 		this.escapedService = escapedService;
 	}
-	
-	@RequestMapping(value="getEscapedHundred",method=RequestMethod.POST)
+
+	@RequestMapping(value = "getEscapedHundred", method = RequestMethod.POST)
 	@ResponseBody
-	public void getEscapedRecord_Hundred(HttpServletRequest request, HttpServletResponse response){
+	public void getEscapedRecord_Hundred(HttpServletRequest request, HttpServletResponse response) {
 		List<Escaped> escapedList = null;
 		escapedList = escapedService.getHundredRecord();
 		String jsondata = jsonutil.ListToJSON(escapedList);
-		if(jsondata==""||jsonutil==null){
+		if (jsondata == "" || jsonutil == null) {
 			jsondata = "false";
 		}
 		outputJson(response, jsondata);
 		response.setStatus(HttpServletResponse.SC_OK);
 	}
-	
+
 	@RequestMapping("getAllEscapedRecord.do")
-	public void getAllEscapedRecord(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	public void getAllEscapedRecord(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		List<Escaped> escapedList = null;
 		escapedList = escapedService.getAllRecord();
 		String jsondata = jsonutil.ListToJSON(escapedList);
 		outputJson(response, jsondata);
 	}
+
 	@RequestMapping("addEscapedRecord.do")
-	public void addEscapedRecord(HttpServletRequest request,HttpServletResponse response) throws ParseException, IOException{
+	public void addEscapedRecord(HttpServletRequest request, HttpServletResponse response)
+			throws ParseException, IOException {
 		String xm = request.getParameter("xm");
 		String xb = request.getParameter("xb");
 		String sfzh = request.getParameter("sfzh");
@@ -71,7 +73,7 @@ public class EscapedController {
 		String xzdqh = request.getParameter("xzdqh");
 		String xzdxz = request.getParameter("xzdxz");
 		String zjlasj = request.getParameter("zjlasj");
-		
+
 		Escaped escaped = new Escaped();
 		escaped.setId(null);
 		escaped.setXm(xm);
@@ -80,7 +82,7 @@ public class EscapedController {
 		escaped.setZdrylbbj(zdrylbbj);
 		escaped.setZdryxl(zdryxl);
 		escaped.setLadw(ladw);
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date nrbjzdryksj_date = sdf.parse(nrbjzdryksj);
 		escaped.setNrbjzdryksj(nrbjzdryksj_date);
 		escaped.setHjdqh(hjdqh);
@@ -89,51 +91,58 @@ public class EscapedController {
 		escaped.setXzdxz(xzdxz);
 		Date zjlasj_date = sdf.parse(zjlasj);
 		escaped.setZjlasj(zjlasj_date);
-		
-		int num = escapedService.insertEscaped(escaped);
+		Escaped escapedexist = null;
+		escapedexist = escapedService.selectByPersonId(sfzh);
 		String result = "fail";
-		if(num>0){
-			result = "success";
-		}
 		Map map = new HashMap();
+		if (escapedexist == null) {
+			int num = escapedService.insertEscaped(escaped);
+
+			if (num > 0) {
+				result = "success";
+			}
+
+		} else {
+			result = "exist";
+		}
 		map.put("result", result);
-		
+
 		JsonUtil jsonutil = new JsonUtil();
-		System.out.println("Map转JSON："+jsonutil.MapToJSON(map));
+		System.out.println("Map转JSON：" + jsonutil.MapToJSON(map));
 		response.getWriter().print(jsonutil.MapToJSON(map));
 	}
-	
-	@RequestMapping(value="compareEscapedByPersonId",method=RequestMethod.POST)
+
+	@RequestMapping(value = "compareEscapedByPersonId", method = RequestMethod.POST)
 	@ResponseBody
-	public void compareEscapedByPersonId(HttpServletRequest request, HttpServletResponse response){
+	public void compareEscapedByPersonId(HttpServletRequest request, HttpServletResponse response) {
 		String personId = request.getParameter("jsondata");
-		System.out.println("需要比对的身份证号："+personId);
+		System.out.println("需要比对的身份证号：" + personId);
 		ArrayList<Escaped> escapedList = new ArrayList<Escaped>();
 		Escaped escaped = escapedService.selectByPersonId(personId);
 		escapedList.add(escaped);
 		String result = jsonutil.ListToJSON(escapedList);
-		if(escaped==null){
+		if (escaped == null) {
 			result = "false";
 		}
 		outputJson(response, result);
 		response.setStatus(HttpServletResponse.SC_OK);
 	}
-	
-	private void outputJson(HttpServletResponse response,String result) {
-        response.setContentType("text/javascript;charset=UTF-8");
-        response.setHeader("Cache-Control", "no-store, max-age=0, no-cache, must-revalidate");
-        response.addHeader("Cache-Control", "post-check=0, pre-check=0");
-        response.setHeader("Pragma", "no-cache");
-        try {
-            PrintWriter out = response.getWriter();
-            try {
-                out.write(result);
-            } finally {
-                out.close();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-	
+
+	private void outputJson(HttpServletResponse response, String result) {
+		response.setContentType("text/javascript;charset=UTF-8");
+		response.setHeader("Cache-Control", "no-store, max-age=0, no-cache, must-revalidate");
+		response.addHeader("Cache-Control", "post-check=0, pre-check=0");
+		response.setHeader("Pragma", "no-cache");
+		try {
+			PrintWriter out = response.getWriter();
+			try {
+				out.write(result);
+			} finally {
+				out.close();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 }

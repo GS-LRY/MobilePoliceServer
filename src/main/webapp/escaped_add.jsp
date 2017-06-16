@@ -285,7 +285,11 @@
 															if (data.result == "success") {
 																art.dialog.alert('添加成功');
 															} else {
-																art.dialog.alert('添加失败');
+																if(data.result == "exist"){
+																	art.dialog.alert('该在逃人员已经入库，请勿重复添加！');
+																}else{
+																	art.dialog.alert('添加失败');
+																}
 															} 
 														},
 														error : function(data,
