@@ -46,9 +46,9 @@
 				onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d' })"
 				id="datemax" class="input-text Wdate" style="width: 120px;"> -->
 			<input type="text" class="input-text" style="width: 250px"
-				placeholder="输入在逃人员姓名或身份证号" id="inputXmorSfzh" name="">
+				placeholder="输入在逃人员姓名或身份证号" id="inputXmorSfzhorOther" name="">
 			<button type="submit" class="btn btn-success radius"
-				id="searchEscaped" name="" onclick="searchescaped()">
+				id="searchNoraml" name="" onclick="searchnormal()">
 				<i class="Hui-iconfont">&#xe665;</i> 搜核查记录
 			</button>
 		</div>
@@ -132,7 +132,7 @@
 					"iDisplayLength" : 10,// 每页显示行数  
 					"bAutoWidth":false,
 					"aaSorting": [[ 1, "desc" ]],//默认排序
-					"bSort" : true,// 排序  
+					"bSort" : false,// 排序  
 					"bInfo" : true,// Showing 1 to 10 of 23 entries 总记录数没也显示多少等信息  
 					"bWidth" : true,
 					"bScrollCollapse" : true,
@@ -141,7 +141,7 @@
 					"bServerSide" : false,
 					"bDestroy" : true,
 					"bSortCellsTop" : true,
-					"sAjaxSource" : "getAllEscapedRecord.do",
+					"sAjaxSource" : "getNormalRecords.do",
 					"sScrollY" : "100%",
 					"fnInitComplete" : function() {
 						this.fnAdjustColumnSizing(true);
@@ -153,17 +153,12 @@
 						});
 					},
 					"aoColumns" : [ 
-									CONSTANT.DATA_TABLES.COLUMN.CHECKBOX,
-									{"mData" : "id"}, 
-									{"mData" : "xm"}, 
-									{"mData" : "xb"}, 
-									{"mData" : "sfzh"},
-									{"mData" : "zdryxl"}, 
-									{"mData" : "hjdxz"}, 
-									{"mData" : "xzdxz"}, 
-									{"mData" : "ladw"}, 
-									{"mData" : "zjlasj"}, 
-									{"mData" : "nrbjzdryksj"}],
+									{"mData" : "personName"}, 
+									{"mData" : "personId"},
+									{"mData" : "addressName"}, 
+									{"mData" : "commitTime"}, 
+									{"mData" : "username"}, 
+									{"mData" : "name"} ],
 					"fnRowCallback" : function(nRow, aData, iDisplayIndex) {//相当于对字段格式化  
 						if (aData["revampStatus"] == 0) {
 							$('td:eq(5)', nRow).html("结束");
@@ -179,7 +174,6 @@
 						
 					},
 					"aoColumnDefs": [
-						 {"orderable":false,"aTargets":[0,6,7]}// 制定列不参与排序
 						 ],
 					"fnServerData" : function(sSource, aoData, fnCallback) {
 						$.ajax({
@@ -197,11 +191,11 @@
 				});
 			}
 		}
-		function searchescaped(){
-			var XmOrSfzh = $.trim($('#inputXmorSfzh').val());
+		function searchnormal(){
+			var XmOrSfzh = $.trim($('#inputXmorSfzhorOther').val());
 			//art.dialog.alert(param);
 			if (XmOrSfzh == '') {
-				art.dialog.alert('请输入姓名或者身份证号');
+				art.dialog.alert('请输入姓名或者身份证号或者其他查询条件');
 				return false;
 			};
 			var params = {
@@ -209,7 +203,7 @@
 			};
 			 $.ajax({
 				type:'GET',
-				url:'searchEscapedByXmOrSfzh.do',
+				url:'searchNoramlRecord.do',
 				dataType:'json',
 				data:params,
 				contentType: 'application/json; charset=UTF-8',
@@ -238,7 +232,7 @@
 							"bServerSide" : false,
 							"bDestroy" : true,
 							"bSortCellsTop" : true,
-							"sAjaxSource" : "getAllEscapedRecord.do",
+							"sAjaxSource" : "getNormalRecords.do",
 							"sScrollY" : "100%",
 							"fnInitComplete" : function() {
 								this.fnAdjustColumnSizing(true);
@@ -250,17 +244,12 @@
 								});
 							},
 							"aoColumns" : [ 
-											CONSTANT.DATA_TABLES.COLUMN.CHECKBOX,
-											{"mData" : "id"}, 
-											{"mData" : "xm"}, 
-											{"mData" : "xb"}, 
-											{"mData" : "sfzh"},
-											{"mData" : "zdryxl"}, 
-											{"mData" : "hjdxz"}, 
-											{"mData" : "xzdxz"}, 
-											{"mData" : "ladw"}, 
-											{"mData" : "zjlasj"}, 
-											{"mData" : "nrbjzdryksj"}],
+								{"mData" : "personName"}, 
+								{"mData" : "personId"},
+								{"mData" : "addressName"}, 
+								{"mData" : "commitTime"}, 
+								{"mData" : "username"}, 
+								{"mData" : "name"} ],
 							"fnRowCallback" : function(nRow, aData, iDisplayIndex) {//相当于对字段格式化  
 								if (aData["revampStatus"] == 0) {
 									$('td:eq(5)', nRow).html("结束");
@@ -276,7 +265,6 @@
 								
 							},
 							"aoColumnDefs": [
-								 {"orderable":false,"aTargets":[0,6,7]}// 制定列不参与排序
 								 ],
 							"fnServerData" : function(sSource, aoData, fnCallback) {
 								$.ajax({

@@ -13,7 +13,7 @@ public class Department {
     private Integer parentid;
 
     private Integer createrid;
-
+   
 	public Integer getId() {
         return id;
     }

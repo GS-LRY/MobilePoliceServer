@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import tlkj.dao.NormalMapper;
 import tlkj.model.Normal;
+import tlkj.model.NormalTable;
 import tlkj.service.NormalService;
 
 @Service("normalService")
@@ -28,7 +29,7 @@ public class NormalServiceImpl implements NormalService {
 	}
 
 	@Override
-	public List<Normal> getAll() {
+	public List<NormalTable> getAll() {
 		// TODO Auto-generated method stub
 		return normalMapper.getAll();
 	}
@@ -44,6 +45,13 @@ public class NormalServiceImpl implements NormalService {
 	public List<Normal> getAllNormal() {
 		// TODO Auto-generated method stub
 		return normalMapper.getAllNormal();
+	}
+
+	@Override
+	public List<NormalTable> searchNormalRecord(String personId, String personName, String addressName,
+			String commitTime, String userName, String departmentName) {
+		// TODO Auto-generated method stub
+		return normalMapper.searchNormalRecord(personId, personName, addressName, commitTime, userName, departmentName);
 	}
 
 }

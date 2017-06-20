@@ -1,6 +1,7 @@
 package tlkj.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class User {
     private Integer id;
@@ -36,16 +37,6 @@ public class User {
     private String job;
 
     private String tel;
-    
-    private Department mDepartment;
-    
-	public Department getmDepartment() {
-		return mDepartment;
-	}
-
-	public void setmDepartment(Department mDepartment) {
-		this.mDepartment = mDepartment;
-	}
 
 	public Integer getId() {
         return id;

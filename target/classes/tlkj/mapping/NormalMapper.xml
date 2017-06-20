@@ -13,6 +13,14 @@
 		<result column="infoSubmit" property="infosubmit" jdbcType="INTEGER" />
 		<result column="personFp" property="personfp" jdbcType="INTEGER" />
 	</resultMap>
+	<resultMap type="tlkj.model.NormalTable" id="NormalTableBaseResultMap">
+		<result column="personId" property="personid" jdbcType="VARCHAR" />
+		<result column="personName" property="personname" jdbcType="VARCHAR" />
+		<result column="addressName" property="addressname" jdbcType="VARCHAR" />
+		<result column="commitTime" property="committime" jdbcType="VARCHAR" />
+		<result column="userName" property="username" jdbcType="VARCHAR" />
+		<result column="Name" property="name" jdbcType="VARCHAR" />
+	</resultMap>
 	<sql id="Base_Column_List">
 		Id, personId, personName, addressCode, addressName,
 		addressGPS,
@@ -167,7 +175,8 @@
 		#{committime,jdbcType=VARCHAR},
 		userId = #{userid,jdbcType=INTEGER},
 		infoSubmit = #{infosubmit,jdbcType=INTEGER},
-		personFp = #{personfp,jdbcType=INTEGER}
+		personFp =
+		#{personfp,jdbcType=INTEGER}
 		where Id =
 		#{id,jdbcType=INTEGER}
 	</update>
@@ -178,32 +187,50 @@
 		<result property="departmentid" column="departmentId"/> <association property="mDepartment" 
 		javaType="tlkj.model.Department"> <id property="id" column="department_id"/> 
 		<result property="name" column="name"/> </association> </collection> </resultMap> -->
-	<resultMap type="tlkj.model.Normal" id="normalInfo" extends="BaseResultMap">
+	<resultMap type="tlkj.model.NormalTable" id="normalInfo"
+		extends="NormalTableBaseResultMap">
 		<collection property="departmentList" javaType="list"
 			ofType="tlkj.model.Department">
 			<id property="id" column="department_id" />
 			<result property="name" column="name" />
 		</collection>
 	</resultMap>
-	<select id="getAll" resultMap="normalInfo">
+	<select id="getAll" resultMap="NormalTableBaseResultMap">
 		SELECT
-		t_normal.Id,
 		t_normal.personId,
 		t_normal.personName,
-		t_normal.addressCode,
 		t_normal.addressName,
-		t_normal.addressGPS,
 		t_normal.commitTime,
-		t_normal.userId,
-		t_user.Id user_id,
-		t_user.username,
-		t_user.departmentId,
-		t_department.Id department_id,
-		t_department.`name`
+		t_user.username as username,
+		t_department.`name` as name
 		FROM
 		t_normal
 		INNER JOIN t_user ON t_normal.userId = t_user.Id
 		INNER JOIN
 		t_department ON t_user.departmentId = t_department.Id
+	</select>
+
+	<select id="searchNormalRecord" resultMap="NormalTableBaseResultMap"
+		parameterType="java.lang.String">
+		SELECT
+		t_normal.personId,
+		t_normal.personName,
+		t_normal.addressName,
+		t_normal.commitTime,
+		t_user.username as username,
+		t_department.`name` as name
+		FROM
+		t_normal
+		INNER JOIN t_user ON
+		t_normal.userId = t_user.Id
+		INNER JOIN
+		t_department ON
+		t_user.departmentId = t_department.Id
+		where t_normal.personId =
+		#{personId,jdbcType=VARCHAR} or t_normal.personName =
+		#{personName,jdbcType=VARCHAR} or t_normal.addressName =
+		#{addressName,jdbcType=VARCHAR} or t_normal.commitTime =
+		#{commitTime,jdbcType=VARCHAR} or t_user.username =
+		#{userName,jdbcType=VARCHAR} or t_department.`name` = #{departmentName,jdbcType=VARCHAR}
 	</select>
 </mapper>
