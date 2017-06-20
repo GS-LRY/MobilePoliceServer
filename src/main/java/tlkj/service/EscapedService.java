@@ -12,4 +12,8 @@ public interface EscapedService {
 	public Escaped selectByPersonId(String personid);
 	
 	public int insertEscaped(Escaped escaped);
+	
+	public int getAllRecordNumber();
+	
+	public List<Escaped> searchEscaped(String sfzh,String xm);
 }

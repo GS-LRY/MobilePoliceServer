@@ -35,6 +35,13 @@
 		from t_escaped
 		where Sfzh = #{sfzh,jdbcType=VARCHAR}
 	</select>
+	<select id="searchEscaped" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from t_escaped
+		where Sfzh = #{sfzh,jdbcType=VARCHAR} or Xm = #{xm,jdbcType=VARCHAR}
+	</select>
 	<select id="getHundredRecord" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
@@ -45,7 +52,12 @@
 		select
 		<include refid="Base_Column_List" />
 		from t_escaped 
-		limit 0,20
+		order by Nrbjzdryksj DESC
+		limit 100
+	</select>
+	<select id="getAllRecordNumber" resultMap="BaseResultMap">
+		select count(*)
+		from t_escaped 
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from t_escaped

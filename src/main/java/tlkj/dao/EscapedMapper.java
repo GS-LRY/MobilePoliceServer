@@ -2,6 +2,8 @@ package tlkj.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import tlkj.model.Escaped;
 
 public interface EscapedMapper {
@@ -22,4 +24,8 @@ public interface EscapedMapper {
     List<Escaped> getHundredRecord();
     
     List<Escaped> getAllRecord();
+    
+    int getAllRecordNumber();
+    
+    List<Escaped> searchEscaped(@Param("sfzh")String sfzh,@Param("xm")String xm);
 }

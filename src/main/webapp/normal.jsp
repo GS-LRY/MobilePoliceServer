@@ -26,12 +26,12 @@
 <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
-<title>在逃人员列表</title>
+<title>核查记录列表</title>
 </head>
 <body onload="doSearch()">
 	<nav class="breadcrumb">
 		<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>
-		资源管理 <span class="c-gray en">&gt;</span> 在逃人员列表 <a
+		资源管理 <span class="c-gray en">&gt;</span> 核查记录列表 <a
 			class="btn btn-success radius r"
 			style="line-height: 1.6em; margin-top: 3px"
 			href="javascript:location.replace(location.href);" title="刷新"><i
@@ -49,33 +49,28 @@
 				placeholder="输入在逃人员姓名或身份证号" id="inputXmorSfzh" name="">
 			<button type="submit" class="btn btn-success radius"
 				id="searchEscaped" name="" onclick="searchescaped()">
-				<i class="Hui-iconfont">&#xe665;</i> 搜在逃人员
+				<i class="Hui-iconfont">&#xe665;</i> 搜核查记录
 			</button>
 		</div>
 		<div class="cl pd-5 bg-1 bk-gray mt-20">
-			<span class="l"><a href="javascript:;" onclick="datadel()"
+			<!-- <span class="l"><a href="javascript:;" onclick="datadel()"
 				class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i>
 					批量删除</a> <a href="javascript:;"
 				onclick="member_add('添加在逃人员','escaped_add.jsp','','510')"
 				class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i>
-					添加在逃人员</a></span> 
+					添加在逃人员</a></span>  -->
 		</div>
 		<div class="mt-20">
 			<table id="datatable"
 				class="table table-border table-bordered table-hover table-bg table-sort">
 				<thead>
 					<tr class="text-c">
-						<th width="20"><input type="checkbox" name="" value=""></th>
-						<th width="20">ID</th>
 						<th width="40">姓名</th>
-						<th width="20">性别</th>
 						<th width="90">身份证号</th>
-						<th width="150">重点人员分类</th>
-						<th width="150">户籍地详址</th>
-						<th width="150">现居住地址</th>
-						<th width="150">立案单位</th>
-						<th width="80">最近立案时间</th>
-						<th width="100">纳入部级重点人员库时间</th>
+						<th width="150">核录地点</th>
+						<th width="150">核录时间</th>
+						<th width="150">核录民警</th>
+						<th width="150">核录单位</th>
 					</tr>
 				</thead>
 				<tbody></tbody>

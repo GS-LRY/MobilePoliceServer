@@ -229,6 +229,9 @@
 				<ul>
 					<li><a data-href="escaped.jsp" data-title="在逃人员列表"
 						href="javascript:void(0)">在逃人员列表</a></li>
+					<li><a data-href="normal.jsp" data-title="核查记录列表"
+						href="javascript:void(0)">核查记录列表</a></li>	
+				</ul>
 			</dd>
 		</dl>
 		<dl id="menu-check">
@@ -289,7 +292,7 @@
 	<div id="Hui-tabNav" class="Hui-tabNav hidden-xs">
 		<div class="Hui-tabNav-wp">
 			<ul id="min_title_list" class="acrossTab cl">
-				<li class="active"><span title="我的桌面" data-href="welcome.html">我的桌面</span>
+				<li class="active"><span title="我的桌面" data-href="normal.jsp">我的桌面</span>
 					<em></em></li>
 			</ul>
 		</div>

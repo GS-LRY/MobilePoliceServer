@@ -44,4 +44,18 @@ public class EscapedServiceImpl implements EscapedService {
 		return escapedMapper.insert(escaped);
 	}
 
+	@Override
+	public int getAllRecordNumber() {
+		// TODO Auto-generated method stub
+		return escapedMapper.getAllRecordNumber();
+	}
+
+	@Override
+	public List<Escaped> searchEscaped(String sfzh, String xm) {
+		// TODO Auto-generated method stub
+		return escapedMapper.searchEscaped(sfzh, xm);
+	}
+
+	
+
 }

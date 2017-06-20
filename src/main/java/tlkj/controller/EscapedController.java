@@ -2,6 +2,8 @@ package tlkj.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import tlkj.json.JsonUtil;
 import tlkj.model.Escaped;
 import tlkj.service.EscapedService;
@@ -50,12 +54,90 @@ public class EscapedController {
 		response.setStatus(HttpServletResponse.SC_OK);
 	}
 
+	@RequestMapping("searchEscapedByXmOrSfzh.do")
+	public void SearchEscapedByXmOrSfzh(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException{
+		String param = new String(request.getParameter("XmOrSfzh").getBytes("iso8859-1"),"utf-8");
+		//System.out.println("齐天大圣多威风："+param);
+		List<Escaped> escapedList = null;
+		escapedList = escapedService.searchEscaped(param,param);
+		String jsondata = "nouser";
+		Map map = new HashMap();
+		if(escapedList.size()>0){
+			jsondata = jsonutil.ListToJSON(escapedList);
+		}
+		
+		map.put("jsondata", jsondata);
+//		if (jsondata == "" || jsonutil == null) {
+//			jsondata = "false";
+//		}
+		outputJson(response, jsonutil.MapToJSON(map));
+		response.setStatus(HttpServletResponse.SC_OK);
+	}
+	
 	@RequestMapping("getAllEscapedRecord.do")
 	public void getAllEscapedRecord(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String statName =null;
+		String sEcho = "0";//记录操作的次数
+		String iDisplayStart = "0";//起始
+		String iDisplayLength = "10";//size
+		int count = 0;//查询出来的数量
+		String aoData = request.getParameter("aoData");
+		String searchParam = request.getParameter("XmOrSfzh");
+		if(searchParam!=null){
+			searchParam =  new String(request.getParameter("XmOrSfzh").getBytes("iso8859-1"),"utf-8");
+		}
+		// 获取JQuery datatables当前配置参数
+		JSONArray jsonArray = JSONArray.fromObject(aoData);
+		for (int i = 0; i < jsonArray.size(); i++) {
+			try {
+				JSONObject jsonObject = (JSONObject)jsonArray.get(i);
+				if (jsonObject.get("name").equals("sEcho")) {
+					sEcho = jsonObject.get("value").toString();
+				}else if(jsonObject.get("name").equals("iDisplayStart")){
+					iDisplayStart = jsonObject.get("value").toString();
+				}else if(jsonObject.get("name").equals("iDisplayLength")){
+					iDisplayLength = jsonObject.get("value").toString();
+				}else if(jsonObject.get("name").equals("startId")){
+					statName = jsonObject.get("value").toString();
+				}
+			} catch (Exception e) {
+				break;
+			}
+		}
+
+		JSONArray jsonArray2 = new JSONArray();
+		JSONObject jsonObject2 = new JSONObject();
+		
+		int initEcho = Integer.parseInt(sEcho)+1;
 		List<Escaped> escapedList = null;
-		escapedList = escapedService.getAllRecord();
-		String jsondata = jsonutil.ListToJSON(escapedList);
-		outputJson(response, jsondata);
+		if(searchParam==null){
+			escapedList = escapedService.getAllRecord();
+		}else{
+			escapedList = escapedService.searchEscaped(searchParam, searchParam);
+		}
+		
+		count = escapedList.size();
+		Escaped escaped = null;
+		for (int i = 0; i < count; i++) {
+			escaped = escapedList.get(i);
+			jsonObject2.put("id", escaped.getId());
+			jsonObject2.put("xm", escaped.getXm());
+			jsonObject2.put("xb", escaped.getXb());
+			jsonObject2.put("sfzh", escaped.getSfzh());
+			jsonObject2.put("zdryxl", escaped.getZdryxl());
+			jsonObject2.put("hjdxz", escaped.getHjdxz());
+			jsonObject2.put("xzdxz", escaped.getXzdxz());
+			jsonObject2.put("ladw", escaped.getLadw());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String strzjlasj = sdf.format(escaped.getZjlasj());
+			jsonObject2.put("zjlasj", strzjlasj);
+			String strnrbjzdryksj = sdf.format(escaped.getNrbjzdryksj());
+			jsonObject2.put("nrbjzdryksj", strnrbjzdryksj);
+			jsonArray2.add(jsonObject2);
+		}
+		//String jsondata = jsonutil.ListToJSON(escapedList);
+		String json = "{\"sEcho\":" + initEcho + ",\"iTotalRecords\":" + count + ",\"iTotalDisplayRecords\":" + count + ",\"aaData\":" + jsonArray2 + "}";  
+		outputJson(response, json);
 	}
 
 	@RequestMapping("addEscapedRecord.do")
