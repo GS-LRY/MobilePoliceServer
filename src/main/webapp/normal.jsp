@@ -68,8 +68,10 @@
 						<th width="40">姓名</th>
 						<th width="90">身份证号</th>
 						<th width="150">核录地点</th>
-						<th width="150">核录时间</th>
-						<th width="150">核录民警</th>
+						<th width="100">核录时间</th>
+						<th width="60">是否采集指纹</th>
+						<th width="60">是否比对指纹</th>
+						<th width="50">核录民警</th>
 						<th width="150">核录单位</th>
 					</tr>
 				</thead>
@@ -157,6 +159,8 @@
 									{"mData" : "personId"},
 									{"mData" : "addressName"}, 
 									{"mData" : "commitTime"}, 
+									{"mData" : "personFp"},
+									{"mData" : "comparFp"},
 									{"mData" : "username"}, 
 									{"mData" : "name"} ],
 					"fnRowCallback" : function(nRow, aData, iDisplayIndex) {//相当于对字段格式化  
@@ -248,6 +252,8 @@
 								{"mData" : "personId"},
 								{"mData" : "addressName"}, 
 								{"mData" : "commitTime"}, 
+								{"mData" : "personFp"},
+								{"mData" : "comparFp"},
 								{"mData" : "username"}, 
 								{"mData" : "name"} ],
 							"fnRowCallback" : function(nRow, aData, iDisplayIndex) {//相当于对字段格式化  

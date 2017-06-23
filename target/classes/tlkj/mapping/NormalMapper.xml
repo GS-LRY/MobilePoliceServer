@@ -12,19 +12,22 @@
 		<result column="userId" property="userid" jdbcType="INTEGER" />
 		<result column="infoSubmit" property="infosubmit" jdbcType="INTEGER" />
 		<result column="personFp" property="personfp" jdbcType="INTEGER" />
+		<result column="comparFp" property="comparfp" jdbcType="INTEGER" />
 	</resultMap>
 	<resultMap type="tlkj.model.NormalTable" id="NormalTableBaseResultMap">
 		<result column="personId" property="personid" jdbcType="VARCHAR" />
 		<result column="personName" property="personname" jdbcType="VARCHAR" />
 		<result column="addressName" property="addressname" jdbcType="VARCHAR" />
 		<result column="commitTime" property="committime" jdbcType="VARCHAR" />
+		<result column="personFp" property="personfp" jdbcType="INTEGER" />
+		<result column="comparFp" property="comparfp" jdbcType="INTEGER" />
 		<result column="userName" property="username" jdbcType="VARCHAR" />
 		<result column="Name" property="name" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		Id, personId, personName, addressCode, addressName,
 		addressGPS,
-		commitTime, userId, infoSubmit, personFp
+		commitTime, userId, infoSubmit, personFp,comparFp
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
@@ -48,7 +51,7 @@
 		personId, personName,
 		addressCode, addressName, addressGPS,
 		commitTime,
-		userId,infoSubmit,personFp)
+		userId,infoSubmit,personFp,comparFp)
 		values (#{id,jdbcType=INTEGER},
 		#{personid,jdbcType=VARCHAR},
 		#{personname,jdbcType=VARCHAR},
@@ -58,7 +61,8 @@
 		#{committime,jdbcType=VARCHAR},
 		#{userid,jdbcType=INTEGER},
 		#{infosubmit,jdbcType=INTEGER},
-		#{personfp,jdbcType=INTEGER})
+		#{personfp,jdbcType=INTEGER},
+		#{comparfp,jdbcType=INTEGER})
 	</insert>
 	<insert id="insertSelective" parameterType="tlkj.model.Normal">
 		insert into t_normal
@@ -93,6 +97,9 @@
 			<if test="personfp != null">
 				personFp,
 			</if>
+			<if test="comparfp != null">
+				comparFp,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -124,6 +131,9 @@
 			</if>
 			<if test="personfp != null">
 				#{personfp,jdbcType=INTEGER},
+			</if>
+			<if test="comparfp != null">
+				#{comparfp,jdbcType=INTEGER},
 			</if>
 		</trim>
 	</insert>
@@ -157,6 +167,9 @@
 			<if test="personfp != null">
 				personFp = #{personfp,jdbcType=INTEGER},
 			</if>
+			<if test="comparfp != null">
+				comparFp = #{comparfp,jdbcType=INTEGER},
+			</if>
 		</set>
 		where Id = #{id,jdbcType=INTEGER}
 	</update>
@@ -176,7 +189,8 @@
 		userId = #{userid,jdbcType=INTEGER},
 		infoSubmit = #{infosubmit,jdbcType=INTEGER},
 		personFp =
-		#{personfp,jdbcType=INTEGER}
+		#{personfp,jdbcType=INTEGER},
+		comparFp = #{comparfp,jdbcType=INTEGER}
 		where Id =
 		#{id,jdbcType=INTEGER}
 	</update>
@@ -201,6 +215,8 @@
 		t_normal.personName,
 		t_normal.addressName,
 		t_normal.commitTime,
+		t_normal.personFp,
+		t_normal.comparFp,
 		t_user.username as username,
 		t_department.`name` as name
 		FROM
@@ -217,6 +233,8 @@
 		t_normal.personName,
 		t_normal.addressName,
 		t_normal.commitTime,
+		t_normal.personFp,
+		t_normal.comparFp,
 		t_user.username as username,
 		t_department.`name` as name
 		FROM
@@ -231,6 +249,7 @@
 		#{personName,jdbcType=VARCHAR} or t_normal.addressName =
 		#{addressName,jdbcType=VARCHAR} or t_normal.commitTime =
 		#{commitTime,jdbcType=VARCHAR} or t_user.username =
-		#{userName,jdbcType=VARCHAR} or t_department.`name` = #{departmentName,jdbcType=VARCHAR}
+		#{userName,jdbcType=VARCHAR} or t_department.`name` =
+		#{departmentName,jdbcType=VARCHAR}
 	</select>
 </mapper>

@@ -4,8 +4,8 @@ import java.util.List;
 
 /**
  * 核查记录显示表
- * @author by Mr. Luruyi
- * 2017-6-20
+ * 
+ * @author by Mr. Luruyi 2017-6-20
  */
 public class NormalTable {
 	private String personid;// 被核录人员身份证号
@@ -17,8 +17,29 @@ public class NormalTable {
 	private String committime;// 核录时间
 
 	private String username;// 核录警员
-	
+
 	private String name;// 核录单位
+
+	private Integer personfp;// 采集指纹
+
+	public Integer getPersonfp() {
+		return personfp;
+	}
+
+	public void setPersonfp(Integer personfp) {
+		this.personfp = personfp;
+	}
+
+	public Integer getComparfp() {
+		return comparfp;
+	}
+
+	public void setComparfp(Integer comparfp) {
+		this.comparfp = comparfp;
+	}
+
+	private Integer comparfp;// 比对指纹
+	
 	private List<User> userList;
 
 	private List<Department> departmentList;
@@ -86,6 +107,5 @@ public class NormalTable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+
 }

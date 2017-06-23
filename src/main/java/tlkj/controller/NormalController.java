@@ -35,7 +35,7 @@ public class NormalController {
 
 	private NormalService normalService;
 	private JsonUtil jsonutil = new JsonUtil();
-	
+
 	public NormalService getNormalService() {
 		return normalService;
 	}
@@ -53,21 +53,22 @@ public class NormalController {
 	}
 
 	@RequestMapping("searchNoramlRecord.do")
-	public void searchNormalRecord(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
-		String param = new String(request.getParameter("XmOrSfzh").getBytes("iso8859-1"),"utf-8");
-		//System.out.println("齐天大圣多威风："+param);
+	public void searchNormalRecord(HttpServletRequest request, HttpServletResponse response)
+			throws UnsupportedEncodingException {
+		String param = new String(request.getParameter("XmOrSfzh").getBytes("iso8859-1"), "utf-8");
+		// System.out.println("齐天大圣多威风："+param);
 		List<NormalTable> normalTableList = null;
 		normalTableList = normalService.searchNormalRecord(param, param, param, param, param, param);
 		String jsondata = "nouser";
 		Map map = new HashMap();
-		if(normalTableList.size()>0){
+		if (normalTableList.size() > 0) {
 			jsondata = jsonutil.ListToJSON(normalTableList);
 		}
-		
+
 		map.put("jsondata", jsondata);
-//		if (jsondata == "" || jsonutil == null) {
-//			jsondata = "false";
-//		}
+		// if (jsondata == "" || jsonutil == null) {
+		// jsondata = "false";
+		// }
 		outputJson(response, jsonutil.MapToJSON(map));
 		response.setStatus(HttpServletResponse.SC_OK);
 	}
@@ -120,16 +121,29 @@ public class NormalController {
 		NormalTable normalTable = null;
 		for (int i = 0; i < count; i++) {
 			normalTable = normalTableList.get(i);
-			System.out.println("personName" + normalTable.getPersonname());
-			System.out.println("personId" + normalTable.getPersonid());
-			System.out.println("addressName" + normalTable.getAddressname());
-			System.out.println("commitTime" + normalTable.getCommittime());
-			System.out.println("username" + normalTable.getUsername());
-			System.out.println("name" + normalTable.getName());
+			// System.out.println("personName" + normalTable.getPersonname());
+			// System.out.println("personId" + normalTable.getPersonid());
+			// System.out.println("addressName" + normalTable.getAddressname());
+			// System.out.println("commitTime" + normalTable.getCommittime());
+			// System.out.println("username" + normalTable.getUsername());
+			// System.out.println("name" + normalTable.getName());
 			jsonObject2.put("personName", normalTable.getPersonname());
 			jsonObject2.put("personId", normalTable.getPersonid());
 			jsonObject2.put("addressName", normalTable.getAddressname());
 			jsonObject2.put("commitTime", normalTable.getCommittime());
+			int personFp = normalTable.getPersonfp();
+			String str_personFp = "未采集指纹";
+			if (personFp == 1) {
+				str_personFp = "已采集指纹";
+			}
+			jsonObject2.put("personFp", str_personFp);
+			
+			int comparFp = normalTable.getComparfp();
+			String str_comparFp = "未比对指纹";
+			if(comparFp==1){
+				str_comparFp = "已比对指纹";
+			}
+			jsonObject2.put("comparFp", str_comparFp);
 			jsonObject2.put("username", normalTable.getUsername());
 			jsonObject2.put("name", normalTable.getName());
 			// SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
