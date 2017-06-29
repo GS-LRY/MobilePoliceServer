@@ -1,6 +1,8 @@
 package tlkj.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,6 +54,14 @@ public class NormalServiceImpl implements NormalService {
 			String commitTime, String userName, String departmentName) {
 		// TODO Auto-generated method stub
 		return normalMapper.searchNormalRecord(personId, personName, addressName, commitTime, userName, departmentName);
+	}
+
+	@Override
+	public List<Normal> compareByPersionIdAndCommitTime(String personId, String commitTime) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("personId", personId);
+		map.put("commitTime", commitTime);
+		return normalMapper.compareByPersionIdAndCommitTime(map);
 	}
 
 }

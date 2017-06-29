@@ -86,7 +86,7 @@
 			var username = $.trim($('#username').val());
 			var password = $.trim($('#password').val());
 			if (username == '') {
-				art.dialog.alert('请输入用户名称');
+				art.dialog.alert('请输入警号或身份证号');
 				return false;
 			}
 			if (password == '') {

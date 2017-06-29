@@ -29,6 +29,12 @@
 		addressGPS,
 		commitTime, userId, infoSubmit, personFp,comparFp
 	</sql>
+	<select id="compareByPersionIdAndCommitTime" resultMap="BaseResultMap" parameterType="java.util.Map">
+	select
+	<include refid="Base_Column_List"/>
+	from t_normal
+	where personId = #{personId} and commitTime = #{commitTime}
+	</select>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select

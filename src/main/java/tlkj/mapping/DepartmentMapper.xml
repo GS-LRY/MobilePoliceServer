@@ -4,8 +4,9 @@
 	<resultMap id="BaseResultMap" type="tlkj.model.Department">
 		<id column="Id" property="id" jdbcType="INTEGER" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
-		<result column="allowPathPattern" property="allowpathpattern"
-			jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="phonenumber" property="phonenumber" jdbcType="VARCHAR" />
+		<result column="belongstreet" property="belongstreet" jdbcType="VARCHAR" />
 		<result column="level" property="level" jdbcType="INTEGER" />
 		<result column="parentId" property="parentid" jdbcType="INTEGER" />
 		<result column="createrId" property="createrid" jdbcType="INTEGER" />
@@ -20,6 +21,11 @@
 		from t_department
 		where Id = #{id,jdbcType=INTEGER}
 	</select>
+	<select id="getAllDepartment" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_department
+	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from
 		t_department
@@ -27,12 +33,12 @@
 	</delete>
 	<insert id="insert" parameterType="tlkj.model.Department">
 		insert into t_department (Id,
-		name, allowPathPattern,
+		name, address,phonenumber,belongstreet,
 		level, parentId, createrId
 		)
 		values
 		(#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
-		#{allowpathpattern,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR},#{phonenumber,jdbcType=VARCHAR},#{belongstreet,jdbcType=VARCHAR},
 		#{level,jdbcType=INTEGER},
 		#{parentid,jdbcType=INTEGER}, #{createrid,jdbcType=INTEGER}
 		)
@@ -46,8 +52,14 @@
 			<if test="name != null">
 				name,
 			</if>
-			<if test="allowpathpattern != null">
-				allowPathPattern,
+			<if test="address != null">
+				address,
+			</if>
+			<if test="phonenumber != null">
+				phonenumber,
+			</if>
+			<if test="belongstreet != null">
+				belongstreet,
 			</if>
 			<if test="level != null">
 				level,
@@ -66,8 +78,14 @@
 			<if test="name != null">
 				#{name,jdbcType=VARCHAR},
 			</if>
-			<if test="allowpathpattern != null">
-				#{allowpathpattern,jdbcType=VARCHAR},
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="phonenumber != null">
+				#{phonenumber,jdbcType=VARCHAR},
+			</if>
+			<if test="belongstreet != null">
+				#{belongstreet,jdbcType=VARCHAR},
 			</if>
 			<if test="level != null">
 				#{level,jdbcType=INTEGER},
@@ -86,8 +104,14 @@
 			<if test="name != null">
 				name = #{name,jdbcType=VARCHAR},
 			</if>
-			<if test="allowpathpattern != null">
-				allowPathPattern = #{allowpathpattern,jdbcType=VARCHAR},
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="phonenumber != null">
+				phonenumber = #{phonenumber,jdbcType=VARCHAR},
+			</if>
+			<if test="belongstreet != null">
+				belongstreet = #{belongstreet,jdbcType=VARCHAR},
 			</if>
 			<if test="level != null">
 				level = #{level,jdbcType=INTEGER},
@@ -105,8 +129,12 @@
 		update
 		t_department
 		set name = #{name,jdbcType=VARCHAR},
-		allowPathPattern =
-		#{allowpathpattern,jdbcType=VARCHAR},
+		address =
+		#{address,jdbcType=VARCHAR},
+		phonenumber =
+		#{phonenumber,jdbcType=VARCHAR},
+		belongstreet =
+		#{belongstreet,jdbcType=VARCHAR},
 		level =
 		#{level,jdbcType=INTEGER},
 		parentId = #{parentid,jdbcType=INTEGER},

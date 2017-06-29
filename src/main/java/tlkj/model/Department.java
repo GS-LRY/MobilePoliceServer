@@ -6,7 +6,35 @@ public class Department {
 
     private String name;
 
-    private String allowpathpattern;
+    public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getPhonenumber() {
+		return phonenumber;
+	}
+
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
+	}
+
+	public String getBelongstreet() {
+		return belongstreet;
+	}
+
+	public void setBelongstreet(String belongstreet) {
+		this.belongstreet = belongstreet;
+	}
+
+	private String address;
+    
+    private String phonenumber;
+    
+    private String belongstreet;
 
     private Integer level;
 
@@ -30,13 +58,7 @@ public class Department {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getAllowpathpattern() {
-        return allowpathpattern;
-    }
-
-    public void setAllowpathpattern(String allowpathpattern) {
-        this.allowpathpattern = allowpathpattern == null ? null : allowpathpattern.trim();
-    }
+   
 
     public Integer getLevel() {
         return level;

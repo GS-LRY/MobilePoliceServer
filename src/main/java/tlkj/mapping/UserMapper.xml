@@ -22,6 +22,22 @@
 		<result column="job" property="job" jdbcType="VARCHAR" />
 		<result column="tel" property="tel" jdbcType="VARCHAR" />
 	</resultMap>
+
+	<resultMap type="tlkj.model.UserTable" id="UserTableBaseResultMap">
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="isUsing" property="isusing" jdbcType="INTEGER" />
+		<result column="locked" property="locked" jdbcType="INTEGER" />
+		<result column="registTime" property="registtime" jdbcType="TIMESTAMP" />
+		<result column="lastLoginTime" property="lastlogintime"
+			jdbcType="TIMESTAMP" />
+		<result column="idCard" property="idcard" jdbcType="VARCHAR" />
+		<result column="policeNum" property="policenum" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="job" property="job" jdbcType="VARCHAR" />
+		<result column="departmentname" property="departmentname"
+			jdbcType="VARCHAR" />
+	</resultMap>
 	<sql id="Base_Column_List">
 		Id, username, password, phone, allowPathPattern, isUsing,
 		locked,
@@ -36,12 +52,72 @@
 		from t_user
 		where Id = #{id,jdbcType=INTEGER}
 	</select>
-	<select id="getUserByName" resultMap="BaseResultMap"
+	<select id="getAllUser" resultMap="UserTableBaseResultMap">
+		SELECT
+		t_user.username,
+		t_user.phone,
+		t_user.isUsing,
+		t_user.locked,
+		t_user.registTime,
+		t_user.lastLoginTime,
+		t_user.idCard,
+		t_user.policeNum,
+		t_user.email,
+		t_user.job,
+		t_department.`name` as departmentname
+		FROM
+		t_user ,
+		t_department
+		WHERE
+		t_user.departmentId = t_department.Id
+		limit 100
+	</select>
+	<select id="searchUser" resultMap="UserTableBaseResultMap">
+		SELECT
+		t_user.username,
+		t_user.phone,
+		t_user.isUsing,
+		t_user.locked,
+		t_user.registTime,
+		t_user.lastLoginTime,
+		t_user.idCard,
+		t_user.policeNum,
+		t_user.email,
+		t_user.job,
+		t_department.`name` as departmentname
+		FROM
+		t_user
+		INNER JOIN
+		t_department ON
+		t_user.departmentId = t_department.Id
+		where
+		t_user.username=#{username,jdbcType=VARCHAR} or t_user.policeNum =
+		#{policeNum,jdbcType=VARCHAR}
+		or t_user.idCard =
+		#{idCard,jdbcType=VARCHAR}
+	</select>
+	<select id="getUserByPoliceNumOrIdCard" resultMap="BaseResultMap"
 		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
 		from t_user
-		where policeNum = #{policenum,jdbcType=VARCHAR}
+		where policeNum = #{policeNum,jdbcType=VARCHAR} or
+		idCard=#{idCard,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="existsPoliceNum" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from t_user
+		where policeNum = #{policeNum,jdbcType=VARCHAR}
+	</select>
+	<select id="existsIdCard" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from t_user
+		where idCard=#{idCard,jdbcType=VARCHAR}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from t_user

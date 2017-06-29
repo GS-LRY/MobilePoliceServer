@@ -1,6 +1,7 @@
 package tlkj.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import tlkj.dao.DepartmentMapper;
 import tlkj.dao.UserMapper;
 import tlkj.model.User;
+import tlkj.model.UserTable;
 import tlkj.service.UserService;
 import tlkj.util.MD5Util;
 
@@ -36,10 +38,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String login(String username, String password) {
-		System.out.println("username:" + username + ", password: " + MD5Util.MD5(password));
+	public String login(String policeNumOrIdCard, String password) {
+		//System.out.println("username:" + username + ", password: " + MD5Util.MD5(password));
 		User user = null;
-		user = userMapper.getUserByName(username);
+		user = userMapper.getUserByPoliceNumOrIdCard(policeNumOrIdCard, policeNumOrIdCard);
 		//System.out.println("username:" + user.getUsername());
 		if (user == null) {
 			return "nouser";
@@ -56,6 +58,42 @@ public class UserServiceImpl implements UserService {
 				return "fail";
 			}
 		}
+	}
+
+	@Override
+	public List<UserTable> getAllUser() {
+		// TODO Auto-generated method stub
+		return userMapper.getAllUser();
+	}
+
+	@Override
+	public List<UserTable> searchUser(String username, String policeNum, String idCard) {
+		// TODO Auto-generated method stub
+		return userMapper.searchUser(username, policeNum, idCard);
+	}
+
+	@Override
+	public User getUserByPoliceNumOrIdCard(String policeNum, String idCard) {
+		// TODO Auto-generated method stub
+		return userMapper.getUserByPoliceNumOrIdCard(policeNum, idCard);
+	}
+
+	@Override
+	public User existsPoliceNum(String policeNum) {
+		// TODO Auto-generated method stub
+		return userMapper.existsPoliceNum(policeNum);
+	}
+
+	@Override
+	public User existsIdCard(String idCard) {
+		// TODO Auto-generated method stub
+		return userMapper.existsIdCard(idCard);
+	}
+
+	@Override
+	public int insertSelective(User record) {
+		// TODO Auto-generated method stub
+		return userMapper.insertSelective(record);
 	}
 
 }

@@ -16,4 +16,6 @@ public interface NormalService {
 	public void AddNormalRecord(Normal record);
 	
 	public List<Normal> getAllNormal();
+	
+	public List<Normal> compareByPersionIdAndCommitTime(String personId,String commitTime);
 }

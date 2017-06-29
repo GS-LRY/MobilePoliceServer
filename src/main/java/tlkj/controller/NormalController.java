@@ -178,8 +178,15 @@ public class NormalController {
 				norlist = normalService.getAllNormal();
 				int before_normal_num = norlist.size();
 				System.out.println("before_normal_num:" + before_normal_num);
-				// 插入记录
-				normalService.AddNormalRecord(record);
+				
+				// 插入之前查询库中是否已经存在相同身份证号和相同提交时间的记录
+				norlist = normalService.compareByPersionIdAndCommitTime(record.getPersonid(), record.getCommittime());
+				
+				if(norlist.size()==0){
+					// 插入记录
+					normalService.AddNormalRecord(record);
+				}
+				
 				// 插入之后查询记录数
 				norlist = normalService.getAllNormal();
 				int after_normal_num = norlist.size();

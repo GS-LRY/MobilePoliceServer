@@ -50,9 +50,4 @@ public class TestMybatis {
 		logger.info(JSON.toJSONStringWithDateFormat(n, "yyyy-MM-dd HH:mm:ss"));
 	}
 	
-	@Test
-	public void Test3(){
-		List<Normal> l = normalService.getAll();
-		logger.info(JSON.toJSONStringWithDateFormat(l, "yyyy-MM-dd HH:mm:ss"));
-	}
 }
