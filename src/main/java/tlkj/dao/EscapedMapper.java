@@ -1,6 +1,8 @@
 package tlkj.dao;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -28,4 +30,8 @@ public interface EscapedMapper {
     int getAllRecordNumber();
     
     List<Escaped> searchEscaped(@Param("sfzh")String sfzh,@Param("xm")String xm);
+    
+    Escaped getServerLatestEscaped();
+    
+    List<Escaped> getServerUpdateEscaped(Map<String, Object> map);
 }

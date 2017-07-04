@@ -46,7 +46,19 @@
 		select
 		<include refid="Base_Column_List" />
 		from t_escaped 
-		limit 0,100
+		ORDER BY NRBJZDRYKSJ DESC LIMIT 0,100
+	</select>
+	<select id="getServerLatestEscaped" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_escaped 
+		ORDER BY NRBJZDRYKSJ DESC LIMIT 1
+	</select>
+	<select id="getServerUpdateEscaped" resultMap="BaseResultMap" parameterType="java.util.Map">
+		select
+		<include refid="Base_Column_List" />
+		from t_escaped 
+		where NRBJZDRYKSJ >= #{nrbjzdryksj} and Sfzh != #{sfzh}
 	</select>
 	<select id="getAllRecord" resultMap="BaseResultMap">
 		select

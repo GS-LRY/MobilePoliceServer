@@ -1,6 +1,9 @@
 package tlkj.service.impl;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,6 +57,20 @@ public class EscapedServiceImpl implements EscapedService {
 	public List<Escaped> searchEscaped(String sfzh, String xm) {
 		// TODO Auto-generated method stub
 		return escapedMapper.searchEscaped(sfzh, xm);
+	}
+
+	@Override
+	public Escaped getServerLatestEscaped() {
+		// TODO Auto-generated method stub
+		return escapedMapper.getServerLatestEscaped();
+	}
+
+	@Override
+	public List<Escaped> getServerUpdateEscaped(Date nrbjzdryksj,String sfzh) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("nrbjzdryksj", nrbjzdryksj);
+		map.put("sfzh", sfzh);
+		return escapedMapper.getServerUpdateEscaped(map);
 	}
 
 	

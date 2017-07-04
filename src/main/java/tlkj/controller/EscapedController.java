@@ -53,6 +53,60 @@ public class EscapedController {
 		outputJson(response, jsondata);
 		response.setStatus(HttpServletResponse.SC_OK);
 	}
+	
+	@RequestMapping(value = "getServerUpdateEscaped", method = RequestMethod.POST)
+	@ResponseBody
+	public void GetServerUpdateEscaped(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException{
+		String jsondata = request.getParameter("jsondata");
+		Map<String,String> map = jsonutil.JSONTOMap(jsondata);
+		String strnrbjzdryksj = map.get("nrbjzdryksj");
+		String sfzh = map.get("sfzh");
+		String samepeople = map.get("samepeople");
+		List<Escaped> list = null;
+		if(samepeople=="yes"){
+			list = jsonutil.JSONToEscapedList(map.get("escapedlist"));
+		}
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date nrbjzdryksj = null;
+		try {
+			nrbjzdryksj = formatter.parse(strnrbjzdryksj);
+			System.out.println("最新时间"+nrbjzdryksj);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<Escaped> LatestEscapedList = null;
+		LatestEscapedList = escapedService.getServerUpdateEscaped(nrbjzdryksj,sfzh);
+		jsondata = "none";
+		Escaped Latestescaped,Oldescaped = null;
+		Map<Integer,Integer> mapremove = new HashMap<Integer,Integer>();
+		int num = 0;
+		if(LatestEscapedList!=null&&LatestEscapedList.size()>0){
+			if(list!=null&&list.size()>0){
+				for (int i = 0; i < LatestEscapedList.size(); i++) {
+					Latestescaped = LatestEscapedList.get(i);
+					for (int j = 0; j < list.size(); j++) {
+						Oldescaped = list.get(j);
+						if(Latestescaped.getSfzh()==Oldescaped.getSfzh()){
+							mapremove.put(num, i);
+							num++;
+							continue;
+						}
+					}
+				}
+				for (int i = 0; i < num; i++) {
+					LatestEscapedList.remove(mapremove.get(num));
+				}
+			}
+			jsondata = jsonutil.ListToJSON(LatestEscapedList);
+			if (jsondata == "" || jsonutil == null) {
+				jsondata = "false";
+			}
+			System.out.println("需要更新的在逃人员数"+LatestEscapedList.size());
+		}
+		outputJson(response, jsondata);
+		response.setStatus(HttpServletResponse.SC_OK);
+	}
 
 	@RequestMapping("searchEscapedByXmOrSfzh.do")
 	public void SearchEscapedByXmOrSfzh(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException{
