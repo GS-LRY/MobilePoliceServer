@@ -75,7 +75,6 @@
 							class="dropDown_A">admin <i class="Hui-iconfont">&#xe6d5;</i></a>
 							<ul class="dropDown-menu menu radius box-shadow">
 								<li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>
-								<li><a href="#">切换账户</a></li>
 								<li><a href="#">退出</a></li>
 							</ul></li>
 						<li id="Hui-msg"><a href="#" title="消息"><span
@@ -119,8 +118,10 @@
 				</dt>
 				<dd>
 					<ul>
-						<li><a data-href="picture-list.html" data-title="信息修改"
+						<li><a data-href="user_information.jsp" data-title="个人信息修改"
 							href="javascript:void(0)">信息修改</a></li>
+						<li><a data-href="user_password.jsp" data-title="密码修改"
+							href="javascript:void(0)">密码修改</a></li>
 					</ul>
 				</dd>
 			</dl>
