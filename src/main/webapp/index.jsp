@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.*,tlkj.model.User"%>
+<%
+	User currentUser = (User) request.getSession().getAttribute("currentUser");
+	Integer userType = currentUser.getUsertype();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -195,7 +199,7 @@
 							href="javascript:void(0)">权限管理</a></li>
 						<li><a data-href="admin-list.html" data-title="管理员列表"
 							href="javascript:void(0)">管理员列表</a></li>
-							<li><a data-href="member-list.html" data-title="管理员列表"
+						<li><a data-href="member-list.html" data-title="管理员列表"
 							href="javascript:void(0)">管理员列表</a></li>
 					</ul>
 				</dd>
@@ -235,7 +239,7 @@
 							href="javascript:void(0)">在逃人员列表</a></li>
 						<li><a data-href="normal.jsp" data-title="核查记录列表"
 							href="javascript:void(0)">核查记录列表</a></li>
-						<li><a data-href="user.jsp" data-title="用户列表"
+						<li id="user-list"><a data-href="user.jsp" data-title="用户列表"
 							href="javascript:void(0)">用户列表</a></li>
 					</ul>
 				</dd>
@@ -335,6 +339,13 @@
 	<script type="text/javascript"
 		src="libs/jquery.contextmenu/jquery.contextmenu.r2.js"></script>
 	<script type="text/javascript">
+		$(document).ready(function() {
+			if(<%=userType%>==0){
+				$("#user-list").hide();
+			}else{
+				$("#user-list").show();
+			}
+		});
 		$(function() {
 			/*$("#min_title_list li").contextMenu('Huiadminmenu', {
 				bindings: {

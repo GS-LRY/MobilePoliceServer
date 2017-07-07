@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.*,tlkj.model.User"%>
+<%
+	User currentUser = (User)request.getSession().getAttribute("currentUser");
+	Integer userType = currentUser.getUsertype();
+%>
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8">
@@ -28,7 +32,7 @@
 <![endif]-->
 <title>在逃人员列表</title>
 </head>
-<body onload="doSearch()">
+<body>
 	<nav class="breadcrumb">
 		<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>
 		资源管理 <span class="c-gray en">&gt;</span> 在逃人员列表 <a
@@ -52,7 +56,7 @@
 				<i class="Hui-iconfont">&#xe665;</i> 搜在逃人员
 			</button>
 		</div>
-		<div class="cl pd-5 bg-1 bk-gray mt-20">
+		<div id="addescaped" class="cl pd-5 bg-1 bk-gray mt-20">
 			<span class="l"><a href="javascript:;" onclick="datadel()"
 				class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i>
 					批量删除</a> <a href="javascript:;"
@@ -122,7 +126,12 @@
 				}
 			},
 		};
-	function doSearch() {
+	$(document).ready(function(){
+			if(<%=userType%>==0){
+				$("#addescaped").hide();
+			}else{
+				$("#addescaped").show();
+			}
 			if (dtable != null) {
 				dtable.fnClearTable(0);
 				dtable.fnDraw();//重新改加载数据
@@ -201,7 +210,7 @@
 					}
 				});
 			}
-		}
+		});
 		function searchescaped(){
 			var XmOrSfzh = $.trim($('#inputXmorSfzh').val());
 			//art.dialog.alert(param);
