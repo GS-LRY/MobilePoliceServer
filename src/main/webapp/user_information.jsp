@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8" import="java.util.*,tlkj.model.User"%>
 <%
 	User currentUser = (User) request.getSession().getAttribute("currentUser");
+	Integer userId = currentUser.getId();
 	String policenum = currentUser.getPolicenum();
 	String strusername = currentUser.getUsername();
 	String strusertype = currentUser.getUsertype() == 0 ? "普通用户" : "管理员";
@@ -68,14 +69,7 @@
 				<label class="form-label col-xs-4 col-sm-3"><span
 					class="c-red">*</span>用户类型：</label>
 				<div class="formControls col-xs-8 col-sm-9">
-					<span id="select-box" class="select-box"> <select
-						class="select error" aria-required="true" aria-invalid="true"
-						id="userType" name="userType">
-							<option value selected>请选择用户类型</option>
-							<option value="0">普通用户</option>
-							<option value="1">管理员</option>
-					</select>
-					</span> <input type="text" class="input-text" value="<%=strusertype%>"
+					<input type="text" class="input-text" value="<%=strusertype%>"
 						placeholder="" id="userType-input" name="userType-input"
 						readonly="readonly">
 				</div>
@@ -168,8 +162,6 @@
 		src="js/artDialog/jquery.artDialog.js?skin=aero"></script>
 	<script type="text/javascript">
 	$(document).ready(function() {
-		// 用户类型下拉列表隐藏
-		$("#select-box").hide();
 		// 隐藏修改信息后的提交按钮
 		$("#submit-info").hide();
 		// 隐藏单位下拉列表
@@ -196,9 +188,6 @@
 		
 	});
 	$("#button-change").click(function(){
-		// 显示用户类型下拉列表
-		$("#select-box").show();
-		$("#userType-input").hide();
 		// 显示修改信息后的提交按钮
 		$("#submit-info").show();
 		$("#button-change").hide();
@@ -215,7 +204,9 @@
 		var policeNum = document.getElementById("policeNum");
 		policeNum.setAttribute('readonly','readonly');
 		
-		
+		// 用户类型自己不允许编辑
+		var userType = document.getElementById("userType-input");
+		userType.setAttribute('readonly','readonly');
 	});
 	$('.skin-minimal input').iCheck({
 		checkboxClass : 'icheckbox-blue',
@@ -330,19 +321,17 @@
 								'#t_department2 option:selected')
 								.val());
 						var params = {
-							"policenum":<%=policenum%>,
 							"username" : username,
 							"idCard" : idCard,
 							"job" : job,
 							"phone" : phone,
 							"email" : email,
-							"userType" : userType,
 							"departmentId" : t_department2,
 						};
 						$(form).ajaxSubmit({
 											async : false,
 											type : 'POST',
-											url : '.do',
+											url : 'updateUser.do',
 											dataType : 'json',
 											data : params,
 											success : function(data) {

@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
 		if (user == null) {
 			return "nouser";
 		} else {
-			String encodedPwd = MD5Util.MD5(password);
+			String encodedPwd = MD5Util.convertMD5(password);
 //			System.out.println("encodedPwd:" + encodedPwd);
 //			System.out.println("password:" + user.getPassword());
 			if (encodedPwd.equals(user.getPassword())||encodedPwd == user.getPassword()) {
@@ -94,6 +94,12 @@ public class UserServiceImpl implements UserService {
 	public int insertSelective(User record) {
 		// TODO Auto-generated method stub
 		return userMapper.insertSelective(record);
+	}
+
+	@Override
+	public int updateByPrimaryKeySelective(User record) {
+		// TODO Auto-generated method stub
+		return userMapper.updateByPrimaryKeySelective(record);
 	}
 
 }

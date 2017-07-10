@@ -41,6 +41,78 @@ public class UserController {
 		this.userService = userService;
 	}
 	
+	@RequestMapping("updateUserPassword.do")
+	public void updateUserPassword(HttpServletRequest request,HttpServletResponse response,HttpSession session){
+		String password = request.getParameter("password");
+		Object sessionUser = session.getAttribute("currentUser") ;
+		User currentUser = (User) sessionUser ;
+		User user = null;
+		user = currentUser;
+		user.setPassword(MD5Util.convertMD5(password));
+		int num = userService.updateByPrimaryKeySelective(user);
+		String jsondata = "fail";
+		if(num > 0){
+			jsondata = "success";
+			user = userService.existsPoliceNum(currentUser.getPolicenum());
+			if(user!=null){
+				session.setAttribute("currentUser", user);
+			}
+		}else{
+			jsondata = "fail";
+		}
+		Map map = new HashMap();
+		map.put("result", jsondata);
+		outputJson(response, jsonutil.MapToJSON(map));
+		response.setStatus(HttpServletResponse.SC_OK);
+	}
+	
+	@RequestMapping("updateUser.do")
+	public void updateUser(HttpServletRequest request,HttpServletResponse response,HttpSession session){
+		String username = request.getParameter("username");
+		String idCard = request.getParameter("idCard");
+		String job = request.getParameter("job");
+		String phone = request.getParameter("phone");
+		String email = request.getParameter("email");
+		String departmentId = request.getParameter("departmentId");
+		User user = null;
+		String jsondata = "userexits_idcard";
+		user = userService.existsIdCard(idCard);
+		Object sessionUser = session.getAttribute("currentUser") ;
+		User currentUser = (User) sessionUser ;
+		if(user!=null&&user.getId()!=currentUser.getId()){
+			jsondata = "userexits_idcard";
+		}else{
+			user = new User();
+			user.setId(currentUser.getId());
+			user.setPolicenum(currentUser.getPolicenum());
+			//user.setPassword(MD5Util.MD5("111111"));
+			user.setUsername(username);
+			user.setIdcard(idCard);
+			user.setJob(job);
+			user.setPhone(phone);
+			user.setTel(phone);
+			user.setDepartmentid(Integer.parseInt(departmentId));
+			user.setEmail(email);
+			//user.setIsusing(1);
+			//user.setLocked(0);
+			//user.setRegisttime(new Date());
+			int num = userService.updateByPrimaryKeySelective(user);
+			if(num > 0){
+				jsondata = "success";
+				user = userService.existsPoliceNum(currentUser.getPolicenum());
+				if(user!=null){
+					session.setAttribute("currentUser", user);
+				}
+			}else{
+				jsondata = "fail";
+			}
+		}
+		Map map = new HashMap();
+		map.put("result", jsondata);
+		outputJson(response, jsonutil.MapToJSON(map));
+		response.setStatus(HttpServletResponse.SC_OK);
+	}
+	
 	@RequestMapping("addUser.do")
 	public void addUser(HttpServletRequest request, HttpServletResponse response,HttpSession session){
 		String policeNum = request.getParameter("policeNum");
@@ -65,7 +137,7 @@ public class UserController {
 				user = new User();
 				user.setId(null);
 				user.setPolicenum(policeNum);
-				user.setPassword(MD5Util.MD5("111111"));
+				user.setPassword(MD5Util.convertMD5("111111"));
 				user.setUsername(username);
 				user.setIdcard(idCard);
 				user.setJob(job);
