@@ -13,23 +13,23 @@
 <script type="text/javascript" src="libs/html5shiv.js"></script>
 <script type="text/javascript" src="libs/respond.min.js"></script>
 <![endif]-->
-<link href="resource/special/css/H-ui.min.css" rel="stylesheet"
+<link href="static/h-ui/css/H-ui.min.css" rel="stylesheet"
 	type="text/css" />
-<link href="resource/special.admin/css/H-ui.login.css" rel="stylesheet"
+<link href="static/h-ui.admin/css/H-ui.login.css" rel="stylesheet"
 	type="text/css" />
-<link href="resource/special.admin/css/style.css" rel="stylesheet"
+<link href="static/h-ui.admin/css/style.css" rel="stylesheet"
 	type="text/css" />
-<link href="libs/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet"
+<link href="lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet"
 	type="text/css" />
 <!--[if IE 6]>
 <script type="text/javascript" src="libs/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
 <title>后台登录系统</title>
-<script type="text/javascript" src="libs/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="resource/special/js/H-ui.min.js"></script>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/artDialog/jquery.artDialog.js?skin=aero"></script>
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
 </head>
 <body>
 	<input type="hidden" id="TenantId" name="TenantId" value="" />
@@ -53,7 +53,7 @@
 							placeholder="密码" class="input-text size-L">
 					</div>
 				</div>
-				<div class="row cl">
+				<!-- <div class="row cl">
 					<div class="formControls col-xs-8 col-xs-offset-3">
 						<input class="input-text size-L" type="text" placeholder="验证码"
 							onblur="if(this.value==''){this.value='验证码:'}"
@@ -61,7 +61,7 @@
 							style="width: 150px;"> <img src=""> <a id="kanbuq"
 							href="javascript:;">看不清，换一张</a>
 					</div>
-				</div>
+				</div> -->
 				<div class="row cl">
 					<div class="formControls col-xs-8 col-xs-offset-3">
 						<label for="online"> <input type="checkbox" name="online"
@@ -82,48 +82,49 @@
 
 
 	<script type="text/javascript">
-		$('#addbtn').live('click', function() {
-			var username = $.trim($('#username').val());
-			var password = $.trim($('#password').val());
-			if (username == '') {
-				art.dialog.alert('请输入警号或身份证号');
-				return false;
-			}
-			if (password == '') {
-				art.dialog.alert('请输入用户密码');
-				return false;
-			}
-			var params = {
-					"username" : username,
-					"password" : password,
-				};
-			$.ajax({
-				type:'POST',
-				url:'login.do',
-				dataType:'json',
-				data:params,
-				success:function(data) {
-					if (data.result == "success") {
-						window.location.href = "index.jsp";
-					} else {
-						if(data.result == "nouser"){
-							art.dialog.alert('没有该用户');
-						}else{
-							art.dialog.alert('密码错误');
-						}
-					}
-				},
-				error:function(XMLHttpRequest,textStatus,errorThrown){
-					alert("服务器访问失败");
-				}
-			});
-
-		});
 		$(function(){
+			$('#addbtn').click(function() {
+				var username = $.trim($('#username').val());
+				var password = $.trim($('#password').val());
+				if (username == '') {
+					$.Huimodalalert('请输入警号或身份证号', 2000);
+					return false;
+				}
+				if (password == '') {
+					$.Huimodalalert('请输入用户密码', 2000);
+					return false;
+				}
+				var params = {
+						"username" : username,
+						"password" : password,
+					};
+				$.ajax({
+					type:'POST',
+					url:'login.do',
+					dataType:'json',
+					data:params,
+					success:function(data) {
+						if (data.result == "success") {
+							window.location.href = "index.jsp";
+						} else {
+							if(data.result == "nouser"){
+								$.Huimodalalert('没有该用户', 2000);
+							}else{
+								$.Huimodalalert('密码错误', 2000);
+							}
+						}
+					},
+					error:function(XMLHttpRequest,textStatus,errorThrown){
+						$.Huimodalalert('服务器访问失败', 2000);
+					}
+				});
+
+			});
 			$('#reset').click(function(){
 				$('#username').val('');
 				$('#password').val('');
 			});
+			
 		})
 	</script>
 

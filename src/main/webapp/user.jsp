@@ -13,15 +13,15 @@
 <script type="text/javascript" src="lib/respond.min.js"></script>
 <![endif]-->
 <link rel="stylesheet" type="text/css"
-	href="resource/special/css/H-ui.min.css" />
+	href="static/h-ui/css/H-ui.min.css" />
 <link rel="stylesheet" type="text/css"
-	href="resource/special.admin/css/H-ui.admin.css" />
+	href="static/h-ui.admin/css/H-ui.admin.css" />
 <link rel="stylesheet" type="text/css"
-	href="libs/Hui-iconfont/1.0.8/iconfont.css" />
+	href="lib/Hui-iconfont/1.0.8/iconfont.css" />
 <link rel="stylesheet" type="text/css"
-	href="resource/special.admin/skin/default/skin.css" id="skin" />
+	href="static/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css"
-	href="resource/special.admin/css/style.css" />
+	href="static/h-ui.admin/css/style.css" />
 <!--[if IE 6]>
 <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
@@ -81,22 +81,21 @@
 		</div>
 	</div>
 	<!--_footer 作为公共模版分离出去-->
-	<script type="text/javascript" src="libs/jquery/1.9.1/jquery.min.js"></script>
-	<script type="text/javascript" src="libs/layer/2.4/layer.js"></script>
-	<script type="text/javascript" src="resource/special/js/H-ui.min.js"></script>
+	<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
+	<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
+	<script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
 	<script type="text/javascript"
-		src="resource/special.admin/js/H-ui.admin.js"></script>
+		src="static/h-ui.admin/js/H-ui.admin.js"></script>
 	<!--/_footer 作为公共模版分离出去-->
 
 	<!--请在下方写此页面业务相关的脚本-->
 	<script type="text/javascript"
-		src="libs/My97DatePicker/4.8/WdatePicker.js"></script>
+		src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
 	<script type="text/javascript"
-		src="libs/datatables/1.10.0/jquery.dataTables.min.js"></script>
-	<script type="text/javascript" src="libs/laypage/1.2/laypage.js"></script>
-	<script type="text/javascript"
-		src="js/artDialog/jquery.artDialog.js?skin=aero"></script>
-	<script type="text/javascript" src="libs/datatables/fnReloadAjax.js"></script>
+		src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
+	<script type="text/javascript" src="lib/datatables/fnReloadAjax.js"></script>
 	<script type="text/javascript">
 	/*用户-添加*/
 	function member_add(title,url,w,h){
@@ -199,90 +198,11 @@
 			});
 		}
 	});
-	/* function doSearch() {
-			if (dtable != null) {
-				dtable.fnClearTable(0);
-				dtable.fnDraw();//重新改加载数据
-			} else {
-				dtable = $("#datatable").dataTable({
-					"bStateSave" : true,
-					"bJQueryUI" : false,
-					"bPaginate" : true,// 分页按钮  
-					"bFilter" : true,// 搜索栏  
-					"bLengthChange" : true,// 每行显示记录数  
-					"bPaginage":true,
-					"iDisplayLength" : 10,// 每页显示行数  
-					"bAutoWidth":false,
-					"aaSorting": [[ 1, "desc" ]],//默认排序
-					"bSort" : false,// 排序  
-					"bInfo" : true,// Showing 1 to 10 of 23 entries 总记录数没也显示多少等信息  
-					"bWidth" : true,
-					"bScrollCollapse" : true,
-					"sPaginationType" : "full_numbers", // 分页，一共两种样式 另一种为two_button // 是datatables默认  
-					"bProcessing" : true,
-					"bServerSide" : false,
-					"bDestroy" : true,
-					"bSortCellsTop" : true,
-					"sAjaxSource" : "getAllUser.do",
-					"sScrollY" : "100%",
-					"fnInitComplete" : function() {
-						this.fnAdjustColumnSizing(true);
-					},
-					"fnServerParams" : function(aoData) {
-						aoData.push({
-							"name" : "statId",
-							"value" : encodeURI($("#s_statId").val())
-						});
-					},
-					"aoColumns" : [ 
-									{"mData" : "policenum"}, 
-									{"mData" : "username"}, 
-									{"mData" : "idcard"}, 
-									{"mData" : "job"},
-									{"mData" : "phone"}, 
-									{"mData" : "email"}, 
-									{"mData" : "departmentname"}, 
-									{"mData" : "isusing"}, 
-									{"mData" : "locked"}, 
-									{"mData" : "registtime"}, 
-									{"mData" : "lastlogintime"}],
-					"fnRowCallback" : function(nRow, aData, iDisplayIndex) {//相当于对字段格式化  
-						if (aData["revampStatus"] == 0) {
-							$('td:eq(5)', nRow).html("结束");
-						} else if (aData["revampStatus"] == 1) {
-							$('td:eq(5)', nRow).html("进行中");
-						} else if (aData["revampStatus"] == 2) {
-							$('td:eq(5)', nRow).html("完成");
-						} else if (aData["revampStatus"] == 3) {
-							$('td:eq(5)', nRow).html("驳回");
-						}
-					},
-					"fnDrawCallback":function(){
-						
-					},
-					"aoColumnDefs": [
-						 ],
-					"fnServerData" : function(sSource, aoData, fnCallback) {
-						$.ajax({
-							"type" : 'get',
-							"url" : sSource,
-							"dataType" : "json",
-							"data" : {
-								aoData : JSON.stringify(aoData)
-							},
-							"success" : function(resp) {
-								fnCallback(resp);
-							}
-						});
-					}
-				});
-			}
-		} */
 		function searchescaped(){
 			var XmOrSfzh = $.trim($('#inputXmorSfzh').val());
 			//art.dialog.alert(param);
 			if (XmOrSfzh == '') {
-				art.dialog.alert('请输入警员编号，姓名或者身份证号');
+				$.Huimodalalert('请输入警员编号，姓名或者身份证号', 2000);
 				return false;
 			};
 			var params = {
@@ -296,7 +216,7 @@
 				contentType: 'application/json; charset=UTF-8',
 				success:function(data) {
 					if (data.jsondata=="nouser") {
-						art.dialog.alert('没有该警员');
+						$.Huimodalalert('没有该警员', 2000);
 					} else {
 							//art.dialog.alert('有该用户');
 						dtable.fnDestroy();
@@ -379,7 +299,7 @@
 				
 				},
 				error:function(XMLHttpRequest,textStatus,errorThrown){
-					alert("服务器访问失败");
+					$.Huimodalalert('服务器访问失败', 2000);
 				}
 			}); 
 		}

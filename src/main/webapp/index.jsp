@@ -1,6 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*,tlkj.model.User"%>
 <%
+	if (session.getAttribute("currentUser") == null) {
+%>
+<h1>未登录！</h1>
+3秒后跳转到登录页面
+<p>
+	如果没有跳转，请点<a href="login.jsp">这里</a>
+</p>
+<%
+	response.setHeader("refresh", "3;URL=login.jsp");
+		return;
+	}
+%>
+<%
 	User currentUser = (User) request.getSession().getAttribute("currentUser");
 	Integer userType = currentUser.getUsertype();
 %>
@@ -20,15 +33,15 @@
 <script type="text/javascript" src="lib/respond.min.js"></script>
 <![endif]-->
 <link rel="stylesheet" type="text/css"
-	href="resource/special/css/H-ui.min.css" />
+	href="static/h-ui/css/H-ui.min.css" />
 <link rel="stylesheet" type="text/css"
-	href="resource/special.admin/css/H-ui.admin.css" />
+	href="static/h-ui.admin/css/H-ui.admin.css" />
 <link rel="stylesheet" type="text/css"
-	href="libs/Hui-iconfont/1.0.8/iconfont.css" />
+	href="lib/Hui-iconfont/1.0.8/iconfont.css" />
 <link rel="stylesheet" type="text/css"
-	href="resource/special.admin/skin/default/skin.css" id="skin" />
+	href="static/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css"
-	href="resource/special.admin/css/style.css" />
+	href="static/h-ui.admin/css/style.css" />
 <!--[if IE 6]>
 <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
@@ -46,27 +59,7 @@
 					class="logo navbar-slogan f-l mr-10 hidden-xs">v1.0</span> <a
 					aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs"
 					href="javascript:;">&#xe667;</a>
-				<nav class="nav navbar-nav">
-					<ul class="cl">
-						<li class="dropDown dropDown_hover"><a href="javascript:;"
-							class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 新增 <i
-								class="Hui-iconfont">&#xe6d5;</i></a>
-							<ul class="dropDown-menu menu radius box-shadow">
-								<li><a href="javascript:;"
-									onclick="article_add('添加资讯','article-add.html')"><i
-										class="Hui-iconfont">&#xe616;</i> 资讯</a></li>
-								<li><a href="javascript:;"
-									onclick="picture_add('添加资讯','picture-add.html')"><i
-										class="Hui-iconfont">&#xe613;</i> 图片</a></li>
-								<li><a href="javascript:;"
-									onclick="product_add('添加资讯','product-add.html')"><i
-										class="Hui-iconfont">&#xe620;</i> 产品</a></li>
-								<li><a href="javascript:;"
-									onclick="member_add('添加用户','member-add.html','','510')"><i
-										class="Hui-iconfont">&#xe60d;</i> 用户</a></li>
-							</ul></li>
-					</ul>
-				</nav>
+				
 				<nav id="Hui-userbar"
 					class="nav navbar-nav navbar-userbar hidden-xs">
 					<ul class="cl">
@@ -106,7 +99,7 @@
 				</dt>
 				<dd>
 					<ul>
-						<li><a data-href="article-list.html" data-title="系统首页"
+						<li><a data-href="home.jsp" data-title="系统首页"
 							href="javascript:void(0)">系统首页</a></li>
 					</ul>
 				</dd>
@@ -303,7 +296,7 @@
 		<div id="Hui-tabNav" class="Hui-tabNav hidden-xs">
 			<div class="Hui-tabNav-wp">
 				<ul id="min_title_list" class="acrossTab cl">
-					<li class="active"><span title="我的桌面" data-href="normal.jsp">我的桌面</span>
+					<li class="active"><span title="我的桌面" data-href="home.jsp">我的桌面</span>
 						<em></em></li>
 				</ul>
 			</div>
@@ -329,21 +322,28 @@
 		</ul>
 	</div>
 	<!--_footer 作为公共模版分离出去-->
-	<script type="text/javascript" src="libs/jquery/1.9.1/jquery.min.js"></script>
-	<script type="text/javascript" src="libs/layer/2.4/layer.js"></script>
-	<script type="text/javascript" src="resource/special/js/H-ui.min.js"></script>
+	<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
+	<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
 	<script type="text/javascript"
-		src="resource/special.admin/js/H-ui.admin.js"></script>
+		src="static/h-ui.admin/js/H-ui.admin.js"></script>
 	<!--/_footer 作为公共模版分离出去-->
 
 	<!--请在下方写此页面业务相关的脚本-->
 	<script type="text/javascript"
-		src="libs/jquery.contextmenu/jquery.contextmenu.r2.js"></script>
+		src="lib/jquery.contextmenu/jquery.contextmenu.r2.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			if(<%=userType%>==0){
+			if (
+	<%=currentUser%>
+		== null) {
+				window.location.href('login.jsp');
+			}
+			if (
+	<%=userType%>
+		== 0) {
 				$("#user-list").hide();
-			}else{
+			} else {
 				$("#user-list").show();
 			}
 		});
