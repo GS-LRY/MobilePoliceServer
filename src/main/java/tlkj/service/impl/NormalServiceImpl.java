@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import tlkj.dao.NormalMapper;
 import tlkj.model.Normal;
 import tlkj.model.NormalTable;
+import tlkj.model.NormalTwoWeek;
 import tlkj.service.NormalService;
 
 @Service("normalService")
@@ -62,6 +63,33 @@ public class NormalServiceImpl implements NormalService {
 		map.put("personId", personId);
 		map.put("commitTime", commitTime);
 		return normalMapper.compareByPersionIdAndCommitTime(map);
+	}
+
+	@Override
+	public int getTodayNormalRecordsNum(String commitTime) {
+		// TODO Auto-generated method stub
+		return normalMapper.getTodayNormalRecordsNum(commitTime);
+	}
+
+	@Override
+	public List<NormalTable> getNewNormalRecords() {
+		// TODO Auto-generated method stub
+		return normalMapper.getNewNormalRecords();
+	}
+
+	@Override
+	public int getTodayEscapedNormalRecordsNum(String commitTime) {
+		// TODO Auto-generated method stub
+		return normalMapper.getTodayEscapedNormalRecordsNum(commitTime);
+	}
+
+	@Override
+	public List<NormalTwoWeek> getNormalRecordsTwoWeek(String startdate, String enddate) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<>();
+		map.put("startdate", startdate);
+		map.put("enddate", enddate);
+		return normalMapper.getNormalRecordsTwoWeek(map);
 	}
 
 }

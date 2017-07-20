@@ -145,7 +145,6 @@
 	<script type="text/javascript"
 		src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
 	<script type="text/javascript">
-	function modalalertdemo(){
 		$(function() {
 			$('.skin-minimal input').iCheck({
 				checkboxClass : 'icheckbox-blue',

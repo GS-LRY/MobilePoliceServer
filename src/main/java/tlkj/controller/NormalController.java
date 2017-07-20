@@ -72,7 +72,7 @@ public class NormalController {
 		outputJson(response, jsonutil.MapToJSON(map));
 		response.setStatus(HttpServletResponse.SC_OK);
 	}
-
+	
 	@RequestMapping("getNormalRecords.do")
 	public void getNormalRecords(HttpServletRequest request, HttpServletResponse response)
 			throws UnsupportedEncodingException {

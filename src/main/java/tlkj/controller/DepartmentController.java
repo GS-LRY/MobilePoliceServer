@@ -39,6 +39,7 @@ public class DepartmentController {
 		Map map = new HashMap();
 		String jsondata = jsonutil.ListToJSON(departmentList);
 		map.put("departments", jsondata);
+		System.out.println(jsonutil.MapToJSON(map));
 		outputJson(response, jsonutil.MapToJSON(map));
 		response.setStatus(HttpServletResponse.SC_OK);
 	}
