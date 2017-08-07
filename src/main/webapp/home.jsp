@@ -137,27 +137,6 @@
 				<div class="row">
 					<!-- Left col 左侧部分-->
 					<section class="col-lg-6 connectedSortable">
-						<!-- Custom tabs (Charts with tabs)-->
-						<!-- S=最近一周核查情况图表 -->
-						<!-- <div class="nav-tabs-custom">
-							Tabs within a box
-							<ul class="nav nav-tabs pull-right">
-								<li class="active"><a href="#revenue-chart"
-									data-toggle="tab">Area</a></li>
-								<li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
-								<li class="pull-left header"><i class="fa fa-inbox"></i>
-									最近一周核查情况</li>
-							</ul>
-							<div class="tab-content no-padding">
-								Morris chart - Sales
-								<div class="chart tab-pane active" id="revenue-chart"
-									style="position: relative; height: 300px;"></div>
-								<div class="chart tab-pane" id="sales-chart"
-									style="position: relative; height: 300px;"></div>
-							</div>
-						</div> -->
-						<!-- E=最近一周核查情况图表 -->
-						<!-- /.nav-tabs-custom -->
 						<!-- S=核查信息即时更新时间轴 -->
 						<div class="row">
 							<div class="col-md-12">
@@ -252,94 +231,43 @@
 					<!-- Right col 右侧部分-->
 					<section class="col-lg-6 connectedSortable">
 						<!-- row -->
-						<!-- S=核查信息即时更新时间轴 -->
-						<!-- <div class="row">
-							<div class="col-md-12">
-								<ul class="timeline" id="">
-									timeline time label
-									<li class="time-label"><span class="bg-blue">
-											最新核录情况 </span></li>
-									/.timeline-label
-									timeline item
-									<li><i class="fa fa-envelope bg-aqua"></i>
-										<div class="timeline-item">
-											<span class="time" id="time0"> <i
-												class="fa fa-clock-o"></i>
+						<div class="box box-info">
+							<div class="box-header">
+								<div class="pull-right box-tools">
+									<button class="btn btn-primary pull-right" onclick="notice_add('添加通知','notice_add.jsp','','700')">更多</button>
+								</div>
+								<i class="fa fa-bullhorn"></i>
+								<h3 class="box-title">通知</h3>
 
-											</span>
-
-											<h3 class="timeline-header no-border">
-												<a href="#"><span id="username0"></span></a> 在 <b><span
-													id="addressname0"></span></b> 核查了 <b><span id="personname0"></span></b>
-											</h3>
-										</div></li>
-									END timeline item
-									timeline item
-									<li>
-										timeline icon <i class="fa fa-envelope bg-blue"></i>
-										<div class="timeline-item">
-											<span class="time" id="time1"> <i
-												class="fa fa-clock-o"></i>
-
-											</span>
-
-											<h3 class="timeline-header no-border">
-												<a href="#"><span id="username1"></span></a> 在 <b><span
-													id="addressname1"></span></b> 核查了 <b><span id="personname1"></span></b>
-											</h3>
-										</div>
-									</li>
-									END timeline item
-									timeline item
-									<li><i class="fa fa-envelope bg-aqua"></i>
-										<div class="timeline-item">
-											<span class="time" id="time2"> <i
-												class="fa fa-clock-o"></i>
-
-											</span>
-
-											<h3 class="timeline-header no-border">
-												<a href="#"><span id="username2"></span></a> 在 <b><span
-													id="addressname2"></span></b> 核查了 <b><span id="personname2"></span></b>
-											</h3>
-										</div></li>
-									END timeline item
-									timeline item
-									<li><i class="fa fa-envelope bg-blue"></i>
-										<div class="timeline-item">
-											<span class="time" id="time3"> <i
-												class="fa fa-clock-o"></i>
-
-											</span>
-
-											<h3 class="timeline-header no-border">
-												<a href="#"><span id="username3"></span></a> 在 <b><span
-													id="addressname3"></span></b> 核查了 <b><span id="personname3"></span></b>
-											</h3>
-										</div></li>
-									END timeline item
-									timeline item
-									<li><i class="fa fa-envelope bg-aqua"></i>
-										<div class="timeline-item">
-											<span class="time" id="time4"> <i
-												class="fa fa-clock-o"></i>
-
-											</span>
-
-											<h3 class="timeline-header no-border">
-												<a href="#"><span id="username4"></span></a> 在 <b><span
-													id="addressname4"></span></b> 核查了 <b><span id="personname4"></span></b>
-											</h3>
-										</div></li>
-									END timeline item
-
-									<li><i class="fa fa-clock-o"></i></li>
-								</ul>
 							</div>
-							/.col
-						</div> -->
+							<!-- /.box-header -->
+							<div class="box-body">
+								<div class="callout callout-danger">
+									<h4>
+										<b><span>2017-07-24</span></b> <a href="#"><b><span>孙小猪</span></b></a>被<b><span>上海市公安局</span></b>列为<b><span>在逃人员</span></b>
+									</h4>
+								</div>
+								<div class="callout callout-danger">
+									<h4>
+										<b><span>2017-07-24</span></b> <a href="#"><b><span>曹小熊</span></b></a>被<b><span>上海市公安局</span></b>列为<b><span>在逃人员</span></b>
+									</h4>
+								</div>
+								<div class="callout callout-info">
+									<h4>
+										<b><span>2017-07-23</span></b> <a href="#"><b><span>李小狗</span></b></a>被<b><span>上海市浦东新区公安分局</span></b>列为<b><span>重点人员</span></b>
+									</h4>
+								</div>
+								<div class="callout callout-warning">
+									<h4>
+										<b><span>2017-07-23</span></b> <a href="#"><b><span>赵小猫</span></b></a>被<b><span>上海市杨浦区公安分局</span></b>列为<b><span>重点人员，贩毒人员</span></b>
+									</h4>
+								</div>
+							</div>
+							<!-- /.box-body -->
+						</div>
+						<!-- /.box -->
+						<!-- /.col -->
 						<!-- /.row -->
-						<!-- E=核查信息即时更新时间轴 -->
 					</section>
 					<!-- /.Right col -->
 				</div>
@@ -404,8 +332,16 @@
 
 	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 	<script src="js/AdminLTE/dashboard.js" type="text/javascript"></script>
+
+	<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
+	<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
+	<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script>
 	<!-- 从后台获取需要显示的数据 -->
 	<script type="text/javascript">
+	
+	function notice_add(title,url,w,h){
+		layer_show(title,url,w,h);
+	}
 		$(function() {
 			getData();
 		});
@@ -433,7 +369,7 @@
 				}
 			});
 			//setInterval(getData(),60000);
-			setTimeout('getData()', 5000);
+			setTimeout('getData()', 50000);
 		};
 
 		//setInterval(getData(),5000);
@@ -485,55 +421,74 @@
 					+ seperator + strDate;
 			return currentdate;
 		};
-		 var normalTableList2Weeks = [];
-		    $.ajax({
-		    	type : 'GET',
-				url : 'getNormalRecordsTwoWeek.do',
-				dataType : 'json',
-				success : function(data) {
-					//alert(data.normalrecords+"/"+data.toadynormalrecords);
-					
-					normalTableList2Weeks = eval(data.normalTableList2Weeks);
-					// 基于准备好的dom，初始化echarts实例
-			        var myChart = echarts.init(document.getElementById('main'),'macarons');
+		var normalTableList2Weeks = [];
+		$.ajax({
+			type : 'GET',
+			url : 'getNormalRecordsTwoWeek.do',
+			dataType : 'json',
+			success : function(data) {
+				//alert(data.normalrecords+"/"+data.toadynormalrecords);
 
-			        // 指定图表的配置项和数据
-			        var option = {
-			            title: {
-			                text: '最近两周核查情况'
-			            },
-			            tooltip: {},
-			            legend: {
-			                data:['核查数']
-			            },
-			            xAxis: {
-			                data: [normalTableList2Weeks[0].normaldate,normalTableList2Weeks[1].normaldate,normalTableList2Weeks[2].normaldate,normalTableList2Weeks[3].normaldate,
-			                	normalTableList2Weeks[4].normaldate,normalTableList2Weeks[5].normaldate,normalTableList2Weeks[6].normaldate,normalTableList2Weeks[7].normaldate,
-			                	normalTableList2Weeks[8].normaldate,normalTableList2Weeks[9].normaldate,normalTableList2Weeks[10].normaldate,normalTableList2Weeks[11].normaldate,
-			                	normalTableList2Weeks[12].normaldate,normalTableList2Weeks[13].normaldate]
-			            },
-			            yAxis: {},
-			            series: [{
-			                name: '核查数',
-			                type: 'line',
-			                data: [normalTableList2Weeks[0].normalnum,normalTableList2Weeks[1].normalnum,normalTableList2Weeks[2].normalnum,normalTableList2Weeks[3].normalnum,
-			                	normalTableList2Weeks[4].normalnum,normalTableList2Weeks[5].normalnum,normalTableList2Weeks[6].normalnum,normalTableList2Weeks[7].normalnum,
-			                	normalTableList2Weeks[8].normalnum,normalTableList2Weeks[9].normalnum,normalTableList2Weeks[10].normalnum,normalTableList2Weeks[11].normalnum,
-			                	normalTableList2Weeks[12].normalnum,normalTableList2Weeks[13].normalnum]
-			            }]
-			        };
+				normalTableList2Weeks = eval(data.normalTableList2Weeks);
+				// 基于准备好的dom，初始化echarts实例
+				var myChart = echarts.init(document.getElementById('main'),
+						'macarons');
 
-			        // 使用刚指定的配置项和数据显示图表。
-			        myChart.setOption(option);
-				},
-				error : function(XMLHttpRequest, textStatus, errorThrown) {
-					
-				}
-		    });
-		
-		 
+				// 指定图表的配置项和数据
+				var option = {
+					title : {
+						text : '最近两周核查情况'
+					},
+					tooltip : {},
+					legend : {
+						data : [ '核查数' ]
+					},
+					xAxis : {
+						data : [ normalTableList2Weeks[0].normaldate,
+								normalTableList2Weeks[1].normaldate,
+								normalTableList2Weeks[2].normaldate,
+								normalTableList2Weeks[3].normaldate,
+								normalTableList2Weeks[4].normaldate,
+								normalTableList2Weeks[5].normaldate,
+								normalTableList2Weeks[6].normaldate,
+								normalTableList2Weeks[7].normaldate,
+								normalTableList2Weeks[8].normaldate,
+								normalTableList2Weeks[9].normaldate,
+								normalTableList2Weeks[10].normaldate,
+								normalTableList2Weeks[11].normaldate,
+								normalTableList2Weeks[12].normaldate,
+								normalTableList2Weeks[13].normaldate ]
+					},
+					yAxis : {},
+					series : [ {
+						name : '核查数',
+						type : 'line',
+						data : [ normalTableList2Weeks[0].normalnum,
+								normalTableList2Weeks[1].normalnum,
+								normalTableList2Weeks[2].normalnum,
+								normalTableList2Weeks[3].normalnum,
+								normalTableList2Weeks[4].normalnum,
+								normalTableList2Weeks[5].normalnum,
+								normalTableList2Weeks[6].normalnum,
+								normalTableList2Weeks[7].normalnum,
+								normalTableList2Weeks[8].normalnum,
+								normalTableList2Weeks[9].normalnum,
+								normalTableList2Weeks[10].normalnum,
+								normalTableList2Weeks[11].normalnum,
+								normalTableList2Weeks[12].normalnum,
+								normalTableList2Weeks[13].normalnum ]
+					} ]
+				};
+
+				// 使用刚指定的配置项和数据显示图表。
+				myChart.setOption(option);
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+
+			}
+		});
 	</script>
-	
+
 
 
 </body>

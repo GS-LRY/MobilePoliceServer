@@ -25,11 +25,22 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import tlkj.json.JsonUtil;
 import tlkj.model.Escaped;
+import tlkj.model.NormalTable;
 import tlkj.service.EscapedService;
+import tlkj.service.NormalService;
 
 @Controller
 public class EscapedController {
 	private EscapedService escapedService;
+	private NormalService normalService;
+	public NormalService getNormalService() {
+		return normalService;
+	}
+	@Autowired
+	public void setNormalService(NormalService normalService) {
+		this.normalService = normalService;
+	}
+
 	private JsonUtil jsonutil = new JsonUtil();
 
 	public EscapedService getEscapedService() {
@@ -230,6 +241,7 @@ public class EscapedController {
 		Escaped escapedexist = null;
 		escapedexist = escapedService.selectByPersonId(sfzh);
 		String result = "fail";
+		String isEscaped = "f";
 		Map map = new HashMap();
 		if (escapedexist == null) {
 			int num = escapedService.insertEscaped(escaped);
@@ -243,6 +255,13 @@ public class EscapedController {
 		}
 		map.put("result", result);
 
+		// 检查添加的在逃人员在核查记录中是否有记录
+		List<NormalTable> normalTableList = null;
+		normalTableList = normalService.searchNormalRecord(sfzh,sfzh,sfzh,sfzh,sfzh,sfzh);
+		if (normalTableList.size() > 0) {
+			isEscaped = "t";
+		}
+		map.put("isEscaped",isEscaped);
 		JsonUtil jsonutil = new JsonUtil();
 		System.out.println("Map转JSON：" + jsonutil.MapToJSON(map));
 		response.getWriter().print(jsonutil.MapToJSON(map));

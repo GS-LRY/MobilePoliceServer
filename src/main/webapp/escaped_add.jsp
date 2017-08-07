@@ -147,9 +147,31 @@
 				<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
 					<input class="btn btn-primary radius" type="submit"
 						value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+						
 				</div>
 			</div>
 		</form>
+		<!--S = 添加的在逃人员，在核查记录中已经存在，发出警报 -->
+		<div id="modal-demo" class="modal fade" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content radius">
+					<div class="modal-header">
+						<h3 class="modal-title">对话框标题</h3>
+						<a class="close" data-dismiss="modal" aria-hidden="true"
+							href="javascript:void();">×</a>
+					</div>
+					<div class="modal-body">
+						<p>对话框内容…</p>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-primary">确定</button>
+						<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--E = 添加的在逃人员，在核查记录中已经存在，发出警报 -->
 	</article>
 
 	<!--_footer 作为公共模版分离出去-->
@@ -157,8 +179,7 @@
 	<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
 	<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
 	<script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
-	<script type="text/javascript"
-		src="static/h-ui.admin/js/H-ui.admin.js"></script>
+	<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script>
 	<!--/_footer 作为公共模版分离出去-->
 
 	<!--请在下方写此页面业务相关的脚本-->
@@ -171,6 +192,7 @@
 	<script type="text/javascript"
 		src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
 	<script type="text/javascript">
+	function modaldemo(){
 		$(function() {
 			$('.skin-minimal input').iCheck({
 				checkboxClass : 'icheckbox-blue',
@@ -228,12 +250,14 @@
 								success : "valid",
 								submitHandler : function(form) {
 									var xm = $.trim($('#xm').val());
-									var xb = $("input[name='xb']:checked").val();
+									var xb = $("input[name='xb']:checked")
+											.val();
 									var sfzh = $.trim($('#sfzh').val());
 									var zdrylbbj = $.trim($('#zdrylbbj').val());
 									var zdryxl = $.trim($('#zdryxl').val());
 									var ladw = $.trim($('#ladw').val());
-									var nrbjzdryksj = $.trim($('#nrbjzdryksj').val());
+									var nrbjzdryksj = $.trim($('#nrbjzdryksj')
+											.val());
 									var hjdqh = $.trim($('#hjdqh').val());
 									var hjdxz = $.trim($('#hjdxz').val());
 									var xzdqh = $.trim($('#xzdqh').val());
@@ -253,28 +277,10 @@
 										"xzdxz" : xzdxz,
 										"zjlasj" : zjlasj,
 									};
-									/* $.ajax({
-										type : 'POST',
-										url : 'addEscapedRecord.do',
-										dataType : 'json',
-										data : params,
-										success : function(result) {
-											 if (data.result == "success") {
-												art.dialog.alert('添加成功');
-											} else {
-												art.dialog.alert('添加失败');
-											} 
-											art.dialog.alert(result.result);
-										},
-										error : function(XMLHttpRequest,
-												textStatus, errorThrown) {
-											art.dialog.alert("textStatus:"+textStatus+"+errorThrown:"+errorThrown);
-										},
-									}); */
 									$(form)
 											.ajaxSubmit(
 													{
-														async:false,
+														async : false,
 														type : 'POST',
 														url : 'addEscapedRecord.do',
 														dataType : 'json',
@@ -282,14 +288,18 @@
 														success : function(data) {
 															//art.dialog.alert(data);
 															if (data.result == "success") {
-																$.Huimodalalert('添加成功', 2000);
-															} else {
-																if(data.result == "exist"){
-																	$.Huimodalalert('该在逃人员已经入库，请勿重复添加！', 2000);
-																}else{
-																	$.Huimodalalert('添加失败', 2000);
+																$.Huimodalalert('添加成功',2000);
+																// 检测到添加的在逃人员在核查记录中被核查过，弹出警报提示框
+																if(data.isEscaped == "t"){
+																	$("#modal-demo").modal("show");
 																}
-															} 
+															} else {
+																if (data.result == "exist") {
+																	$.Huimodalalert('该在逃人员已经入库，请勿重复添加！',2000);
+																} else {
+																	$.Huimodalalert('添加失败',2000);
+																}
+															}
 														},
 														error : function(data,
 																XMLHttpRequest,
@@ -299,8 +309,10 @@
 															alert(XMLHttpRequest.status);
 															alert(XMLHttpRequest.readyState);
 															alert(textStatus); */
-															$.Huimodalalert('服务器访问失败', 2000);
-														}, 
+															$.Huimodalalert(
+																	'服务器访问失败',
+																	2000);
+														},
 													});
 									var index = parent.layer
 											.getFrameIndex(window.name);

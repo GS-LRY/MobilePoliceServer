@@ -53,7 +53,7 @@
 		<div class="navbar navbar-fixed-top">
 			<div class="container-fluid cl">
 				<a class="logo navbar-logo f-l mr-10 hidden-xs"
-					href="/aboutHui.shtml">移动警务后台系统</a> <a
+					href="/aboutHui.shtml">移动警务后台管理系统</a> <a
 					class="logo navbar-logo-m f-l mr-10 visible-xs"
 					href="/aboutHui.shtml">上海图丽信息技术有限公司</a> <span
 					class="logo navbar-slogan f-l mr-10 hidden-xs">v1.0</span> <a
