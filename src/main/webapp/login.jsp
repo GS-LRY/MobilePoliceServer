@@ -9,6 +9,8 @@
 <meta name="viewport"
 	content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="shortcut icon" href="lib/favicon.ico" />
+<link rel="bookmark"href="lib/favicon.ico" />
 <!--[if lt IE 9]>
 <script type="text/javascript" src="libs/html5shiv.js"></script>
 <script type="text/javascript" src="libs/respond.min.js"></script>
@@ -72,8 +74,8 @@
 				<div class="row cl">
 					<div class="formControls col-xs-8 col-xs-offset-3">
 						<input id="addbtn" type="submit" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;"> 
-						<input id="reset" type="reset" class="btn btn-default radius size-L" value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
-					</div>
+						<input id="reset" type="reset" class="btn btn-primary radius size-L" value="&nbsp;证书登录&nbsp;">
+					</div></div>
 				</form>
 			</div>
 		</div>

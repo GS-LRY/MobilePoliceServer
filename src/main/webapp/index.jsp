@@ -26,8 +26,8 @@
 <meta name="viewport"
 	content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
-<link rel="Bookmark" href="/favicon.ico">
-<link rel="Shortcut Icon" href="/favicon.ico" />
+<link rel="shortcut icon" href="lib/favicon.ico" />
+<link rel="bookmark"href="lib/favicon.ico" />
 <!--[if lt IE 9]>
 <script type="text/javascript" src="lib/html5shiv.js"></script>
 <script type="text/javascript" src="lib/respond.min.js"></script>
@@ -42,6 +42,7 @@
 	href="static/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css"
 	href="static/h-ui.admin/css/style.css" />
+<link rel="stylesheet" type="text/css" href="lib/iconfont/iconfont.css" />
 <!--[if IE 6]>
 <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
@@ -59,7 +60,7 @@
 					class="logo navbar-slogan f-l mr-10 hidden-xs">v1.0</span> <a
 					aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs"
 					href="javascript:;">&#xe667;</a>
-				
+
 				<nav id="Hui-userbar"
 					class="nav navbar-nav navbar-userbar hidden-xs">
 					<ul class="cl">
@@ -67,8 +68,7 @@
 						<li class="dropDown dropDown_hover"><a href="#"
 							class="dropDown_A">admin <i class="Hui-iconfont">&#xe6d5;</i></a>
 							<ul class="dropDown-menu menu radius box-shadow">
-								<li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>
-								<li><a href="#">退出</a></li>
+								<li><a href="exit.jsp" target="_top">退出</a></li>
 							</ul></li>
 						<li id="Hui-msg"><a href="#" title="消息"><span
 								class="badge badge-danger">1</span><i class="Hui-iconfont"
@@ -94,7 +94,7 @@
 		<div class="menu_dropdown bk_2">
 			<dl id="menu-article">
 				<dt>
-					<i class="Hui-iconfont">&#xe616;</i> 系统首页<i
+					<i class="icon iconfont">&#xe70d;</i> 系统首页<i
 						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
 				</dt>
 				<dd>
@@ -106,7 +106,7 @@
 			</dl>
 			<dl id="menu-picture">
 				<dt>
-					<i class="Hui-iconfont">&#xe613;</i> 个人中心<i
+					<i class="icon iconfont">&#xe611;</i> 个人中心<i
 						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
 				</dt>
 				<dd>
@@ -120,111 +120,44 @@
 			</dl>
 			<dl id="menu-product">
 				<dt>
-					<i class="Hui-iconfont">&#xe620;</i> 分级统计<i
+					<i class="icon iconfont">&#xe60b;</i> 分级统计<i
 						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
 				</dt>
 				<dd>
 					<ul>
-						<li><a data-href="charts-1.html" data-title="折线图"
-							href="javascript:void(0)">折线图</a></li>
-						<li><a data-href="charts-2.html" data-title="时间轴折线图"
-							href="javascript:void(0)">时间轴折线图</a></li>
-						<li><a data-href="charts-3.html" data-title="区域图"
-							href="javascript:void(0)">区域图</a></li>
-						<li><a data-href="charts-4.html" data-title="柱状图"
-							href="javascript:void(0)">柱状图</a></li>
-						<li><a data-href="charts-5.html" data-title="饼状图"
-							href="javascript:void(0)">饼状图</a></li>
-						<li><a data-href="charts-6.html" data-title="3D柱状图"
-							href="javascript:void(0)">3D柱状图</a></li>
-						<li><a data-href="charts-7.html" data-title="3D饼状图"
-							href="javascript:void(0)">3D饼状图</a></li>
+						<li><a data-href="StatisticalChart.jsp" data-title="统计图表"
+							href="javascript:void(0)">统计图表</a></li>
 					</ul>
 				</dd>
 			</dl>
 			<dl id="menu-comments">
 				<dt>
-					<i class="Hui-iconfont">&#xe622;</i> 手动布控<i
+					<i class="icon iconfont">&#xe67a;</i> 手动布控<i
 						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
 				</dt>
 				<dd>
 					<ul>
-						<li><a data-href="http://h-ui.duoshuo.com/admin/"
-							data-title="评论列表" href="javascript:;">评论列表</a></li>
-						<li><a data-href="feedback-list.html" data-title="意见反馈"
-							href="javascript:void(0)">意见反馈</a></li>
+						<li><a data-href="ManualControl.jsp"
+							data-title="手动布控" href="javascript:;">手动布控</a></li>
 					</ul>
 				</dd>
 			</dl>
 			<dl id="menu-member">
 				<dt>
-					<i class="Hui-iconfont">&#xe60d;</i> 报警管理<i
+					<i class="icon iconfont">&#xe601;</i> 报警管理<i
 						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
 				</dt>
 				<dd>
 					<ul>
-						<li><a data-href="member-list.html" data-title="会员列表"
-							href="javascript:;">会员列表</a></li>
-						<li><a data-href="member-del.html" data-title="删除的会员"
-							href="javascript:;">删除的会员</a></li>
-						<li><a data-href="member-level.html" data-title="等级管理"
-							href="javascript:;">等级管理</a></li>
-						<li><a data-href="member-scoreoperation.html"
-							data-title="积分管理" href="javascript:;">积分管理</a></li>
-						<li><a data-href="member-record-browse.html"
-							data-title="浏览记录" href="javascript:void(0)">浏览记录</a></li>
-						<li><a data-href="member-record-download.html"
-							data-title="下载记录" href="javascript:void(0)">下载记录</a></li>
-						<li><a data-href="member-record-share.html" data-title="分享记录"
-							href="javascript:void(0)">分享记录</a></li>
+						<li><a data-href="CallPolice.jsp" data-title="报警管理"
+							href="javascript:;">报警管理</a></li>
 					</ul>
 				</dd>
 			</dl>
-			<dl id="menu-admin">
-				<dt>
-					<i class="Hui-iconfont">&#xe62d;</i> 轨迹查询<i
-						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
-				</dt>
-				<dd>
-					<ul>
-						<li><a data-href="admin-role.html" data-title="角色管理"
-							href="javascript:void(0)">角色管理</a></li>
-						<li><a data-href="admin-permission.html" data-title="权限管理"
-							href="javascript:void(0)">权限管理</a></li>
-						<li><a data-href="admin-list.html" data-title="管理员列表"
-							href="javascript:void(0)">管理员列表</a></li>
-						<li><a data-href="member-list.html" data-title="管理员列表"
-							href="javascript:void(0)">管理员列表</a></li>
-					</ul>
-				</dd>
-			</dl>
-			<dl id="menu-tongji">
-				<dt>
-					<i class="Hui-iconfont">&#xe61a;</i> 系统统计<i
-						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
-				</dt>
-				<dd>
-					<ul>
-						<li><a data-href="charts-1.html" data-title="折线图"
-							href="javascript:void(0)">折线图</a></li>
-						<li><a data-href="charts-2.html" data-title="时间轴折线图"
-							href="javascript:void(0)">时间轴折线图</a></li>
-						<li><a data-href="charts-3.html" data-title="区域图"
-							href="javascript:void(0)">区域图</a></li>
-						<li><a data-href="charts-4.html" data-title="柱状图"
-							href="javascript:void(0)">柱状图</a></li>
-						<li><a data-href="charts-5.html" data-title="饼状图"
-							href="javascript:void(0)">饼状图</a></li>
-						<li><a data-href="charts-6.html" data-title="3D柱状图"
-							href="javascript:void(0)">3D柱状图</a></li>
-						<li><a data-href="charts-7.html" data-title="3D饼状图"
-							href="javascript:void(0)">3D饼状图</a></li>
-					</ul>
-				</dd>
-			</dl>
+
 			<dl id="menu-system">
 				<dt>
-					<i class="Hui-iconfont">&#xe62e;</i> 资源管理<i
+					<i class="icon iconfont">&#xe607;</i> 资源管理<i
 						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
 				</dt>
 				<dd>
@@ -238,51 +171,43 @@
 					</ul>
 				</dd>
 			</dl>
-			<dl id="menu-check">
+			<dl id="menu-vedio">
 				<dt>
-					<i class="Hui-iconfont">&#xe62e;</i> 网内核录<i
+					<i class="icon iconfont">&#xe88a;</i> 视频监控<i
 						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
 				</dt>
 				<dd>
 					<ul>
-						<li><a data-href="system-base.html" data-title="系统设置"
-							href="javascript:void(0)">系统设置</a></li>
+						<li><a data-href="realtime_video.jsp" data-title="实时视频监控"
+							href="javascript:void(0)">实时视频监控</a></li>
+						<li><a data-href="history_video.jsp" data-title="历史录像回放"
+							href="javascript:void(0)">历史录像回放</a></li>
+					</ul>
+				</dd>
+			</dl>
+			<dl id="menu-check">
+				<dt>
+					<i class="icon iconfont">&#xe9e8;</i> 网内核录<i
+						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
+				</dt>
+				<dd>
+					<ul>
+						<li><a data-href="NetVerificationRecord.jsp" data-title="网内核录"
+							href="javascript:void(0)">网内核录</a></li>
 					</ul>
 				</dd>
 			</dl>
 			<dl id="menu-notice">
 				<dt>
-					<i class="Hui-iconfont">&#xe62e;</i> 通知通报<i
+					<i class="icon iconfont">&#xe608;</i> 通知通报<i
 						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
 				</dt>
 				<dd>
 					<ul>
-						<li><a data-href="system-base.html" data-title="系统设置"
-							href="javascript:void(0)">系统设置</a></li>
-					</ul>
-				</dd>
-			</dl>
-			<dl id="menu-user">
-				<dt>
-					<i class="Hui-iconfont">&#xe62e;</i> 用户管理<i
-						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
-				</dt>
-				<dd>
-					<ul>
-						<li><a data-href="system-base.html" data-title="系统设置"
-							href="javascript:void(0)">系统设置</a></li>
-					</ul>
-				</dd>
-			</dl>
-			<dl id="menu-roles">
-				<dt>
-					<i class="Hui-iconfont">&#xe62e;</i> 角色管理<i
-						class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
-				</dt>
-				<dd>
-					<ul>
-						<li><a data-href="system-base.html" data-title="系统设置"
-							href="javascript:void(0)">系统设置</a></li>
+						<li><a data-href="notice.jsp" data-title="通知通报"
+							href="javascript:void(0)">通知通报</a></li>
+						<li><a data-href="notice_add.jsp" data-title="添加通知通报"
+							href="javascript:void(0)">添加通知通报</a></li>
 					</ul>
 				</dd>
 			</dl>
@@ -325,8 +250,7 @@
 	<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
 	<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
-	<script type="text/javascript"
-		src="static/h-ui.admin/js/H-ui.admin.js"></script>
+	<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script>
 	<!--/_footer 作为公共模版分离出去-->
 
 	<!--请在下方写此页面业务相关的脚本-->
@@ -362,50 +286,6 @@
 				}
 			});*/
 		});
-		/*个人信息*/
-		function myselfinfo() {
-			layer.open({
-				type : 1,
-				area : [ '300px', '200px' ],
-				fix : false, //不固定
-				maxmin : true,
-				shade : 0.4,
-				title : '查看信息',
-				content : '<div>管理员信息</div>'
-			});
-		}
-
-		/*资讯-添加*/
-		function article_add(title, url) {
-			var index = layer.open({
-				type : 2,
-				title : title,
-				content : url
-			});
-			layer.full(index);
-		}
-		/*图片-添加*/
-		function picture_add(title, url) {
-			var index = layer.open({
-				type : 2,
-				title : title,
-				content : url
-			});
-			layer.full(index);
-		}
-		/*产品-添加*/
-		function product_add(title, url) {
-			var index = layer.open({
-				type : 2,
-				title : title,
-				content : url
-			});
-			layer.full(index);
-		}
-		/*用户-添加*/
-		function member_add(title, url, w, h) {
-			layer_show(title, url, w, h);
-		}
 	</script>
 </body>
 </html>

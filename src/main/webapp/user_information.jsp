@@ -50,66 +50,66 @@
 		<form action="" method="post" class="form form-horizontal"
 			id="form-member-change">
 			<div class="row cl">
-				<label class="form-label col-xs-4 col-sm-3"><span
+				<label class="form-label col-xs-4 col-sm-1"><span
 					class="c-red">*</span>警号：</label>
-				<div class="formControls col-xs-8 col-sm-9">
+				<div class="formControls col-xs-8 col-sm-11">
 					<input type="text" class="input-text" value="<%=policenum%>"
 						placeholder="" id="policeNum" name="policeNum" readonly="readonly">
 				</div>
 			</div>
 			<div class="row cl">
-				<label class="form-label col-xs-4 col-sm-3"><span
+				<label class="form-label col-xs-4 col-sm-1"><span
 					class="c-red">*</span>姓名：</label>
-				<div class="formControls col-xs-8 col-sm-9">
+				<div class="formControls col-xs-8 col-sm-11">
 					<input type="text" class="input-text" value="<%=strusername%>"
 						placeholder="" id="username" name="username" readonly="readonly">
 				</div>
 			</div>
 			<div class="row cl">
-				<label class="form-label col-xs-4 col-sm-3"><span
+				<label class="form-label col-xs-4 col-sm-1"><span
 					class="c-red">*</span>用户类型：</label>
-				<div class="formControls col-xs-8 col-sm-9">
+				<div class="formControls col-xs-8 col-sm-11">
 					<input type="text" class="input-text" value="<%=strusertype%>"
 						placeholder="" id="userType-input" name="userType-input"
 						readonly="readonly">
 				</div>
 			</div>
 			<div class="row cl">
-				<label class="form-label col-xs-4 col-sm-3"><span
+				<label class="form-label col-xs-4 col-sm-1"><span
 					class="c-red">*</span>职务：</label>
-				<div class="formControls col-xs-8 col-sm-9">
+				<div class="formControls col-xs-8 col-sm-11">
 					<input type="text" class="input-text" value="<%=strjob%>"
 						placeholder="" id="job" name="job" readonly="readonly">
 				</div>
 			</div>
 			<div class="row cl">
-				<label class="form-label col-xs-4 col-sm-3"><span
+				<label class="form-label col-xs-4 col-sm-1"><span
 					class="c-red">*</span>身份证号：</label>
-				<div class="formControls col-xs-8 col-sm-9">
+				<div class="formControls col-xs-8 col-sm-11">
 					<input type="text" class="input-text" value="<%=stridCard%>"
 						placeholder="" id="idCard" name="idCard" readonly="readonly">
 				</div>
 			</div>
 			<div class="row cl">
-				<label class="form-label col-xs-4 col-sm-3"><span
+				<label class="form-label col-xs-4 col-sm-1"><span
 					class="c-red">*</span>联系电话：</label>
-				<div class="formControls col-xs-8 col-sm-9">
+				<div class="formControls col-xs-8 col-sm-11">
 					<input type="text" class="input-text" placeholder="" name="phone"
 						value="<%=strphone%>" id="phone" readonly="readonly">
 				</div>
 			</div>
 			<div class="row cl">
-				<label class="form-label col-xs-4 col-sm-3"><span
+				<label class="form-label col-xs-4 col-sm-1"><span
 					class="c-red"></span>电子邮箱：</label>
-				<div class="formControls col-xs-8 col-sm-9">
+				<div class="formControls col-xs-8 col-sm-11">
 					<input type="text" class="input-text" placeholder="" name="email"
 						value="<%=stremail%>" id="email" readonly="readonly">
 				</div>
 			</div>
 			<div class="row cl">
-				<label class="form-label col-xs-4 col-sm-3"><span
+				<label class="form-label col-xs-4 col-sm-1"><span
 					class="c-red">*</span>所属一级单位：</label>
-				<div class="formControls col-xs-8 col-sm-9">
+				<div class="formControls col-xs-8 col-sm-11">
 					<span id="t_department1_span" class="select-box"> <select
 						class="select error" aria-required="true" aria-invalid="true"
 						id="t_department1" name="t_department1"><option value
@@ -119,9 +119,9 @@
 				</div>
 			</div>
 			<div class="row cl">
-				<label class="form-label col-xs-4 col-sm-3"><span
+				<label class="form-label col-xs-4 col-sm-1"><span
 					class="c-red">*</span>所属二级单位：</label>
-				<div class="formControls col-xs-8 col-sm-9">
+				<div class="formControls col-xs-8 col-sm-11">
 					<span id="t_department2_span" class="select-box"> <select
 						class="select error" aria-required="true" aria-invalid="true"
 						id="t_department2" name="t_department2"><option value
@@ -131,7 +131,7 @@
 				</div>
 			</div>
 			<div class="row cl">
-				<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<div class="col-xs-8 col-sm-11 col-xs-offset-4 col-sm-offset-1">
 					<input id="submit-info" class="btn btn-primary radius"
 						type="submit" value="&nbsp;&nbsp;确认提交&nbsp;&nbsp;"> 
 						<input id="button-change" class="btn btn-primary radius" type="button"

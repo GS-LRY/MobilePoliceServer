@@ -17,7 +17,7 @@
 <link rel="stylesheet" type="text/css"
 	href="static/h-ui.admin/css/H-ui.admin.css" />
 <link rel="stylesheet" type="text/css"
-	href="libs/Hui-iconfont/1.0.8/iconfont.css" />
+	href="lib/Hui-iconfont/1.0.8/iconfont.css" />
 <link rel="stylesheet" type="text/css"
 	href="static/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css"
@@ -46,7 +46,7 @@
 				onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d' })"
 				id="datemax" class="input-text Wdate" style="width: 120px;"> -->
 			<input type="text" class="input-text" style="width: 250px"
-				placeholder="输入在逃人员姓名或身份证号" id="inputXmorSfzhorOther" name="">
+				placeholder="输入关键词" id="inputXmorSfzhorOther" name="">
 			<button type="submit" class="btn btn-success radius"
 				id="searchNoraml" name="" onclick="searchnormal()">
 				<i class="Hui-iconfont">&#xe665;</i> 搜核查记录

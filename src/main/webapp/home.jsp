@@ -234,7 +234,7 @@
 						<div class="box box-info">
 							<div class="box-header">
 								<div class="pull-right box-tools">
-									<button class="btn btn-primary pull-right" onclick="notice_add('添加通知','notice_add.jsp','','700')">更多</button>
+									<button class="btn btn-primary pull-right" onclick="notice_add('通知通报','notice.jsp','','700')">更多</button>
 								</div>
 								<i class="fa fa-bullhorn"></i>
 								<h3 class="box-title">通知</h3>
